@@ -1,0 +1,52 @@
+#main_navigation li a {
+/*	background-color: purple;*/
+}
+
+#main_navigation span.link_description p {
+	/*background-color: green;*/
+}
+
+#main_container {
+/*	background-color: blue;*/
+}
+
+#main_content {
+/*	background-color: grey;*/
+	/*background-color: #FFF;*/
+}
+
+#sidebar {
+	background-color: white;
+}
+
+.column_one {
+	background-color: pink;
+}
+
+.column_two {
+	background-color: green;
+}
+
+.column_three {
+	background-color: yellow;
+}
+
+.column_four {
+	background-color: purple;
+}
+
+#add {
+	background-color: brown;
+}
+
+#main_content {
+	/*background-color:#765765;*/
+}
+
+#upgrade {
+	background-color: yellow;
+}
+
+#upgrade h2 {
+	background-color: grey;
+}

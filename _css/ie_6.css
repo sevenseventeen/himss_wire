@@ -1,0 +1,25 @@
+#add .savings {
+	position: relative;
+	top:-5px;
+}
+
+.counter {
+	margin-top: -4px;
+	margin-left: 4px;
+}
+
+#main_navigation .current span.link_description {
+	margin: -18px 0 0 0px;
+}
+
+#main_navigation span.link_description p.link_description {
+	width: 110px;
+}
+
+#faq p.m_shield {
+	padding-left: 0px;
+}
+
+#faq p#lost_password_answer {
+	margin-bottom: 10px;
+}

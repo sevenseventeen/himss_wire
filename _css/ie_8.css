@@ -1,0 +1,20 @@
+.counter {
+	margin-top: -4px;
+	margin-left: 4px;
+}
+
+#main_navigation .current span.link_description {
+	margin: -34px 0 0 0px;
+}
+
+#upgrade .software {
+	margin-left: 125px
+}
+
+#upgrade .chart {
+	margin-left: 210px;
+}
+
+#faq p.m_shield {
+	padding-left: 75px;
+}
