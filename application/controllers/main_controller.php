@@ -39,24 +39,42 @@ class Main_Controller extends CI_Controller {
 		$this->load->view('article_view', $data);
 	}
 	
-	public function about_himss_wire() {
-		$this->load->view('about_himss_wire_view');
+	public function about_himss_wire($page_id) {
+		$this->load->model('content_model');
+		$data['static_page'] = $this->content_model->get_static_page_by_id($page_id);
+		$data['static_page_content'] = $this->content_model->get_static_page_content_by_id($page_id);
+		$this->load->view('about_himss_wire_view', $data);
 	}
 	
-	public function our_network() {
-		$this->load->view('our_network_view');
+	public function category($category_id) {
+		$this->load->model('content_model');
+		$data['articles'] = $this->content_model->get_articles_by_category_id($category_id);
+		$this->load->view('category_view', $data);
+	}
+	
+	public function our_network($page_id) {
+		$this->load->model('content_model');
+		$data['static_page'] = $this->content_model->get_static_page_by_id($page_id);
+		$data['static_page_content'] = $this->content_model->get_static_page_content_by_id($page_id);
+		$this->load->view('about_himss_wire_view', $data);
 	}
 
 	public function privacy_policy() {
 		$this->load->view('privacy_policy_view');
 	}
 	
-	public function join_himss() {
-		$this->load->view('join_himss_view');
+	public function join_himss($page_id) {
+		$this->load->model('content_model');
+		$data['static_page'] = $this->content_model->get_static_page_by_id($page_id);
+		$data['static_page_content'] = $this->content_model->get_static_page_content_by_id($page_id);
+		$this->load->view('join_himss_view', $data);
 	}
 	
-	public function contact_us() {
-		$this->load->view('contact_us_view');
+	public function contact_us($page_id) {
+		$this->load->model('content_model');
+		$data['static_page'] = $this->content_model->get_static_page_by_id($page_id);
+		$data['static_page_content'] = $this->content_model->get_static_page_content_by_id($page_id);
+		$this->load->view('contact_us_view', $data);
 	}
 	
 	public function rss() {

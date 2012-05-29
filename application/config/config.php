@@ -18,7 +18,7 @@
 if ($_SERVER['SERVER_NAME'] == "localhost" ) {
     $config['base_url'] = 'http://localhost/development/kingfish_media/himss_wire/';
 } else {
-    $config['base_url'] = 'https://www.test.com/';
+    $config['base_url'] = 'http://www.seven-seventeen.com/projects/kingfish/himss_wire/current/';
 }
 
 /*

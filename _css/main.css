@@ -193,8 +193,27 @@ a.module_header_view_all {
 
 #main_content {
 	float: left;
+	padding-bottom: 20px;
 }
 
+#main_content h2 {
+	/*margin-left: 20px;
+	margin-top: 20px;*/
+
+}
+
+#main_content form {
+	margin-left: 20px;
+	margin-right: 20px;
+}
+
+#main_content input {
+	position: absolute;
+}
+
+#main_content label {
+	margin-top:20px;
+}
 
 /* ************** Header ************** */
 

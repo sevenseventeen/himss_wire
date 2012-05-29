@@ -82,15 +82,6 @@ class Content_Model extends CI_Model {
 		return $query->result();
 	}
 	
-	// function get_articles_with_categories() {
-		// $this->db->select('*');
-		// $this->db->from('articles');
-		// //$this->db->where('article_id', $article_id);
-		// $this->db->join('article_categories', 'articles.article_category_id = article_categories.article_category_id', 'left');
-		// $query = $this->db->get();
-		// return $query->result();
-	// }
-	
 	function get_static_pages() {
 		$this->db->select('*');
 		$this->db->from('static_pages');
@@ -161,6 +152,19 @@ class Content_Model extends CI_Model {
 	function update_banner_ad($banner_ad_id, $data) {
 		$result = $this->db->update('banner_ads', $data, "banner_ad_id = $banner_ad_id");
     	return $result;
+	}
+	
+	// TODO This seems a little convoluted, double check this when awake.
+	// TODO The content should probably be based on page_content_id rather than page_id
+	
+	function update_static_page($page_id, $content_data, $name_data) {
+		$page_name_updated = $this->db->update('static_pages', $name_data, "page_id = $page_id");
+		if ($page_name_updated) {
+			$page_content_updated = $this->db->update('static_page_content', $content_data, "static_page_id = $page_id");
+			 return $page_content_updated;	
+		 } else {
+			return FALSE;
+		 }
 	}
             
 	

@@ -825,5 +825,32 @@ class Admin extends CI_Controller {
 			}
 		}
 	}
+
+	function update_static_page() {
+		$static_page_id = $this->input->post('static_page_id');
+		$this->load->model('content_model');
+		$this->load->library('form_validation');
+		$this->form_validation->set_error_delimiters('<div class="error">', '</div>');
+		$this->form_validation->set_rules('page_name', 'Page Name', 'required');
+		$this->form_validation->set_rules('page_content', 'Page Content Text', 'required');
+		if ($this->form_validation->run() == FALSE) {
+			$this->admin_library->load_admin_view();
+		} else {
+			$content_data = array(
+				'content'	=> $this->input->post('page_content'),
+			);
+			$name_data = array(
+				'page_name'		=> $this->input->post('page_name'),
+			);
+			$page_updated = $this->content_model->update_static_page($static_page_id, $content_data, $name_data);
+			if($page_updated) {
+				echo "Success, with update_static_page.";
+				//$this->session->set_flashdata('message', 'Success! Your listing has been updated.');
+				//redirect("site/edit_vehicle/");
+			} else {
+				echo "Failure, with update_static_page.";
+			}
+		}
+	}
 	
 }

@@ -13,7 +13,7 @@
 				<h3 class="date"><?php echo $article->publish_date; ?></h3>
 				<br class=" clear_float" />
 				<?php echo $article->article_summary; ?>
-				<a href="<?php echo base_url().'article/'.$article->article_id; ?>" class="category">Read More</a>
+				<a href="<?php echo base_url().'article/'.$article->article_id; ?>" class="category">Read Article</a>
 			</div>
 		<?php }?>
 	</div>

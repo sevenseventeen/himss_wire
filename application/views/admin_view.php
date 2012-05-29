@@ -4,25 +4,6 @@
 	$this->load->view('_includes/header', $data);
 ?>
 
-<script>
-
-	// config.toolbar_Basic = [
-    	// [ 'Source', '-', 'Bold', 'Italic' ]
-	// ];
-
-	var config = {
-		toolbar:[
-			[ 'Source', '-', 'Bold', 'Italic', 'Link' ]
-		]
-	};
-	
-	$(function() {
-		$(".tabs").tabs();
-		$("#accordion").accordion({ collapsible:true });
-		$("textarea").ckeditor(config);
-	});
-</script>
-
 <div id="main_content" class="rounded_corners_10 module_920 inner_shadow_2">
 	<div id="accordion">
 		<h3><a href="#">Articles</a></h3>
@@ -381,7 +362,7 @@
 					<?php echo form_close(); ?>
 				</div>
 			</div> <!-- End Tabs -->
-		</div> <!-- End  Accordian Item -->
+		</div> <!-- End  Accordion Item -->
 		
 		<!-- ••••••••••• FAQ's ••••••••••••••• -->
 		
@@ -395,11 +376,11 @@
 					<fieldset>
 						<legend>Add FAQ</legend>
 							<label>FAQ Question</label>
-								<?php echo form_input('faq_question', set_value('faq_question')); ?>
+								<?php echo form_textarea('faq_question', set_value('faq_question')); ?>
 								<?php echo form_error('faq_question'); ?>
 								<br class="clear_float" />
 							<label>FAQ Answer</label>
-								<?php echo form_input('faq_answer', set_value('faq_answer')); ?>
+								<?php echo form_textarea('faq_answer', set_value('faq_answer')); ?>
 								<?php echo form_error('faq_answer'); ?>
 								<br class="clear_float" />
 					</fieldset>

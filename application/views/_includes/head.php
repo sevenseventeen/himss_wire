@@ -19,7 +19,20 @@
 		
 		<script type="text/javascript" src="<?php echo base_url().'/ckeditor/ckeditor.js'; ?>"></script>
 		<script type="text/javascript" src="<?php echo base_url().'/ckeditor/adapters/jquery.js'; ?>"></script>
-				
+		<script>
+			// The configuration options for the text editors
+			var config = {
+				toolbar:[
+					[ 'Source', '-', 'Bold', 'Italic', 'Link' ]
+				]
+			};
+			$(function() {
+				$(".tabs").tabs();
+				$("#accordion").accordion({ collapsible:true, autoHeight: false });
+				$("textarea").ckeditor(config);
+			});
+		</script>
+		
 		<!-- End CK Editor -->		
 		
 		
