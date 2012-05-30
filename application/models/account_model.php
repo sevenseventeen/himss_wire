@@ -54,6 +54,7 @@ class Account_Model extends CI_Model {
 		return $query->result();
 	}
 	
+	
 	function get_administrator_accounts() {
 		$this->db->select('*');
 		$this->db->from('administrator_accounts');
@@ -73,6 +74,14 @@ class Account_Model extends CI_Model {
 		$this->db->select('*');
 		$this->db->from('network_partner_accounts');
 		$this->db->where('network_partner_account_id', $network_partner_account_id);
+		$query = $this->db->get();
+		return $query->result();
+	}
+	
+	function get_network_partner_by_user_id($user_id) {
+		$this->db->select('*');
+		$this->db->from('network_partner_accounts');
+		$this->db->where('user_id', $user_id);
 		$query = $this->db->get();
 		return $query->result();
 	}

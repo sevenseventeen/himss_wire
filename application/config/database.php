@@ -58,10 +58,10 @@ if ($_SERVER['SERVER_NAME'] == "localhost" ) {
     
 } else {
          
-    $db['default']['hostname'] = 'internal-db.s138153.gridserver.com';
-    $db['default']['username'] = 'db138153';
-    $db['default']['password'] = 'O]D:1;fc11';
-    $db['default']['database'] = 'db138153_etradeinbids';
+    $db['default']['hostname'] = 'external-db.s38593.gridserver.com';
+    $db['default']['username'] = 'db38593';
+    $db['default']['password'] = 'IF430Or911s';
+    $db['default']['database'] = 'db38593_himss_wire';
     
 }
 

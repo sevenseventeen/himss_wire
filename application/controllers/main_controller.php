@@ -94,19 +94,31 @@ class Main_Controller extends CI_Controller {
 	
 	
 	public function my_account() {
-		$user_type = $this->auth->user_type();
-		switch ($user_type) {
-			case 'administrator':
-				$this->admin_library->load_admin_view();
-				break;
-			case 'editor':
-				$this->admin_library->load_editor_view();
-				break;
-			default:
-				break;
-		}
-		
+		echo "My Account Function";
+		//$user_type = $this->auth->user_type();
+		// switch ($user_type) {
+			// case 'administrator':
+				// $this->admin_library->load_admin_view();
+				// break;
+			// case 'editor':
+				// $this->admin_library->load_editor_view();
+				// break;
+			// default:
+				// break;
+		// }
+	}
+	
+	public function network_partner($user_id) {
+		$this->load->model('content_model');
+		$this->load->model('account_model');
+		$this->load->model('user_model');
+		$data['network_partner'] = $this->account_model->get_network_partner_by_user_id($user_id);
+		$data['faqs'] = $this->content_model->get_faqs();
+		$data['user'] = $this->user_model->get_user_by_id($user_id);
+		$this->load->view('network_partner_view', $data);
 	}
  
 }
+
+
 

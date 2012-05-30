@@ -113,11 +113,11 @@
 					<?php echo form_open('admin/add_internal_account'); ?>
 						<fieldset>
 							<legend>Add User Account</legend>
-							<select name="account_type">
+							<select name="account_type_id">
 								<option value=''>Select an Account Type</option>
 								<?php 
 									foreach ($internal_account_types as $account_type) { 
-										echo "<option value='".$account_type->account_type_name."'>".$account_type->account_type_name."</option>";
+										echo "<option value='".$account_type->account_type_id."'>".$account_type->account_type_name."</option>";
 									}
 								?>
 							</select>
@@ -174,11 +174,11 @@
 					<?php echo form_open('admin/add_external_account'); ?>
 						<fieldset>
 							<legend>Add External Account</legend>
-							<select name="account_type">
+							<select name="account_type_id">
 								<option value=''>Select an Account Type</option>
 								<?php 
 									foreach ($external_account_types as $account_type) { 
-										echo "<option value='".$account_type->account_type_name."'>".ucfirst($account_type->account_type_name)."</option>";
+										echo "<option value='".$account_type->account_type_id."'>".ucfirst($account_type->account_type_name)."</option>";
 									}
 								?>
 							</select>
@@ -298,7 +298,7 @@
 						<fieldset>
 							<legend>Edit Feature Module</legend>
 							<label>Feature Module Text</label>
-								<?php echo form_textarea('module_text', set_value('module_text', $feature_module[0]->module_text)); ?>
+								<?php echo form_textarea('module_text', set_value('module_text', $feature_module[0]->module_text), 'class="ckeditor"'); ?>
 								<?php echo form_error('module_text'); ?>
 								<br class="clear_float" />
 							<label>Feature Module Image</label>
@@ -376,11 +376,11 @@
 					<fieldset>
 						<legend>Add FAQ</legend>
 							<label>FAQ Question</label>
-								<?php echo form_textarea('faq_question', set_value('faq_question')); ?>
+								<?php echo form_textarea('faq_question', set_value('faq_question'), 'class="ckeditor"'); ?>
 								<?php echo form_error('faq_question'); ?>
 								<br class="clear_float" />
 							<label>FAQ Answer</label>
-								<?php echo form_textarea('faq_answer', set_value('faq_answer')); ?>
+								<?php echo form_textarea('faq_answer', set_value('faq_answer'), 'class="ckeditor"'); ?>
 								<?php echo form_error('faq_answer'); ?>
 								<br class="clear_float" />
 					</fieldset>

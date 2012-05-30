@@ -28,10 +28,17 @@
 			};
 			$(function() {
 				$(".tabs").tabs();
-				$("#accordion").accordion({ collapsible:true, autoHeight: false });
-				$("textarea").ckeditor(config);
+				$("#accordion").accordion({ collapsible:true, autoHeight: false, active: <?php echo 1; ?> });
+				$("textarea.ckeditor").ckeditor(config);
+				$("#accordion").click(function() {
+  					var admin_accordion_level = $("#accordion").accordion("option", "active");
+				});
 			});
+			
+			
 		</script>
+		
+		<?php //$this->session->set_userdata('current_admin_accordion', 'some_value'); ?>
 		
 		<!-- End CK Editor -->		
 		

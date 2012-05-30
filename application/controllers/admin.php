@@ -107,7 +107,7 @@ class Admin extends CI_Controller {
 	}
 	
 	public function add_external_account() {
-		$account_type = $this->input->post('account_type');
+		$account_type_id = $this->input->post('account_type_id');
 		date_default_timezone_set('UTC');
 		if (!$this->auth->logged_in()) {
 			redirect('login');
@@ -131,30 +131,31 @@ class Admin extends CI_Controller {
 			$this->admin_library->load_admin_view();
 		} else {
 			$user_data = array(
-				'email'		 => $this->input->post('email'),
-				'password'	  => $this->input->post('password'),
-				'created_on'	=> now()
+				'account_type_id'	=> $this->input->post('account_type_id'),
+				'email'		 		=> $this->input->post('email'),
+				'password'			=> $this->input->post('password'),
+				'created_on'		=> now()
 			);
 			$user_created = $this->user_model->add_user($user_data);
 			if($user_created) {
 				$user_id = $this->db->insert_id();					
 				$account_data = array(
-					'user_id'		   => $user_id,
+					'user_id'			=> $user_id,
 					'first_name'		=> $this->input->post('first_name'),
-					'last_name'		 => $this->input->post('last_name'),
-					'company_name'	  => $this->input->post('company_name'),
-					'website'		   => $this->input->post('website'),
-					'phone_number'	  => $this->input->post('phone_number'),
+					'last_name'			=> $this->input->post('last_name'),
+					'company_name'		=> $this->input->post('company_name'),
+					'website'			=> $this->input->post('website'),
+					'phone_number'		=> $this->input->post('phone_number'),
 					'street_address'	=> $this->input->post('street_address'),
-					'city'			  => $this->input->post('city'),
-					'state'			 => $this->input->post('state'),
-					'zip_code'		  => $this->input->post('zip_code'),
+					'city'				=> $this->input->post('city'),
+					'state'				=> $this->input->post('state'),
+					'zip_code'			=> $this->input->post('zip_code'),
 				);
-				switch ($account_type) {
-					case 'Subscriber':
+				switch ($account_type_id) {
+					case '3':
 						$account_created = $this->account_model->add_subscriber($account_data);		
 						break;
-					case 'Network Partner':
+					case '4':
 						$account_created = $this->account_model->add_network_partner($account_data);		
 						break;
 					default:
@@ -176,7 +177,7 @@ class Admin extends CI_Controller {
 	}
 	
 	public function add_internal_account() {
-		$account_type = $this->input->post('account_type');
+		$account_type_id = $this->input->post('account_type_id');
 		date_default_timezone_set('UTC');
 		if (!$this->auth->logged_in()) {
 			redirect('login');
@@ -193,9 +194,10 @@ class Admin extends CI_Controller {
 			$this->admin_library->load_admin_view();
 		} else {
 			$user_data = array(
-				'email'		 => $this->input->post('email'),
-				'password'	  => $this->input->post('password'),
-				'created_on'	=> now()
+				'account_type_id'	=> $this->input->post('account_type_id'),
+				'email'		 		=> $this->input->post('email'),
+				'password'	  		=> $this->input->post('password'),
+				'created_on'		=> now()
 			);
 			$user_created = $this->user_model->add_user($user_data);
 			if($user_created) {
@@ -205,12 +207,11 @@ class Admin extends CI_Controller {
 					'first_name'	=> $this->input->post('first_name'),
 					'last_name'		=> $this->input->post('last_name')
 				);
-				echo "<h1>Acct Type: ".$account_type."</h1>";
-				switch ($account_type) {
-					case 'Administrator':
+				switch ($account_type_id) {
+					case '1':
 						$account_created = $this->account_model->add_administrator($account_data);		
 						break;
-					case 'Editor':
+					case '2':
 						$account_created = $this->account_model->add_editor($account_data);		
 						break;
 					default:
@@ -419,8 +420,21 @@ class Admin extends CI_Controller {
 		$password = $this->input->post('password');
 		$logged_in = $this->auth_model->login($email, $password);
 		if ($logged_in) {
-			redirect('admin');
-			//$this->load->view('admin_view');	
+			$user_id = $this->session->userdata('user_id');
+			switch ($this->auth->user_type()) {
+				case "Administrator":
+					redirect('admin');
+					break;
+				case "Editor":
+					redirect('admin');
+					break;
+				case "Network Partner":
+					redirect("network_partner/$user_id");
+					break;
+				default:
+					echo "Unrecognized User Type";
+					break;
+			}
 		} else {
 			$this->load->view('logged_out_view');
 		}

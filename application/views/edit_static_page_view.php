@@ -20,7 +20,7 @@
 				<br class="clear_float" />
 			
 			<label>Page Content</label> 
-				<?php echo form_textarea('page_content', set_value('page_content', $static_page_content[0]->content)); ?>
+				<?php echo form_textarea('page_content', set_value('page_content', $static_page_content[0]->content), 'class="ckeditor"'); ?>
 				<?php echo form_error('page_content'); ?>
 				<br class="clear_float" />
 			

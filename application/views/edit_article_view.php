@@ -31,11 +31,11 @@
 				<?php echo form_error('article_tags'); ?>
 				<br class="clear_float" />
 			<label>Article Summary</label>
-				<?php echo form_textarea('article_summary', set_value('article_summary', $article[0]->article_summary)); ?>
+				<?php echo form_textarea('article_summary', set_value('article_summary', $article[0]->article_summary), 'class="ckeditor"'); ?>
 				<?php echo form_error('article_summary'); ?>
 				<br class="clear_float" />
 			<label>Article Body</label>
-				<?php echo form_textarea('article_body', set_value('article_body', $article[0]->article_body)); ?>
+				<?php echo form_textarea('article_body', set_value('article_body', $article[0]->article_body), 'class="ckeditor"'); ?>
 				<?php echo form_error('article_body'); ?>
 				<br class="clear_float" />
 		</fieldset>

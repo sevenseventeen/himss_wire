@@ -126,6 +126,13 @@ class Content_Model extends CI_Model {
 		return $query->result();
 	}
 	
+	function get_faqs() {
+		$this->db->select('*');
+		$this->db->from('faqs');
+		$query = $this->db->get();
+		return $query->result();
+	}
+	
 	
 	/*
 	 * 
