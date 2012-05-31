@@ -80,7 +80,7 @@ $autoload['helper'] = array('url', 'form', 'file', 'date', 'breadcrumb');
 |
 */
 
-$autoload['config'] = array();
+$autoload['config'] = array('config_himss_wire');
 
 
 /*

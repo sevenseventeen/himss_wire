@@ -1,5 +1,5 @@
             <header class="header_gradient drop_shadow_14">
-                <img src="<?php echo base_url(); ?>_images/himms_wire_logo.png" />
+                <a href="<?php echo base_url(); ?>"><img src="<?php echo base_url(); ?>_images/himms_wire_logo.png" /></a>
                 <ul id="login_social_navigation" class="rounded_corners_10 inner_shadow_2">
                     <li><a href="<?php echo base_url(); ?>">Home</a> | </li>
                     <li><a href="#">Twitter</a> | </li>

@@ -42,6 +42,7 @@
 $route['feed_controller'] = "feed_controller";
 $route['partners/(:any)'] = "partners/$1";
 $route['partners'] = "partners";
+//$route['subscriber'] = "subscriber_controller";
 $route['admin'] = "admin";
 $route['admin/(:any)'] = "admin/$1";
 $route['(:any)'] = "main_controller/$1";

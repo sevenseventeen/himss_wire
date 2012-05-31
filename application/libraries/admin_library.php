@@ -24,7 +24,12 @@ class Admin_Library {
 		$data['user_type'] = $this->ci->auth->user_type();
 		$data['feature_module'] = $this->ci->content_model->get_feature_module();
 		$data['banner_ads'] = $this->ci->content_model->get_banner_ads();
-		$this->ci->load->view('admin_view', $data);
+		if($data['user_type'] == "Administrator" || $data['user_type'] == "Editor") {
+			$this->ci->load->view('admin_view', $data);	
+		} else {
+			redirect('admin/login');
+		}
+		
 	}
 
 }

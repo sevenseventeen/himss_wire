@@ -28,7 +28,7 @@ class Admin extends CI_Controller {
 		$data['user_account'] = $this->user_model->get_user_by_id($user_id);
 		$data['subscriber_account'] = $this->account_model->get_subscriber_by_id($subscriber_account_id);
 		$data['subscription_details'] = $this->subscription_model->get_subscription_by_account_id($subscriber_account_id);
-		$this->load->view('subscriber_account_view', $data);
+		$this->load->view('subscriber_account_admin_view', $data);
 	} 
 	
 	/*
@@ -432,7 +432,7 @@ class Admin extends CI_Controller {
 					redirect("network_partner/$user_id");
 					break;
 				default:
-					echo "Unrecognized User Type";
+					redirect("subscriber/$user_id");
 					break;
 			}
 		} else {

@@ -193,7 +193,6 @@ a.module_header_view_all {
 
 #main_content {
 	float: left;
-	padding-bottom: 20px;
 }
 
 #main_content h2 {
@@ -276,6 +275,7 @@ a.module_header_view_all {
 	border-top: 1px solid #bebebe;
 	margin:0px 20px 20px 20px;
 	padding-top: 14px;
+	height:120px;
 }
 
 .article_snippet h2 {

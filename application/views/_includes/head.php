@@ -28,7 +28,7 @@
 			};
 			$(function() {
 				$(".tabs").tabs();
-				$("#accordion").accordion({ collapsible:true, autoHeight: false, active: <?php echo 1; ?> });
+				$("#accordion").accordion({ collapsible:true, autoHeight: false, active: <?php echo 0; ?> });
 				$("textarea.ckeditor").ckeditor(config);
 				$("#accordion").click(function() {
   					var admin_accordion_level = $("#accordion").accordion("option", "active");

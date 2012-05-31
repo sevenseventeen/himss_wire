@@ -6,22 +6,6 @@ class Partners extends CI_Controller {
 		echo "Partner Controller";
 	}
 	
-	
-	 // $to = $this->config->item('email_to_admin');
-			// $this->load->library('email');
-	        // $this->email->from($email, $name);
-	        // $this->email->to($to);
-	        // $this->email->subject('Contact from eTradeInBids Contact Page');
-	        // $this->email->message($message);
-			// if ($this->email->send()) {
-	            // $data['status_message'] = "<h1>Sucess</h1><p>Thanks for contacting eTradeInBids.</p>";
-	            // $this->load->view('contact_us_view', $data);
-	        // } else {
-	            // $data['status_message'] = "<h1>Sorry</h1><p>There was an error sending your email. Please try again later.</p>";
-	            // $this->load->view('contact_us_view', $data);
-	        // }
-	
-	
 	public function request_support() {
 		date_default_timezone_set('UTC');
 		if (!$this->auth->logged_in()) {
@@ -50,12 +34,18 @@ class Partners extends CI_Controller {
 		} else {
 			$to = $this->config->item('email_to_admin');
 			$from_email = $this->input->post('email');
-			$from_name = $this->input->post('company_name');
+			$from_name = "HIMSS Wire Support Request"; //$this->input->post('company_name');
+			$message = "First Name: "			.$this->input->post('first_name')." \n ";
+			$message .= "Last Name: "			.$this->input->post('last_name')." \n ";
+			$message .= "Company Name: "		.$this->input->post('company_name')." \n ";
+			$message .= "Website: "				.$this->input->post('website')." \n ";
+			$message .= "Phone Number: "		.$this->input->post('phone_number')." \n ";
+			$message .= "Request Specifics: "	.$this->input->post('request_specifics')." \n ";
 			$this->load->library('email');
 	        $this->email->from($from_email, $from_name);
 	        $this->email->to($to);
 	        $this->email->subject('Support Request');
-	        $this->email->message("test message");
+	        $this->email->message($message);
 			if ($this->email->send()) {
 	            echo "Mail Sent";
 	        } else {

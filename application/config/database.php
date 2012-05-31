@@ -54,7 +54,7 @@ if ($_SERVER['SERVER_NAME'] == "localhost" ) {
     $db['default']['hostname'] = 'localhost';
     $db['default']['username'] = 'root';
     $db['default']['password'] = '';
-    $db['default']['database'] = 'himms_wire';
+    $db['default']['database'] = 'himss_wire';
     
 } else {
          

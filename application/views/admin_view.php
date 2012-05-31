@@ -45,19 +45,19 @@
 						<?php echo form_error('article_category_id'); ?>
 						<br class="clear_float" />
 						<label>Article Title</label> 
-							<?php echo form_input('article_title', set_value('article_title', 'Article Title')); ?>
+							<?php echo form_input('article_title', set_value('article_title', '')); ?>
 							<?php echo form_error('article_title'); ?>
 							<br class="clear_float" />
 						<label>Article Summary</label>
-							<?php echo form_input('article_summary', set_value('article_summary', 'Article Summ')); ?>
+							<?php echo form_textarea('article_summary', set_value('article_summary', '')); ?>
 							<?php echo form_error('article_summary'); ?>
 							<br class="clear_float" />
 						<label>Article Body</label>
-							<?php echo form_input('article_body', set_value('article_body', 'Article Body')); ?>
+							<?php echo form_textarea('article_body', set_value('article_body', '')); ?>
 							<?php echo form_error('article_body'); ?>
 							<br class="clear_float" />
 						<label>Published Status</label>
-							<?php echo form_input('article_status', set_value('article_status', 'Article Stat')); ?>
+							<?php echo form_input('article_status', set_value('article_status', '')); ?>
 							<?php echo form_error('article_status'); ?>
 							<br class="clear_float" />
 						<script>
@@ -155,14 +155,13 @@
 					<li><a href="#tabs-2">Tab2</a></li>
 				</ul>
 				<div id="tabs-1">
-					Subscribers
+					Subscribers<br />
 					<?php
 						foreach ($subscribers as $subscriber) { 
-							//echo "<a href='".base_url()."admin/edit_subscriber_account/$subscriber->user_id/$subscriber->subscriber_account_id'>".$subscriber->company_name."</a><br />";
 							echo "<a href='".base_url()."admin/subscriber_account/$subscriber->user_id/$subscriber->subscriber_account_id'>".$subscriber->company_name."</a><br />";
 						}
 					?>
-					Network Partners
+					Network Partners<br />
 					<?php
 						foreach ($network_partners as $network_partner) { 
 							echo "<a href='".base_url()."admin/edit_network_partner_account/$network_partner->user_id/$network_partner->network_partner_account_id'>".$network_partner->company_name."</a><br />";
@@ -184,47 +183,47 @@
 							</select>
 							<br class="clear_float" />
 							<label>Company Name</label> 
-								<?php echo form_input('company_name', set_value('company_name', 'The Hill Company')); ?>
+								<?php echo form_input('company_name', set_value('company_name', '')); ?>
 								<?php echo form_error('company_name'); ?>
 								<br class="clear_float" />
 							<label>Website</label>
-								<?php echo form_input('website', set_value('website', 'http://www.seven-seventeen.com')); ?>
+								<?php echo form_input('website', set_value('website', '')); ?>
 								<?php echo form_error('website'); ?>
 								<br class="clear_float" />
 							<label>First Name</label>
-								<?php echo form_input('first_name', set_value('first_name', 'Josh')); ?>
+								<?php echo form_input('first_name', set_value('first_name', '')); ?>
 								<?php echo form_error('first_name'); ?>
 								<br class="clear_float" />
 							<label>Last Name</label>
-								<?php echo form_input('last_name', set_value('last_name', 'Knight')); ?>
+								<?php echo form_input('last_name', set_value('last_name', '')); ?>
 								<?php echo form_error('last_name'); ?>
 								<br class="clear_float" />
 							<label>Phone Number</label>
-								<?php echo form_input('phone_number', set_value('phone_number', '858-200-5401')); ?>
+								<?php echo form_input('phone_number', set_value('phone_number', '')); ?>
 								<?php echo form_error('phone_number'); ?>
 								<br class="clear_float" />
 							<label>Street Address</label>
-								<?php echo form_input('street_address', set_value('street_address', '817 4th St Apt 205')); ?>
+								<?php echo form_input('street_address', set_value('street_address', '')); ?>
 								<?php echo form_error('street_address'); ?>
 								<br class="clear_float" />
 							<label>City</label>
-								<?php echo form_input('city', set_value('city', 'Santa Monica')); ?>
+								<?php echo form_input('city', set_value('city', '')); ?>
 								<?php echo form_error('city'); ?>
 								<br class="clear_float" />
 							<label>State</label>
-								<?php echo form_input('state', set_value('state', 'California')); ?>
+								<?php echo form_input('state', set_value('state', '')); ?>
 								<?php echo form_error('state'); ?>
 								<br class="clear_float" />
 							<label>Zip Code</label>
-								<?php echo form_input('zip_code', set_value('zip_code', '90403')); ?>
+								<?php echo form_input('zip_code', set_value('zip_code', '')); ?>
 								<?php echo form_error('zip_code'); ?>
 								<br class="clear_float" />
 							<label>Email</label>
-								<?php echo form_input('email', set_value('email', 'subscriber@himms.com')); ?>
+								<?php echo form_input('email', set_value('email', '')); ?>
 								<?php echo form_error('email'); ?>
 								<br class="clear_float" />
 							<label>Password</label>
-								<?php echo form_input('password', set_value('password', 'password123')); ?>
+								<?php echo form_input('password', set_value('password', '')); ?>
 								<?php echo form_error('password'); ?>
 								<br class="clear_float" />
 						</fieldset>
@@ -274,7 +273,7 @@
 					<li><a href="#tabs-1">Tab1</a></li>
 				</ul>
 				<div id="tabs-1">
-					Edit Static Pages
+					Edit Static Pages<br />
 					<?php 
 						foreach ($static_pages as $static_page) { 
 							echo "<a href='admin/edit_static_page/".$static_page->page_id."'>".$static_page->page_name."</a><br />";
