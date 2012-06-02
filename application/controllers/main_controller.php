@@ -5,9 +5,9 @@ class Main_Controller extends CI_Controller {
 	public function index() {
 		$this->load->model('auth_model');
 		if ($this->auth_model->logged_in()) {
-			echo "logged in";
+			//echo "logged in";
 		} else {
-			echo "not logged in";
+			//echo "not logged in";
 		}
 		$this->load->model('content_model');
 		$data['articles'] = $this->content_model->get_articles('5');
