@@ -20,7 +20,7 @@
                 </ul>
                 <br class="clear_float" />
                 <ul id="main_navigation">
-                	<?php //TODO  the static navigation items can be dynamically named (in case someone edit the name of a static page) ?> 
+                	<?php //TODO  the static navigation items can be dynamically named (in case someone edits the name of a static page) ?> 
                     <li><a href="<?php echo base_url(); ?>articles">Articles</a></li>
                     <li><a href="<?php echo base_url(); ?>about_himss_wire/1">About HIMSS Wire</a></li>
                     <li><a href="<?php echo base_url(); ?>our_network/2">Our Network</a></li>

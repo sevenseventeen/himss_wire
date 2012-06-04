@@ -27,16 +27,31 @@
 					[ 'Format' ]
 				]
 			};
-			config.format_tags = 'h1;h2;h3;h4;p'
+			config.format_tags = 'h1;h2;h3;h4;p';
 			$(function() {
 				$(".tabs").tabs();
-				$("#accordion").accordion({ collapsible:true, autoHeight: false, active: <?php echo 0; ?> });
 				$("textarea.ckeditor").ckeditor(config);
-				$("#accordion").click(function() {
-  					var admin_accordion_level = $("#accordion").accordion("option", "active");
+				$("#accordion").accordion({ 
+					collapsible:true, 
+					autoHeight: false, 
+					active: <?php echo $this->session->userdata('admin_accordion_state'); ?>,
+					change: function(event, ui) { 
+						alert(ui.options.active.toString());
+						var accordion_level = ui.options.active.toString();   
+						$.ajax({
+							url: "<?php echo base_url(); ?>ajax_controller/set_accordion/"+accordion_level,
+							cache: false
+						}).done(function(html) {
+							alert("success");
+							//$("#results").append(html);
+						});
+					} 
 				});
-			});
+				
 			
+				
+				
+			});
 			
 		</script>
 		

@@ -39,6 +39,8 @@
 */
 
 
+$route['ajax_controller/(:any)'] = "ajax_controller/$1";
+$route['ajax_controller'] = "ajax_controller";
 $route['feed_controller'] = "feed_controller";
 $route['partners/(:any)'] = "partners/$1";
 $route['partners'] = "partners";
