@@ -5,7 +5,14 @@
                     <li><a href="#">Twitter</a> | </li>
                     <li><a href="#">LinkedIn</a> |</li>
                     <?php if ($this->auth->logged_in()) { ?>
-                        <li><a href="<?php echo base_url(); ?>admin/logout">Logout</a></li>    
+                        <li><a href="<?php echo base_url(); ?>admin/logout">Logout</a> 
+                        <?php if ($this->auth->user_type() == "Administrator") { ?>
+                        	| </li><li><a href="<?php echo base_url(); ?>admin">Admin</a></li>
+                       	<?php } elseif ($this->auth->user_type() == "Editor") { ?>
+                       		| </li><li><a href="<?php echo base_url(); ?>admin">Editor</a></li>
+                       	<?php } else { ?>
+                       		</li>
+                       	<?php } ?>
                     <?php } else { ?>
                         <li><a href="<?php echo base_url(); ?>admin/login">Login</a></li>    
                     <?php } ?> 

@@ -26,10 +26,10 @@
 		</div>
 		<div id="search_module" class="module_300 header_gradient rounded_corners_10 inner_shadow_2">
 			<h3>Article Search</h3>
-			<form>
-				<input class="rounded_corners_10 inner_shadow_2" type="text" name="" value="" />
-				<input type="submit" value="Search" class="article_search_button">
-			</form>
+				<?php echo form_open('article_search'); ?>
+					<input class="rounded_corners_10 inner_shadow_2" type="text" name="search_term" value="" />
+					<input type="submit" value="Search" class="article_search_button">
+				<?php echo form_close(); ?>
 		</div>
 		<div id="linked_in_module" class="module_300 rounded_corners_10 inner_shadow_2">
 			<h3>LinkedIn Connection</h3>

@@ -39,6 +39,13 @@ class Main_Controller extends CI_Controller {
 		$this->load->view('article_view', $data);
 	}
 	
+	public function article_search() {
+		$this->load->model('content_model');
+		$search_term = $this->input->post('search_term');
+		$data['search_results'] = $this->content_model->get_related_articles($search_term);
+		$this->load->view('article_search_results_view', $data);
+	}
+	
 	public function about_himss_wire($page_id) {
 		$this->load->model('content_model');
 		$data['static_page'] = $this->content_model->get_static_page_by_id($page_id);
@@ -106,9 +113,12 @@ class Main_Controller extends CI_Controller {
 		$this->load->model('account_model');
 		$this->load->model('user_model');
 		$this->load->model('subscription_model');
+		$this->load->model('content_model');
 		$data['user_account'] = $this->user_model->get_user_by_id($user_id);
 		$data['subscriber_account'] = $this->account_model->get_subscriber_by_user_id($user_id);
 		$data['subscription_details'] = $this->subscription_model->get_subscription_by_account_id($data['subscriber_account'][0]->subscriber_account_id);
+		$data['subscription_details'] = $this->subscription_model->get_subscription_by_account_id($data['subscriber_account'][0]->subscriber_account_id);
+		$data['reports'] = $this->content_model->get_reports_by_subscriber_account_id($data['subscriber_account'][0]->subscriber_account_id);
 		$this->load->view('subscriber_account_view', $data);
 	}
 }

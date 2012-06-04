@@ -5,18 +5,13 @@
 ?>
 
 <div id="main_content" class="rounded_corners_10 module_920 inner_shadow_2">
-	
-	<h2> Subscriber Account --------------------------------------</h2>
 	<pre>
 	<?php //print_r($subscriber_account); ?>
 	<hr />
 	<?php //print_r($user_account); ?>
 	</pre>
-	
 		<fieldset>
-			
 			<h2>Subscriber Account</h2>
-			
 			<p>
 				Company Name: 	<span class="data"><?php echo $subscriber_account[0]->company_name; ?></span><br />
 				Website: 		<span class="data"><?php echo $subscriber_account[0]->website; ?></span><br />
@@ -30,21 +25,13 @@
 				Email:			<span class="data"><?php echo $user_account[0]->email; ?></span><br />
 				Password: 		<span class="data"><?php echo $user_account[0]->password; ?></span><br />
 			</p>
-			
 			<?php 
-			
 				$user_id = $user_account[0]->user_id;
 				$subscriber_account_id = $subscriber_account[0]->subscriber_account_id;
-			
 			?>
-			
-			
 			<p><a href='<?php echo base_url()."admin/edit_subscriber_account/$user_id/$subscriber_account_id" ?>'>Edit This Accoount</a></p>
-			
 			<h2>Subscription Package</h2>
-			
 			<?php if ($subscription_details) { ?>
-				
 				<p>
 					Package Summary: 	<span class="data"><?php echo $subscription_details[0]->subscription_summary; ?></span><br />
 					Package Details: 	<span class="data"><?php echo $subscription_details[0]->subscription_details; ?></span><br />
@@ -52,35 +39,29 @@
 					Subscription Start: <span class="data"><?php echo $subscription_details[0]->subscription_start_date; ?></span><br />
 					Subscription End: 	<span class="data"><?php echo $subscription_details[0]->subscription_end_date; ?></span><br />
 				</p>
-				
 				<p>
-					<a href="#">Edit This Subscription</a>
+					<a href="#">Edit Thiss Subscription</a>
 				</p>
-				
 			<?php } else { ?>
 				
+				<!-- If no subscription package found, add a subscription. -->
+				
 				<h3>No subscription package found.</h3>
-					
 				<?php echo form_open('admin/add_subscription_package'); ?>
-		
 					<fieldset>
 						<legend>Add Subscription Package</legend>
-						
 						<label>Subscription Summary</label>
-							<?php echo form_input('subscription_summary', set_value('subscription_summary', '')); ?>
+							<?php echo form_textarea('subscription_summary', set_value('subscription_summary', '')); ?>
 							<?php echo form_error('subscription_summary'); ?>
 							<br class="clear_float" />
-						
 						<label>Subscription Details</label>
-							<?php echo form_input('subscription_details', set_value('subscription_details', '')); ?>
+							<?php echo form_textarea('subscription_details', set_value('subscription_details', '')); ?>
 							<?php echo form_error('subscription_details'); ?>
 							<br class="clear_float" />
-						
 						<label>Stories Purchased</label>
 							<?php echo form_input('stories_purchased', set_value('stories_purchased', '')); ?>
 							<?php echo form_error('stories_purchased'); ?>
 							<br class="clear_float" />
-							
 						<script>
 							$(function() {
 								$('#subscription_start').datepicker({
@@ -95,40 +76,46 @@
 								});
 							});
 						</script>
-						
 						<label>Subscription Start</label>
 							<input type="text" name="subscription_start" id="subscription_start" />
 							<?php echo form_error('subscription_start'); ?>
 							<br class="clear_float" />
-						
 						<label>Subscription End</label>
 							<input type="text" name="subscription_end" id="subscription_end" />
 							<?php echo form_error('subscription_end'); ?>
 							<br class="clear_float" />
-							
 					</fieldset>
-					
 					<?php echo form_hidden('subscriber_account_id', $subscriber_account[0]->subscriber_account_id); ?>
 					<?php echo form_hidden('user_id', $subscriber_account[0]->user_id); ?>
-					
 					<input type="submit" />		
-				
 				<?php echo form_close(); ?>
-				
-				<?php } ?>
-	
-	<!-- 
-		
-	----------- Add Subscription Package ------------- 
-		
-	-->
-	
+			<?php } ?>
+			
+			<h3>Past Reports</h3>
+			<?php foreach ($reports as $report) { ?>
+				<a href="<?php echo base_url().'_reports/'.$report->report_path ?>"><?php echo $report->report_title; ?></a><br /> 
+			<? } ?>
+			
+			<h3>Upload Report</h3>
+			<?php echo form_open_multipart('admin/add_report');?>
+				<fieldset>
+					<label>Report Title</label>
+						<?php echo form_input('report_title', set_value('report_title', '')); ?>
+						<?php echo form_error('report_title'); ?>
+						<br class="clear_float" />
+					<label>Report PDF</label>
+							<?php echo form_upload('userfile', set_value('userfile')); ?>
+							<?php echo form_error('userfile'); ?>
+							<br class="clear_float" />
+					<?php echo form_hidden('subscriber_account_id', $subscriber_account[0]->subscriber_account_id); ?>
+				</fieldset>
+				<input type="submit" />
+			<?php echo form_close(); ?>
+			
+			
 	<hr />
 	<?php //print_r($subscription_details); ?>
-	
-	
 </div>
-
 <br class="clear_float" />
 
 <?php 

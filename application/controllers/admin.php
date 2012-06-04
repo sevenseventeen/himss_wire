@@ -25,9 +25,11 @@ class Admin extends CI_Controller {
 		$this->load->model('account_model');
 		$this->load->model('user_model');
 		$this->load->model('subscription_model');
+		$this->load->model('content_model');
 		$data['user_account'] = $this->user_model->get_user_by_id($user_id);
 		$data['subscriber_account'] = $this->account_model->get_subscriber_by_id($subscriber_account_id);
 		$data['subscription_details'] = $this->subscription_model->get_subscription_by_account_id($subscriber_account_id);
+		$data['reports'] = $this->content_model->get_reports_by_subscriber_account_id($subscriber_account_id);
 		$this->load->view('subscriber_account_admin_view', $data);
 	} 
 	
@@ -45,6 +47,8 @@ class Admin extends CI_Controller {
 		}
 		$user_id = $this->session->userdata('user_id');
 		$this->load->model('content_model');
+		$this->load->model('account_model');
+		$this->load->model('subscription_model');
 		$this->load->library('form_validation');
 		$this->form_validation->set_error_delimiters('<div class="error">', '</div>');
 		$this->form_validation->set_rules('subscriber_id', 'Subscriber Name', 'required');
@@ -52,12 +56,15 @@ class Admin extends CI_Controller {
 		$this->form_validation->set_rules('article_title', 'Article Title', 'required');
 		$this->form_validation->set_rules('article_summary', 'Article Summary', 'required');
 		$this->form_validation->set_rules('article_body', 'Article Body', 'required');
-		$this->form_validation->set_rules('article_status', 'Article Status', 'required');
+		//$this->form_validation->set_rules('article_status', 'Article Status', 'required');
 		$this->form_validation->set_rules('publish_date', 'Publish Date', 'required');
 		$this->form_validation->set_rules('article_tags', 'Article Tags', 'required');
 		if ($this->form_validation->run() == FALSE) { // FALSE FOR PRODUCTION
 			$this->admin_library->load_admin_view();
 		} else {
+			$publish_date = $this->input->post('publish_date');
+			$publish_date_datetime = new DateTime($publish_date);
+			$formatted_publish_date = date_format ($publish_date_datetime, 'Y-m-d');
 			$data = array(
 				'subscriber_id'			=> $this->input->post('subscriber_id'),
 				'article_category_id'	=> $this->input->post('article_category_id'),
@@ -65,14 +72,22 @@ class Admin extends CI_Controller {
 				'article_summary'		=> $this->input->post('article_summary'),
 				'article_body'			=> $this->input->post('article_body'),
 				'article_status'		=> $this->input->post('article_status'),
-				'publish_date'			=> $this->input->post('publish_date'),
+				'publish_date'			=> $formatted_publish_date,
 				'article_tags'			=> $this->input->post('article_tags')
 			);
 			$article_added = $this->content_model->add_article($data);
 			if ($article_added) {
-				echo "Success, with article_added.";
-				//$this->session->set_flashdata('message', 'Success! Your listing has been updated.');
-				//redirect("site/edit_vehicle/");
+				echo "Success, with article_added.<br />";
+				$subscriber_account_id = $this->input->post('subscriber_id'); 
+				$subscription = $this->subscription_model->get_subscription_by_account_id($subscriber_account_id);
+				$articles_remaining = $subscription[0]->stories_remaining;
+				$articles_remaining -= 1;
+				$subscription_id = $subscription[0]->subscription_id; 
+				echo "Articles Remaining: $articles_remaining<br />";
+				$data = array(
+					'stories_remaining'	=> $articles_remaining
+				);
+				$subscription_updated = $this->subscription_model->update_subscription($subscription_id, $data);
 			} else {
 				echo "Failure, with article_added.";
 			}
@@ -244,7 +259,7 @@ class Admin extends CI_Controller {
 		$this->form_validation->set_error_delimiters('<div class="error">', '</div>');
 		$this->form_validation->set_rules('subscription_summary', 'Subscription Summary', 'required');
 		$this->form_validation->set_rules('subscription_details', 'Subscription Details', 'required');
-		$this->form_validation->set_rules('stories_purchased', 'Stories Purchased', 'required');
+		$this->form_validation->set_rules('stories_purchased', 'Stories Purchased', 'required|numeric');
 		$this->form_validation->set_rules('subscription_start', 'Subscription Start Date', 'required');
 		$this->form_validation->set_rules('subscription_end', 'Subscription End Date', 'required');
 		if ($this->form_validation->run() == FALSE) { // FALSE FOR PRODUCTION
@@ -262,6 +277,7 @@ class Admin extends CI_Controller {
 				'subscription_summary'		=> $this->input->post('subscription_summary'),
 				'subscription_details'		=> $this->input->post('subscription_details'),
 				'stories_purchased'	  		=> $this->input->post('stories_purchased'),
+				'stories_remaining'	  		=> $this->input->post('stories_purchased'),
 				'subscription_start_date'	=> $this->input->post('subscription_start'),
 				'subscription_end_date'	  	=> $this->input->post('subscription_end'),
 				'created_on'				=> now()
@@ -321,6 +337,45 @@ class Admin extends CI_Controller {
 				//redirect("site/edit_vehicle/");
 			} else {
 				echo "Failure, with add_faq.";
+			}
+		}
+	}
+	
+	function add_report() {
+		$subscriber_account_id = $this->input->post('subscriber_account_id');
+		$this->load->model('content_model');
+		$this->load->library('form_validation');
+		$this->form_validation->set_error_delimiters('<div class="error">', '</div>');
+		$this->form_validation->set_rules('report_title', 'Report Title', 'required');
+		if ($this->form_validation->run() == FALSE) {
+			$this->admin_library->load_admin_view();
+		} else {
+			$config['upload_path'] = './_reports/';
+			$config['allowed_types'] = 'pdf';
+			$config['file_name'] = now();
+			$this->load->library('upload', $config);
+			if (!$this->upload->do_upload()) {
+				// TODO Set custom error system here.
+				//$error = array('error' => $this->upload->display_errors());
+				//$this->load->view('upload_form', $error);
+			} else {
+				$image_data = $this->upload->data();
+				$report_data = array(
+					'subscriber_account_id'	=> $subscriber_account_id,
+					'report_title'			=> $this->input->post('report_title'),
+					'report_path'			=> $image_data['file_name']
+				);
+				echo "Sub ACCT ID: $subscriber_account_id<br />";
+				echo "Tit: ".$report_data['report_title']."<br />";
+				echo "NAme: ".$report_data['report_path']."<br />";
+				$report_added = $this->content_model->add_report($report_data);
+				// if($module_updated) {
+					// echo "Success, with update_module.";
+					// //$this->session->set_flashdata('message', 'Success! Your listing has been updated.');
+					// //redirect("site/edit_vehicle/");
+				// } else {
+					// echo "Failure, with update_module.";
+				// }
 			}
 		}
 	}

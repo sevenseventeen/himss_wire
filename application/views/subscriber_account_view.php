@@ -6,7 +6,6 @@
 
 <div id="main_content" class="rounded_corners_10 module_920 inner_shadow_2">
 	
-	<h2> Subscriber Account --------------------------------------</h2>
 		<fieldset>
 			<p>
 				Company Name: 	<span class="data"><?php echo $subscriber_account[0]->company_name; ?></span><br />
@@ -25,7 +24,7 @@
 				$user_id = $user_account[0]->user_id;
 				$subscriber_account_id = $subscriber_account[0]->subscriber_account_id;
 			?>
-			<p><a href='<?php echo base_url()."admin/edit_subscriber_account/$user_id/$subscriber_account_id" ?>'>Edit This Accoount</a></p>
+			<!--<p><a href='<?php echo base_url()."admin/edit_subscriber_account/$user_id/$subscriber_account_id" ?>'>Edit This Accoount</a></p>-->
 			<h2>Subscription Package</h2>
 			<?php if ($subscription_details) { ?>
 				<p>
@@ -35,13 +34,18 @@
 					Subscription Start: <span class="data"><?php echo $subscription_details[0]->subscription_start_date; ?></span><br />
 					Subscription End: 	<span class="data"><?php echo $subscription_details[0]->subscription_end_date; ?></span><br />
 				</p>
-				<p>
+				<!--<p>
 					<a href="#">Edit This Subscription</a>
-				</p>
+				</p>-->
 			<?php } else { ?>
 				<h3>No subscription package found.</h3>
 			<?php } ?>
 		</fieldset>
+		
+		<h3>Past Reports</h3>
+		<?php foreach ($reports as $report) { ?>
+			<a href="<?php echo base_url().'_reports/'.$report->report_path ?>"><?php echo $report->report_title; ?></a><br /> 
+		<? } ?>
 </div>
 
 <br class="clear_float" />

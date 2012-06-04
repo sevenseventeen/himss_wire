@@ -21,13 +21,13 @@
 					?>
 				</div>
 				<div id="tabs-2">
-					<?php echo form_open('admin/add_article'); ?><!-- TODO require category and company name -->
+					<?php echo form_open('admin/add_article'); ?>
 						<fieldset>
 						<legend>Add Article</legend>
 						<select name="subscriber_id">
 							<option value=''>Select a Subscriber</option>
 							<?php 
-								foreach ($subscribers as $subscriber) { 
+								foreach ($subscribers_with_remaining_articles as $subscriber) { 
 									echo "<option value='".$subscriber->subscriber_account_id."'>".$subscriber->company_name."</option>";
 								}
 							?>
@@ -49,16 +49,12 @@
 							<?php echo form_error('article_title'); ?>
 							<br class="clear_float" />
 						<label>Article Summary</label>
-							<?php echo form_textarea('article_summary', set_value('article_summary', '')); ?>
+							<?php echo form_textarea('article_summary', set_value('article_summary', ''), 'class="ckeditor"'); ?>
 							<?php echo form_error('article_summary'); ?>
 							<br class="clear_float" />
 						<label>Article Body</label>
-							<?php echo form_textarea('article_body', set_value('article_body', '')); ?>
+							<?php echo form_textarea('article_body', set_value('article_body', ''), 'class="ckeditor"'); ?>
 							<?php echo form_error('article_body'); ?>
-							<br class="clear_float" />
-						<label>Published Status</label>
-							<?php echo form_input('article_status', set_value('article_status', '')); ?>
-							<?php echo form_error('article_status'); ?>
 							<br class="clear_float" />
 						<script>
 							$(function() {
@@ -74,7 +70,7 @@
 							<?php echo form_error('publish_date'); ?>
 							<br class="clear_float" />
 						<label>Article Tags</label>
-							<?php echo form_input('article_tags', set_value('article_tags', 'Article Tags')); ?>
+							<?php echo form_input('article_tags', set_value('article_tags', '')); ?>
 							<?php echo form_error('article_tags'); ?>
 							<br class="clear_float" />
 						</fieldset>
@@ -82,7 +78,7 @@
 					<?php echo form_close(); ?>
 				</div>
 			</div> <!-- End Tabs -->
-		</div> <!-- End  Accordian Item -->
+		</div> <!-- End  Accordion Item -->
 		
 	<?php if ($user_type == 'Administrator') { ?>
 		

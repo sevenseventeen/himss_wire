@@ -47,13 +47,21 @@ class Account_Model extends CI_Model {
 		return $query->result();
 	}
 	
+	function get_subscribers_with_remaining_articles() {
+		$this->db->select('*');
+		$this->db->from('subscriber_accounts');
+		$this->db->join('subscriptions', 'subscriptions.subscriber_account_id = subscriber_accounts.subscriber_account_id', 'left');
+		$this->db->where('subscriptions.stories_remaining >', 0);
+		$query = $this->db->get();
+		return $query->result();
+	}
+	
 	function get_network_partners() {
 		$this->db->select('*');
 		$this->db->from('network_partner_accounts');
 		$query = $this->db->get();
 		return $query->result();
 	}
-	
 	
 	function get_administrator_accounts() {
 		$this->db->select('*');

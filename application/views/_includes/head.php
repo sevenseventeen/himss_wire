@@ -23,9 +23,11 @@
 			// The configuration options for the text editors
 			var config = {
 				toolbar:[
-					[ 'Source', '-', 'Bold', 'Italic', 'Link' ]
+					[ 'Source', '-', 'Bold', 'Italic', 'Link'],
+					[ 'Format' ]
 				]
 			};
+			config.format_tags = 'h1;h2;h3;h4;p'
 			$(function() {
 				$(".tabs").tabs();
 				$("#accordion").accordion({ collapsible:true, autoHeight: false, active: <?php echo 0; ?> });

@@ -33,6 +33,11 @@ class Content_Model extends CI_Model {
 		return $result;
 	}
 	
+	function add_report($data) {
+		$result = $this->db->insert('reports', $data);
+		return $result;
+	}
+	
 	/*
 	 * 
 	 * Get Functions
@@ -43,6 +48,24 @@ class Content_Model extends CI_Model {
 	function get_articles($limit='1000000') {
 		$this->db->select('*');
 		$this->db->from('articles');
+		$this->db->limit($limit);
+		$query = $this->db->get();
+		return $query->result();
+	}
+
+	function get_pending_articles($limit='1000000') {
+		$this->db->select('*');
+		$this->db->from('articles');
+		$this->db->where('article_status', 'Pending');
+		$this->db->limit($limit);
+		$query = $this->db->get();
+		return $query->result();
+	}
+	
+	function get_published_articles($limit='1000000') {
+		$this->db->select('*');
+		$this->db->from('articles');
+		$this->db->where('article_status', 'published');
 		$this->db->limit($limit);
 		$query = $this->db->get();
 		return $query->result();
@@ -133,6 +156,22 @@ class Content_Model extends CI_Model {
 		return $query->result();
 	}
 	
+	function get_related_articles($search_term) {
+		$this->db->select('*');
+		$this->db->from('articles');
+		$this->db->where("MATCH (article_body) AGAINST ('$search_term')", NULL, FALSE);
+		$query = $this->db->get();
+		return $query->result();
+	}
+	
+	function get_reports_by_subscriber_account_id($subscriber_account_id) {
+		$this->db->select('*');
+		$this->db->from('reports');
+		$this->db->where('subscriber_account_id', $subscriber_account_id);
+		$query = $this->db->get();
+		return $query->result();
+	}
+	
 	
 	/*
 	 * 
@@ -173,7 +212,7 @@ class Content_Model extends CI_Model {
 			return FALSE;
 		 }
 	}
-            
+	
 	
 	/*
 	 * 

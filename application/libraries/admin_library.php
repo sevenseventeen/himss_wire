@@ -14,6 +14,7 @@ class Admin_Library {
 		$this->ci->load->model('user_model');
 		$data['categories'] = $this->ci->content_model->get_categories();
 		$data['subscribers'] = $this->ci->account_model->get_subscribers();
+		$data['subscribers_with_remaining_articles'] = $this->ci->account_model->get_subscribers_with_remaining_articles();
 		$data['network_partners'] = $this->ci->account_model->get_network_partners();
 		$data['articles'] = $this->ci->content_model->get_articles();
 		$data['static_pages'] = $this->ci->content_model->get_static_pages();

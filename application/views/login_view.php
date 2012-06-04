@@ -9,7 +9,7 @@
 		<fieldset>
 			<legend>Login</legend>
 			<label>Email</label> 
-				<?php echo form_input('email', set_value('email', 'nwp@nwp.com')); ?>
+				<?php echo form_input('email', set_value('email', 'admin@admin.com')); ?>
 				<?php echo form_error('email'); ?>
 				<br class="clear_float" />
 			<label>Password</label>
