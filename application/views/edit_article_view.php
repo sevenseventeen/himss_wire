@@ -5,6 +5,7 @@
 ?>
 
 <div id="main_content" class="rounded_corners_10 module_920 inner_shadow_2">
+	<h1><?php echo $this->session->flashdata('message'); ?></h1>
 	<h2>Edit Article</h2>
 	<?php echo form_open('admin/update_article'); ?>
 		<fieldset>
@@ -17,6 +18,7 @@
 					}
 				?>
 			</select>
+			<?php echo form_error('article_category_id'); ?>
 			<br class="clear_float" />
 			<label>Article Title</label> 
 				<?php echo form_input('article_title', set_value('article_title', $article[0]->article_title)); ?>

@@ -20,12 +20,35 @@
                 </ul>
                 <br class="clear_float" />
                 <ul id="main_navigation">
-                	<?php //TODO  the static navigation items can be dynamically named (in case someone edits the name of a static page) ?> 
-                    <li><a href="<?php echo base_url(); ?>articles">Articles</a></li>
-                    <li><a href="<?php echo base_url(); ?>about_himss_wire/1">About HIMSS Wire</a></li>
-                    <li><a href="<?php echo base_url(); ?>our_network/2">Our Network</a></li>
-                    <li><a href="<?php echo base_url(); ?>join_himss/3">Join HIMSS</a></li>
-                    <li><a href="<?php echo base_url(); ?>contact_us/4">Contact Us</a></li>
+                	<?php //TODO  the static navigation items can be dynamically named (in case someone edits the name of a static page) ?>
+                    <li <?php if ($main_navigation == "articles_home") 	{ echo "class='current'"; } ?>><a href="<?php echo base_url(); ?>articles">Articles</a></li>
+                    <li <?php if ($main_navigation == "about") 			{ echo "class='current'"; } ?>><a href="<?php echo base_url(); ?>about_himss_wire/1">About HIMSS Wire</a></li>
+                    <li <?php if ($main_navigation == "our_network") 	{ echo "class='current'"; } ?>><a href="<?php echo base_url(); ?>our_network/2">Our Network</a></li>
+                    <li <?php if ($main_navigation == "join") 			{ echo "class='current'"; } ?>><a href="<?php echo base_url(); ?>join_himss/3">Join HIMSS</a></li>
+                    <li <?php if ($main_navigation == "contact") 		{ echo "class='current'"; } ?>><a href="<?php echo base_url(); ?>contact_us/4">Contact Us</a></li>
                 </ul>
             </header>
-            <div id="breadcrumb"><?php echo set_breadcrumb(); ?></div>
+            
+            <!-- Custom Breadcrumb -->
+            
+	            <?php
+	            	
+	            	if(isset($_SERVER['argv'][0])) {
+	            		$destination_url = $_SERVER['argv'][0];
+	            		echo "<div id='breadcrumb'>";
+						echo "<a href='".base_url()."'>Home</a>";
+						if ($main_navigation == 'articles') {
+							echo " > <a href='".base_url()."articles'>Articles</a> > <a href='".base_url()."category/".$category_id."'>".$category_name."</a> > <a href='".base_url()."article/".$article_id."'>".$article_title."</a>";
+						} elseif ($main_navigation == 'category') {
+							echo " > <a href='".base_url()."category/".$category_id."'>".$category_name."</a>";
+						} else {
+							$destination_url_array = explode('/', $destination_url);
+							$destination_url_formatted = str_replace('_', ' ', $destination_url_array[1]);
+//							echo " > <a href='".base_url().$destination_url_array[1]."/".$destination_url_array[2]."'>".ucwords($destination_url_formatted)."</a>";
+
+							echo " > <a href='".base_url().substr($destination_url, 1)."'>".ucwords($destination_url_formatted)."</a>";
+						}
+						echo "</div>";
+	            	}
+
+				?>

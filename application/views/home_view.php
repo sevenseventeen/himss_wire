@@ -1,8 +1,27 @@
 <?php 
-	$data['main_navigation'] = 'admin';
+	$data['main_navigation'] = 'home';
 	$this->load->view('_includes/head');
 	$this->load->view('_includes/header', $data);
 ?>
+	
+	<script type="text/javascript">
+		function loadData() {
+			IN.API.Connections("me")
+			.fields(["pictureUrl","publicProfileUrl"])
+			.params({"count":30})
+			.result(function(result) {
+				profHTML = "";
+				for (var index in result.values) {
+					profile = result.values[index]
+					if (profile.pictureUrl) {
+						profHTML += "<p><a href=\"" + profile.publicProfileUrl + "\">";
+						profHTML += "<img class=img_border height=30 align=\"left\" src=\"" + profile.pictureUrl + "\"></a>";   
+					}    
+				}
+				$("#connections").html(profHTML);
+			});
+		}
+</script>
 	
 	<div id="main_content" class="rounded_corners_10 module_600 inner_shadow_2">
 		<img class="module_header_icon" src="_images/latest_article_icon.png" />
@@ -10,7 +29,12 @@
 		<?php foreach ($articles as $article) { ?>
 			<div class="article_snippet">
 				<h2><?php echo $article->article_title; ?></h2>
-				<h3 class="date"><?php echo $article->publish_date; ?></h3>
+				<h3 class="date">
+					<?php 
+						$date = new DateTime($article->publish_date);
+						echo $date->format('m-d-Y');
+					?>
+				</h3>
 				<br class=" clear_float" />
 				<?php echo $article->article_summary; ?>
 				<a href="<?php echo base_url().'article/'.$article->article_id; ?>" class="category">Read Article</a>
@@ -24,6 +48,9 @@
 			<p><?php echo $feature_module[0]->module_text; ?></p>
 			<img src="_images/<?php echo $feature_module[0]->module_image; ?>" />
 		</div>
+		
+		<!-- Search Module -->
+		
 		<div id="search_module" class="module_300 header_gradient rounded_corners_10 inner_shadow_2">
 			<h3>Article Search</h3>
 				<?php echo form_open('article_search'); ?>
@@ -31,13 +58,20 @@
 					<input type="submit" value="Search" class="article_search_button">
 				<?php echo form_close(); ?>
 		</div>
+		
+		<!-- Linked In Module -->
+		
 		<div id="linked_in_module" class="module_300 rounded_corners_10 inner_shadow_2">
-			<h3>LinkedIn Connection</h3>
-			<p>Check LinkedIn for feed</p>
+			<div id="connections"></div>
+    		<script type="IN/Login" data-onAuth="loadData"></script>
 		</div>
+		
+		<!-- Banner Module -->
+		
 		<div class="module_300 rounded_corners_10 inner_shadow_2" id="banner_ad">
 			<img src="_uploads/<?php echo $banner_ad[0]->banner_image_path; ?>" width="270"/>
 		</div>
+		
 	</aside>
 	
 	<!--<script type="text/javascript" src="http://cdn.widgetserver.com/syndication/subscriber/InsertWidget.js"></script><script type="text/javascript">if (WIDGETBOX) WIDGETBOX.renderWidget('75f5638c-1d72-4f35-a0d7-f04f9a038da2');</script>

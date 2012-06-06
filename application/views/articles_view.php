@@ -1,5 +1,5 @@
 <?php 
-	$data['main_navigation'] = 'contact';
+	$data['main_navigation'] = 'articles_home';
 	$this->load->view('_includes/head');
 	$this->load->view('_includes/header', $data);
 ?>

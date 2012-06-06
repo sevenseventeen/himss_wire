@@ -1,5 +1,5 @@
 <?php 
-	$data['main_navigation'] = 'join';
+	$data['main_navigation'] = '';
 	$this->load->view('_includes/head');
 	$this->load->view('_includes/header', $data);
 ?>

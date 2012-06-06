@@ -247,6 +247,8 @@ a.module_header_view_all {
 #main_navigation li a {
 	text-decoration: none;
 	color: #737373;
+	display:block;
+	padding: 10px 0;
 }
 
 #main_navigation li {
@@ -254,12 +256,17 @@ a.module_header_view_all {
 	text-align: center;
 	float:left;
 	width: 191px;
-	padding: 10px 0;
 	background-color: black;
 	border-top: 1px solid #91aac0;
 	border-right: 1px solid #CCC;
 	background: #FFF url('../_images/main_navigation_gradient.png') repeat-x left top;
 }
+
+#main_navigation li.current {
+	color:blue;
+	background: #FFF url('../_images/main_navigation_gradient_current.png') repeat-x left top;
+}
+
 
 #footer_navigation {
 	text-align: center;

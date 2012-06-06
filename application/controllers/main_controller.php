@@ -16,6 +16,10 @@ class Main_Controller extends CI_Controller {
 		$this->load->view('home_view', $data);
 	}
 	
+	public function linked_in() {
+		$this->load->view('linked_in_view');
+	}
+
 	public function articles() {
 		$this->load->model('content_model');
 		$results = array();
@@ -63,7 +67,7 @@ class Main_Controller extends CI_Controller {
 		$this->load->model('content_model');
 		$data['static_page'] = $this->content_model->get_static_page_by_id($page_id);
 		$data['static_page_content'] = $this->content_model->get_static_page_content_by_id($page_id);
-		$this->load->view('about_himss_wire_view', $data);
+		$this->load->view('our_network_view', $data);
 	}
 
 	public function privacy_policy() {

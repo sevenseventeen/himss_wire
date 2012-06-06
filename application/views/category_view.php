@@ -1,5 +1,7 @@
 <?php 
-	$data['main_navigation'] = 'contact';
+	$data['main_navigation'] = 'articles';
+	$data['category_name'] = $articles[0]->category_name;
+	$data['category_id'] = $articles[0]->article_category_id;
 	$this->load->view('_includes/head');
 	$this->load->view('_includes/header', $data);
 ?>

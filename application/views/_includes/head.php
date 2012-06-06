@@ -2,6 +2,14 @@
 <html>
 
     <head>
+    	
+    	<?php 
+    		if ($this->session->userdata('admin_accordion_state')) {
+    			$admin_accordion_state = $this->session->userdata('admin_accordion_state');
+			} else {
+				$admin_accordion_state = '0';
+			}
+		?>
         <link rel="stylesheet" type="text/css" href="<?php echo base_url().'_css/reset.css'; ?>" />
         <link rel="stylesheet" type="text/css" href="<?php echo base_url().'_css/main.css'; ?>" />
         <link rel="stylesheet" type="text/css" href="<?php echo base_url().'_css/debugging.css'; ?>" />
@@ -12,8 +20,6 @@
         <link type="text/css" href="<?php echo base_url().'_css/jquery_ui_override.css'; ?>" rel="stylesheet" />
 		<script type="text/javascript" src="<?php echo base_url().'_javascript/jquery-1.7.2.min.js'; ?>"></script>
 		<script type="text/javascript" src="<?php echo base_url().'_javascript/jquery-ui-1.8.20.custom.min.js'; ?>"></script>
-
-		<!-- End JQuery and JQuery UI -->
 
 		<!-- CK Editor -->
 		
@@ -34,30 +40,26 @@
 				$("#accordion").accordion({ 
 					collapsible:true, 
 					autoHeight: false, 
-					active: <?php echo $this->session->userdata('admin_accordion_state'); ?>,
+					active: <?php echo $admin_accordion_state; ?>,
 					change: function(event, ui) { 
-						alert(ui.options.active.toString());
 						var accordion_level = ui.options.active.toString();   
 						$.ajax({
 							url: "<?php echo base_url(); ?>ajax_controller/set_accordion/"+accordion_level,
 							cache: false
-						}).done(function(html) {
-							alert("success");
-							//$("#results").append(html);
 						});
 					} 
 				});
-				
-			
-				
-				
 			});
-			
 		</script>
 		
-		<?php //$this->session->set_userdata('current_admin_accordion', 'some_value'); ?>
+		<!-- LinkedIn Module -->
 		
-		<!-- End CK Editor -->		
+		<script type="text/javascript" src="http://platform.linkedin.com/in.js">
+  			api_key: 24kp3woxkhce
+  			authorize: true
+		</script>
+		
+		<!-- End LinkedIn -->
 		
 		
         <title>HIMMS Wire</title>

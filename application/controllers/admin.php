@@ -77,17 +77,20 @@ class Admin extends CI_Controller {
 			);
 			$article_added = $this->content_model->add_article($data);
 			if ($article_added) {
-				echo "Success, with article_added.<br />";
 				$subscriber_account_id = $this->input->post('subscriber_id'); 
 				$subscription = $this->subscription_model->get_subscription_by_account_id($subscriber_account_id);
 				$articles_remaining = $subscription[0]->stories_remaining;
 				$articles_remaining -= 1;
 				$subscription_id = $subscription[0]->subscription_id; 
-				echo "Articles Remaining: $articles_remaining<br />";
-				$data = array(
-					'stories_remaining'	=> $articles_remaining
-				);
+				$data = array('stories_remaining' => $articles_remaining);
 				$subscription_updated = $this->subscription_model->update_subscription($subscription_id, $data);
+				if($subscription_updated) {
+					$this->session->set_flashdata('message', 'Success! Your edits have been saved.');
+					redirect("admin");
+				} else {
+					$this->session->set_flashdata('message', 'Sorry, there was a problem saving your edits.');
+					redirect("admin");
+				}
 			} else {
 				echo "Failure, with article_added.";
 			}
@@ -111,12 +114,12 @@ class Admin extends CI_Controller {
 				'category_name'	=> $this->input->post('category_name'),
 			);
 			$category_added = $this->content_model->add_category($data);
-			if ($category_added) {
-				echo "Success, with category_added.";
-				//$this->session->set_flashdata('message', 'Success! Your listing has been updated.');
-				//redirect("site/edit_vehicle/");
+			if($category_added) {
+				$this->session->set_flashdata('message', 'Success! Your edits have been saved.');
+				redirect("admin");
 			} else {
-				echo "Failure, with category_added.";
+				$this->session->set_flashdata('message', 'Sorry, there was a problem saving your edits.');
+				redirect("admin");
 			}
 		} 
 	}
@@ -177,13 +180,12 @@ class Admin extends CI_Controller {
 						$account_created = FALSE;
 						break;
 				}
-				if ($account_created) {
-					echo "Success, with account_created.";
-					//$this->session->set_flashdata('message', 'Success! Your listing has been updated.');
-					//redirect("site/edit_vehicle/");
+				if($account_created) {
+					$this->session->set_flashdata('message', 'Success! Your edits have been saved.');
+					redirect("admin");
 				} else {
-					echo "Failure, with account_created.";
-					// TODO if this fails, be sure to delete the user that was created.
+					$this->session->set_flashdata('message', 'Sorry, there was a problem saving your edits.');
+					redirect("admin");
 				}
 			} else {
 				echo "Failure, with user_created.";
@@ -233,12 +235,12 @@ class Admin extends CI_Controller {
 						$account_created = FALSE;
 						break;
 				}
-				if ($account_created) {
-					echo "Success, with account_created.";
-					//$this->session->set_flashdata('message', 'Success! Your listing has been updated.');
-					//redirect("site/edit_vehicle/");
+				if($account_created) {
+					$this->session->set_flashdata('message', 'Success! Your edits have been saved.');
+					redirect("admin");
 				} else {
-					echo "Failure, with account_created.";
+					$this->session->set_flashdata('message', 'Sorry, there was a problem saving your edits.');
+					redirect("admin");
 				}
 			} else {
 				echo "Failure, with user_created.";
@@ -284,11 +286,11 @@ class Admin extends CI_Controller {
 			);
 			$subscription_created = $this->subscription_model->add_subscription($subscription_data);
 			if($subscription_created) {
-				echo "Success, with subscription_created.";
-				//$this->session->set_flashdata('message', 'Success! Your listing has been updated.');
-				//redirect("site/edit_vehicle/");
+				$this->session->set_flashdata('message', 'Success! Your edits have been saved.');
+				redirect("admin");
 			} else {
-				echo "Failure, with subscription_created.";
+				$this->session->set_flashdata('message', 'Sorry, there was a problem saving your edits.');
+				redirect("admin");
 			}
 		}
 	}
@@ -308,11 +310,11 @@ class Admin extends CI_Controller {
 			);
 			$footer_link_created = $this->content_model->add_footer_link($footer_link_data);
 			if($footer_link_created) {
-				echo "Success, with add_footer_link.";
-				//$this->session->set_flashdata('message', 'Success! Your listing has been updated.');
-				//redirect("site/edit_vehicle/");
+				$this->session->set_flashdata('message', 'Success! Your edits have been saved.');
+				redirect("admin");
 			} else {
-				echo "Failure, with add_footer_link.";
+				$this->session->set_flashdata('message', 'Sorry, there was a problem saving your edits.');
+				redirect("admin");
 			}
 		}
 	}
@@ -332,11 +334,11 @@ class Admin extends CI_Controller {
 			);
 			$faq_created = $this->content_model->add_faq($faq_data);
 			if($faq_created) {
-				echo "Success, with add_faq.";
-				//$this->session->set_flashdata('message', 'Success! Your listing has been updated.');
-				//redirect("site/edit_vehicle/");
+				$this->session->set_flashdata('message', 'Success! Your edits have been saved.');
+				redirect("admin");
 			} else {
-				echo "Failure, with add_faq.";
+				$this->session->set_flashdata('message', 'Sorry, there was a problem saving your edits.');
+				redirect("admin");
 			}
 		}
 	}
@@ -369,13 +371,13 @@ class Admin extends CI_Controller {
 				echo "Tit: ".$report_data['report_title']."<br />";
 				echo "NAme: ".$report_data['report_path']."<br />";
 				$report_added = $this->content_model->add_report($report_data);
-				// if($module_updated) {
-					// echo "Success, with update_module.";
-					// //$this->session->set_flashdata('message', 'Success! Your listing has been updated.');
-					// //redirect("site/edit_vehicle/");
-				// } else {
-					// echo "Failure, with update_module.";
-				// }
+				if($report_added) {
+					$this->session->set_flashdata('message', 'Success! Your edits have been saved.');
+					redirect("admin");
+				} else {
+					$this->session->set_flashdata('message', 'Sorry, there was a problem saving your edits.');
+					redirect("admin");
+				}
 			}
 		}
 	}
@@ -442,22 +444,6 @@ class Admin extends CI_Controller {
 		$this->load->view('edit_editor_account_view', $data);
 	}
 	
-	// public function edit_feature_module() {
-		// $this->load->model('content_model');
-		// $data['content_model'] = $this->content_model->get_feature_module();
-		// $this->load->view('edit_editor_account_view', $data);
-	// }
-	
-	
-
-	// public function edit_network_partner_account($user_id, $network_partner_account_id) {
-		// $this->load->model('account_model');
-		// $this->load->model('user_model');
-		// $data['user_account'] = $this->user_model->get_user_by_id($user_id);
-		// $data['network_partner_account'] = $this->account_model->get_network_partner_by_id($network_partner_account_id);
-		// $this->load->view('edit_network_partner_account_view', $data);
-	// }
-	
 	/*
 	 * 
 	 * Login Functions
@@ -521,6 +507,7 @@ class Admin extends CI_Controller {
 		$this->form_validation->set_rules('article_body', 'Article Body', 'required');
 		$this->form_validation->set_rules('article_status', 'Published Status', 'required');
 		$this->form_validation->set_rules('article_tags', 'Article Tags', 'required');
+		$this->form_validation->set_rules('article_category_id', 'Article Category', 'required');
 		if ($this->form_validation->run() == FALSE) { // FALSE FOR PRODUCTION
 			$this->load->model('content_model');
 			$data['article'] = $this->content_model->get_article_by_id($article_id);
@@ -535,12 +522,12 @@ class Admin extends CI_Controller {
 				'article_tags'		=> $this->input->post('article_tags'),
 			);
 			$article_updated = $this->content_model->update_article($article_id, $article_data);
-			if ($article_updated) {
-				echo "Success, with article_updated.";
-				//$this->session->set_flashdata('message', 'Success! Your listing has been updated.');
-				//redirect("site/edit_vehicle/");
+			if($article_updated) {
+				$this->session->set_flashdata('message', 'Success! Your edits have been saved.');
+				redirect("admin/edit_article/$article_id");
 			} else {
-				echo "Failure, with article_updated.";
+				$this->session->set_flashdata('message', 'Sorry, there was a problem saving your edits.');
+				redirect("admin/edit_article/$article_id");
 			}
 		}
 	}
