@@ -59,7 +59,16 @@
   			authorize: true
 		</script>
 		
-		<!-- End LinkedIn -->
+		<!-- Share This -->
+		
+		<script type="text/javascript">var switchTo5x=true;</script>
+		<script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
+		<script type="text/javascript">
+			stLight.options({
+				publisher: "ur-3920714f-f56c-9f11-67a7-d12e6156f1a0",
+				onhover: false
+			});
+		</script>
 		
 		
         <title>HIMMS Wire</title>
