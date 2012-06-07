@@ -156,7 +156,7 @@ class Content_Model extends CI_Model {
 		return $query->result();
 	}
 	
-	function get_related_articles($search_term) {
+	function get_search_results($search_term) {
 		$this->db->select('*');
 		$this->db->from('articles');
 		$this->db->where("MATCH (article_body) AGAINST ('$search_term')", NULL, FALSE);
@@ -171,7 +171,15 @@ class Content_Model extends CI_Model {
 		$query = $this->db->get();
 		return $query->result();
 	}
-	
+
+	function get_related_articles($article_category_id, $article_id) {
+		$this->db->select('*');
+		$this->db->from('articles');
+		$this->db->where('article_category_id', $article_category_id);
+		$this->db->where('article_id !=', $article_id);
+		$query = $this->db->get();
+		return $query->result();
+	}
 	
 	/*
 	 * 

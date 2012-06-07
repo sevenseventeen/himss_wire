@@ -4,24 +4,93 @@
 	$this->load->view('_includes/header', $data);
 ?>
 	
+	
+	
+	<script type="text/javascript" src="http://platform.linkedin.com/in.js">
+		api_key: 24kp3woxkhce
+		authorize: true
+	</script>
 	<script type="text/javascript">
 		function loadData() {
-			IN.API.Connections("me")
-			.fields(["pictureUrl","publicProfileUrl"])
-			.params({"count":30})
-			.result(function(result) {
-				profHTML = "";
-				for (var index in result.values) {
-					profile = result.values[index]
-					if (profile.pictureUrl) {
-						profHTML += "<p><a href=\"" + profile.publicProfileUrl + "\">";
-						profHTML += "<img class=img_border height=30 align=\"left\" src=\"" + profile.pictureUrl + "\"></a>";   
-					}    
-				}
-				$("#connections").html(profHTML);
-			});
-		}
-</script>
+			//alert("load data");
+			//IN.API.Groups(93115)
+			//IN.API.Raw("/groups/93115/posts:(title,summary,creator)?order=recency")
+			//IN.API.Raw("/groups/93115/posts:(title,summary,creator)?order=recency")
+			//IN.API.Raw("/groups/1778196:(id,name,short-description,description,posts)")
+			//IN.API.Raw("/groups/93115:(id,name,short-description,description,posts)")
+			IN.API.Raw("/groups/166581:(id,name,short-description,description,posts)")
+				.result(function(result) {
+					console.debug(result);
+					profHTML = "H";
+					for (var index in result.values) {
+						profHTML += "ello";
+						profile = result.values[index]
+						if (profile.title) {
+							profHTML += "<p>Hello</p>";
+							//profHTML += "<img class=img_border height=30 align=\"left\" src=\"" + profile.pictureUrl + "\"></a>";   
+						}    
+					}
+					$("#connections").html(profHTML);
+				});
+				// .error( function(error) { 
+					// alert("error");
+				// });
+			}
+			//IN.API.Groups("93115")
+			//.posts(["title","summary","creator"])
+			//.params({"count":30})
+			// .result(function(result) {
+				// alert(result);
+				// console.debug(result);
+				// profHTML = "";
+				// for (var index in result.values) {
+					// profile = result.values[index]
+					// if (profile.title) {
+						// profHTML += "<p>Hello</p>";
+						// //profHTML += "<img class=img_border height=30 align=\"left\" src=\"" + profile.pictureUrl + "\"></a>";   
+					// }    
+				// }
+				// $("#connections").html(profHTML);
+			// });
+			//
+		//}
+
+		// function loadData() {
+			// alert("load data");
+			// IN.API.Groups(93115)
+			// .posts(["title","summary","creator"])
+			// .params({"count":30})
+			// .result(function(result) {
+				// alert(result);
+				// $("#connections").html(profHTML);
+			// });
+		// }
+// 		
+		
+		// function loadData() {
+			// IN.API.Connections("me")
+			// .fields(["pictureUrl","publicProfileUrl"])
+			// .params({"count":30})
+			// .result(function(result) {
+				// console.debug(result);
+				// profHTML = "";
+				// for (var index in result.values) {
+					// profile = result.values[index]
+					// if (profile.pictureUrl) {
+						// profHTML += "<p><a href=\"" + profile.publicProfileUrl + "\">";
+						// profHTML += "<img class=img_border height=30 align=\"left\" src=\"" + profile.pictureUrl + "\"></a>";   
+					// }    
+				// }
+				// $("#connections").html(profHTML);
+			// });
+		// }
+		
+		//IN.API.Raw("/groups/12345/posts:(title,summary,creator)?order=recency")
+		//IN.API.Raw("/groups/12345:(id,name,short-description,description,posts)")
+		//IN.API.Raw("/people/~/group-memberships?membership-state=member ") 
+		//IN.API.Raw("/people/~/suggestions/groups")
+		
+	</script>
 	
 	<div id="main_content" class="rounded_corners_10 module_600 inner_shadow_2">
 		<img class="module_header_icon" src="_images/latest_article_icon.png" />
@@ -43,35 +112,10 @@
 	</div>
 			
 	<aside>
-		<div id="feature" class="rounded_corners_10 module_300 inner_shadow_2">
-			<h3 class="module_header_no_icon rounded_top_corners_10 header_gradient inner_shadow_2">Feature</h3>
-			<p><?php echo $feature_module[0]->module_text; ?></p>
-			<img src="_images/<?php echo $feature_module[0]->module_image; ?>" />
-		</div>
-		
-		<!-- Search Module -->
-		
-		<div id="search_module" class="module_300 header_gradient rounded_corners_10 inner_shadow_2">
-			<h3>Article Search</h3>
-				<?php echo form_open('article_search'); ?>
-					<input class="rounded_corners_10 inner_shadow_2" type="text" name="search_term" value="" />
-					<input type="submit" value="Search" class="article_search_button">
-				<?php echo form_close(); ?>
-		</div>
-		
-		<!-- Linked In Module -->
-		
-		<div id="linked_in_module" class="module_300 rounded_corners_10 inner_shadow_2">
-			<div id="connections"></div>
-    		<script type="IN/Login" data-onAuth="loadData"></script>
-		</div>
-		
-		<!-- Banner Module -->
-		
-		<div class="module_300 rounded_corners_10 inner_shadow_2" id="banner_ad">
-			<img src="_uploads/<?php echo $banner_ad[0]->banner_image_path; ?>" width="270"/>
-		</div>
-		
+		<?php $this->load->view('_includes/feature_module'); ?>
+		<?php $this->load->view('_includes/search_module'); ?>
+		<?php $this->load->view('_includes/linked_in_module'); ?>
+		<?php $this->load->view('_includes/banner_ad_module'); ?>
 	</aside>
 	
 	<!--<script type="text/javascript" src="http://cdn.widgetserver.com/syndication/subscriber/InsertWidget.js"></script><script type="text/javascript">if (WIDGETBOX) WIDGETBOX.renderWidget('75f5638c-1d72-4f35-a0d7-f04f9a038da2');</script>

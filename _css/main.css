@@ -45,6 +45,16 @@ h2 {
 	font-size:14px;	
 }
 
+/*h3 {
+	font-size:17px;
+	color: #505050;
+}*/
+
+h4 {
+	font-size:14px;
+	color: #505050;
+}
+
 p {
 	margin:11px 0;
 	line-height:15px;	
@@ -380,6 +390,27 @@ a.module_header_view_all {
 
 .category_module {
 	float: left;
+}
+
+/* ************** Related Articles Module ************** */
+
+#related_articles a {
+	text-decoration:none;
+}
+
+#related_articles h4 {
+	margin: -1px 15px 0 15px;
+	border-top: solid 1px 
+	#E5E5E5;
+	padding: 15px 0 15px 0px;
+}
+
+#related_articles .date {
+	color: #005DAB;
+	position: relative;
+	font-size: 8px;
+	font-weight: bold;
+	margin-left: 5px;
 }
 
 /* ************** Footer ************** */

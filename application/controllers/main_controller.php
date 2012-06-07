@@ -10,7 +10,7 @@ class Main_Controller extends CI_Controller {
 			//echo "not logged in";
 		}
 		$this->load->model('content_model');
-		$data['articles'] = $this->content_model->get_articles('5');
+		$data['articles'] = $this->content_model->get_published_articles('5');
 		$data['feature_module'] = $this->content_model->get_feature_module();
 		$data['banner_ad'] = $this->content_model->get_banner_ads();
 		$this->load->view('home_view', $data);
@@ -39,14 +39,19 @@ class Main_Controller extends CI_Controller {
 	
 	public function article($article_id) {
 		$this->load->model('content_model');
-		$data['article'] = $this->content_model->get_article_by_id($article_id);
+		$article = $this->content_model->get_article_by_id($article_id);
+		$article_category_id = $article[0]->article_category_id; 
+		$data['article'] = $article;
+		$data['feature_module'] = $this->content_model->get_feature_module();
+		$data['banner_ad'] = $this->content_model->get_banner_ads();
+		$data['related_articles'] = $this->content_model->get_related_articles($article_category_id, $article_id);
 		$this->load->view('article_view', $data);
 	}
 	
 	public function article_search() {
 		$this->load->model('content_model');
 		$search_term = $this->input->post('search_term');
-		$data['search_results'] = $this->content_model->get_related_articles($search_term);
+		$data['search_results'] = $this->content_model->get_search_results($search_term);
 		$this->load->view('article_search_results_view', $data);
 	}
 	

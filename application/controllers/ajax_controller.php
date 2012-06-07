@@ -2,8 +2,7 @@
 
 class Ajax_Controller extends CI_Controller {
 	
-	public function index() {
-	}
+	public function index() {}
 	
 	public function set_accordion($accordion_level) {
 		$data = array('admin_accordion_state' => $accordion_level);

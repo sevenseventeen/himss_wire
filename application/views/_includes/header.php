@@ -2,8 +2,8 @@
                 <a href="<?php echo base_url(); ?>"><img src="<?php echo base_url(); ?>_images/himms_wire_logo.png" /></a>
                 <ul id="login_social_navigation" class="rounded_corners_10 inner_shadow_2">
                     <li><a href="<?php echo base_url(); ?>">Home</a> | </li>
-                    <li><a href="#">Twitter</a> | </li>
-                    <li><a href="#">LinkedIn</a> |</li>
+                    <li><a href="https://twitter.com/#!/HIMSSwire" target="_blank">Twitter</a> | </li>
+                    <li><a href="http://www.linkedin.com/groups?gid=93115" target="_blank">LinkedIn</a> |</li>
                     <?php if ($this->auth->logged_in()) { ?>
                         <li><a href="<?php echo base_url(); ?>admin/logout">Logout</a> 
                         <?php if ($this->auth->user_type() == "Administrator") { ?>

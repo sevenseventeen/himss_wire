@@ -50,11 +50,11 @@
 							<?php echo form_error('article_title'); ?>
 							<br class="clear_float" />
 						<label>Article Summary</label>
-							<?php echo form_textarea('article_summary', set_value('article_summary', ''), 'class="ckeditor"'); ?>
+							<?php echo form_textarea('article_summary', set_value('article_summary', ''), 'class="ckeditor" maxlength="10"'); ?>
 							<?php echo form_error('article_summary'); ?>
 							<br class="clear_float" />
 						<label>Article Body</label>
-							<?php echo form_textarea('article_body', set_value('article_body', ''), 'class="ckeditor"'); ?>
+							<?php echo form_textarea('article_body', set_value('article_body', ''), 'class="ckeditor" maxlength="10"'); ?>
 							<?php echo form_error('article_body'); ?>
 							<br class="clear_float" />
 						<script>
@@ -89,8 +89,8 @@
 		<div>
 			<div class="tabs">
 				<ul>
-					<li><a href="#tabs-1">Tab1</a></li>
-					<li><a href="#tabs-2">Tab2</a></li>
+					<li><a href="#tabs-1">Edit</a></li>
+					<li><a href="#tabs-2">Add</a></li>
 				</ul>
 				<div id="tabs-1">
 					Administrators
@@ -118,6 +118,7 @@
 									}
 								?>
 							</select>
+							<?php echo form_error('account_type_id'); ?>
 							<br class="clear_float" />
 							<label>First Name</label>
 								<?php echo form_input('first_name', set_value('first_name', 'Josh')); ?>
@@ -132,7 +133,7 @@
 								<?php echo form_error('email'); ?>
 								<br class="clear_float" />
 							<label>Password</label>
-								<?php echo form_input('password', set_value('password', 'password123')); ?>
+								<?php echo form_password('password', set_value('password', 'password123')); ?>
 								<?php echo form_error('password'); ?>
 								<br class="clear_float" />
 						</fieldset>
@@ -148,8 +149,8 @@
 		<div>
 			<div class="tabs">
 				<ul>
-					<li><a href="#tabs-1">Tab1</a></li>
-					<li><a href="#tabs-2">Tab2</a></li>
+					<li><a href="#tabs-1">Edit</a></li>
+					<li><a href="#tabs-2">Add</a></li>
 				</ul>
 				<div id="tabs-1">
 					Subscribers<br />
@@ -178,6 +179,7 @@
 									}
 								?>
 							</select>
+							<?php echo form_error('account_type_id'); ?>
 							<br class="clear_float" />
 							<label>Company Name</label> 
 								<?php echo form_input('company_name', set_value('company_name', '')); ?>
@@ -208,7 +210,8 @@
 								<?php echo form_error('city'); ?>
 								<br class="clear_float" />
 							<label>State</label>
-								<?php echo form_input('state', set_value('state', '')); ?>
+								<?php $state_options = array('' => '', 'Alabama' => 'Alabama',	'Alaska' => 'Alaska',	'Arizona' => 'Arizona',	'Arkansas' => 'Arkansas',	'California' => 'California',	'Colorado' => 'Colorado',	'Connecticut' => 'Connecticut',	'Delaware' => 'Delaware',	'District of Columbia' => 'District of Columbia',	'Florida' => 'Florida',	'Georgia' => 'Georgia',	'Guam' => 'Guam',	'Hawaii' => 'Hawaii',	'Idaho' => 'Idaho',	'Illinois' => 'Illinois',	'Indiana' => 'Indiana',	'Iowa' => 'Iowa',	'Kansas' => 'Kansas',	'Kentucky' => 'Kentucky',	'Louisiana' => 'Louisiana',	'Maine' => 'Maine',	'Maryland' => 'Maryland',	'Massachusetts' => 'Massachusetts',	'Michigan' => 'Michigan',	'Minnesota' => 'Minnesota',	'Mississippi' => 'Mississippi',	'Missouri' => 'Missouri',	'Montana' => 'Montana',	'Nebraska' => 'Nebraska',	'Nevada' => 'Nevada',	'New Hampshire' => 'New Hampshire',	'New Mexico' => 'New Mexico',	'New York' => 'New York',	'North Carolina' => 'North Carolina',	'North Dakota' => 'North Dakota',	'Ohio' => 'Ohio',	'Oklahoma' => 'Oklahoma',	'Oregon' => 'Oregon',	'Pennsylvania' => 'Pennsylvania',	'Puerto Rico' => 'Puerto Rico',	'Rhode Island' => 'Rhode Island',	'South Carolina' => 'South Carolina',	'South Dakota' => 'South Dakota',	'Tennessee' => 'Tennessee',	'Texas' => 'Texas',	'Utah' => 'Utah',	'Vermont' => 'Vermont',	'Virginia' => 'Virginia',	'Virgin Islands' => 'Virgin Islands',	'Washington' => 'Washington',	'West Virginia' => 'West Virginia',	'Wisconsin' => 'Wisconsin',	'Wyoming' => 'Wyoming'); ?>
+								<?php echo form_dropdown('state', $state_options, set_value('state', '')); ?>																					
 								<?php echo form_error('state'); ?>
 								<br class="clear_float" />
 							<label>Zip Code</label>
@@ -220,7 +223,7 @@
 								<?php echo form_error('email'); ?>
 								<br class="clear_float" />
 							<label>Password</label>
-								<?php echo form_input('password', set_value('password', '')); ?>
+								<?php echo form_password('password', set_value('password', '')); ?>
 								<?php echo form_error('password'); ?>
 								<br class="clear_float" />
 						</fieldset>
@@ -236,8 +239,8 @@
 		<div>
 			<div class="tabs">
 				<ul>
-					<li><a href="#tabs-1">Tab1</a></li>
-					<li><a href="#tabs-2">Tab2</a></li>
+					<li><a href="#tabs-1">Edit</a></li>
+					<li><a href="#tabs-2">Add</a></li>
 				</ul>
 				<div id="tabs-1">
 					<?php
@@ -267,7 +270,7 @@
 		<div>
 			<div class="tabs">
 				<ul>
-					<li><a href="#tabs-1">Tab1</a></li>
+					<li><a href="#tabs-1">Edit</a></li>
 				</ul>
 				<div id="tabs-1">
 					Edit Static Pages<br />

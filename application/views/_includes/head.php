@@ -20,6 +20,29 @@
         <link type="text/css" href="<?php echo base_url().'_css/jquery_ui_override.css'; ?>" rel="stylesheet" />
 		<script type="text/javascript" src="<?php echo base_url().'_javascript/jquery-1.7.2.min.js'; ?>"></script>
 		<script type="text/javascript" src="<?php echo base_url().'_javascript/jquery-ui-1.8.20.custom.min.js'; ?>"></script>
+		
+		<!-- Max Length Script -->
+		
+		<script type="text/javascript">
+			$(function($) {
+				var ignore = [8,9,13,33,34,35,36,37,38,39,40,46];
+				var eventName = 'keypress';
+				$('textarea[maxlength]')
+					.live(eventName, function(event) {
+						alert("test");
+						var self = $(this),
+							maxlength = self.attr('maxlength'),
+							code = $.data(this, 'keycode');
+						if (maxlength && maxlength > 0) {
+							return ( self.val().length < maxlength
+								|| $.inArray(code, ignore) !== -1 );
+						}
+					})
+					.live('keydown', function(event) {
+						$.data(this, 'keycode', event.keyCode || event.which);
+					});
+			});
+		</script>
 
 		<!-- CK Editor -->
 		
@@ -42,7 +65,7 @@
 					autoHeight: false, 
 					active: <?php echo $admin_accordion_state; ?>,
 					change: function(event, ui) { 
-						var accordion_level = ui.options.active.toString();   
+						var accordion_level = ui.options.active.toString();
 						$.ajax({
 							url: "<?php echo base_url(); ?>ajax_controller/set_accordion/"+accordion_level,
 							cache: false
@@ -50,13 +73,6 @@
 					} 
 				});
 			});
-		</script>
-		
-		<!-- LinkedIn Module -->
-		
-		<script type="text/javascript" src="http://platform.linkedin.com/in.js">
-  			api_key: 24kp3woxkhce
-  			authorize: true
 		</script>
 		
 		<!-- Share This -->

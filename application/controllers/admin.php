@@ -133,7 +133,9 @@ class Admin extends CI_Controller {
 		$this->load->model('account_model');
 		$this->load->model('user_model');
 		$this->load->library('form_validation');
+		$this->form_validation->set_message('is_unique', 'Sorry, that email address is already in use.');
 		$this->form_validation->set_error_delimiters('<div class="error">', '</div>');
+		$this->form_validation->set_rules('account_type_id', 'Account Type', 'required');
 		$this->form_validation->set_rules('company_name', 'Company Name', 'required');
 		$this->form_validation->set_rules('website', 'Website', 'required');
 		$this->form_validation->set_rules('first_name', 'First Name', 'required');
@@ -143,11 +145,18 @@ class Admin extends CI_Controller {
 		$this->form_validation->set_rules('city', 'City', 'required');
 		$this->form_validation->set_rules('state', 'State', 'required');
 		$this->form_validation->set_rules('zip_code', 'Zip Code', 'required|numeric');
-		$this->form_validation->set_rules('email', 'Email', 'required');
+		$this->form_validation->set_rules('email', 'Email', 'required|valid_email|is_unique[users.email]');
 		$this->form_validation->set_rules('password', 'password', 'required');
 		if ($this->form_validation->run() == FALSE) { // FALSE FOR PRODUCTION
 			$this->admin_library->load_admin_view();
 		} else {
+			// $email = $this->input->post('email');
+			// $this->load->model('auth_model');
+			// $user_exists = $this->auth_model->get_user_by_email($email);
+			// if ($user_exists) {
+				// $data['error'] = "Sorry that email address in already in use.";
+				// $this->admin_library->load_admin_view();
+			// }
 			$user_data = array(
 				'account_type_id'	=> $this->input->post('account_type_id'),
 				'email'		 		=> $this->input->post('email'),
@@ -203,9 +212,10 @@ class Admin extends CI_Controller {
 		$this->load->model('user_model');
 		$this->load->library('form_validation');
 		$this->form_validation->set_error_delimiters('<div class="error">', '</div>');
+		$this->form_validation->set_rules('account_type_id', 'Account Type', 'required');
 		$this->form_validation->set_rules('first_name', 'First Name', 'required');
 		$this->form_validation->set_rules('last_name', 'Last Name', 'required');
-		$this->form_validation->set_rules('email', 'Email', 'required');
+		$this->form_validation->set_rules('email', 'Email', 'required|valid_email|is_unique[users.email]');
 		$this->form_validation->set_rules('password', 'password', 'required');
 		if ($this->form_validation->run() == FALSE) { // FALSE FOR PRODUCTION
 			$this->admin_library->load_admin_view();

@@ -248,13 +248,21 @@ class Auth_Model extends CI_Model {
 	 * @return bool
 	 * @author Mathew
 	 **/
-	public function email_check($email = '') {
-		if (empty($email)) {
-			return FALSE;
-		}
-		return $this->db->where('email', $email)
-						->where($this->ion_auth->_extra_where)
-						->count_all_results($this->tables['users']) > 0;
+	// public function email_check($email = '') {
+		// if (empty($email)) {
+			// return FALSE;
+		// }
+		// return $this->db->where('email', $email)
+						// ->where($this->ion_auth->_extra_where)
+						// ->count_all_results($this->tables['users']) > 0;
+	// }
+	
+	public function get_user_by_email($email) {
+		$this->db->select('*');
+		$this->db->from('users');
+		$this->db->where('email', $email);
+		$query = $this->db->get();
+		return $query->result();
 	}
 
 
@@ -788,12 +796,12 @@ class Auth_Model extends CI_Model {
 	 * @return object
 	 * @author Ben Edmunds
 	 **/
-	public function get_user_by_email($email)
-	{
-		$this->db->limit(1);
-
-		return $this->get_users_by_email($email);
-	}
+	// public function get_user_by_email($email)
+	// {
+		// $this->db->limit(1);
+// 
+		// return $this->get_users_by_email($email);
+	// }
 
 	/**
 	 * get_users_by_email
@@ -801,12 +809,12 @@ class Auth_Model extends CI_Model {
 	 * @return object
 	 * @author Ben Edmunds
 	 **/
-	public function get_users_by_email($email)
-	{
-		$this->db->where($this->tables['users'].'.email', $email);
-
-		return $this->get_users();
-	}
+	// public function get_users_by_email($email)
+	// {
+		// $this->db->where($this->tables['users'].'.email', $email);
+// 
+		// return $this->get_users();
+	// }
 
 	/**
 	 * get_user_by_username
