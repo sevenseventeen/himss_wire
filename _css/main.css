@@ -55,6 +55,11 @@ h4 {
 	color: #505050;
 }
 
+a {
+	color: #005dab;
+	text-decoration:none;
+}
+
 p {
 	margin:11px 0;
 	line-height:15px;	
@@ -295,32 +300,29 @@ a.module_header_view_all {
 	height:120px;
 }
 
+.article_snippet h2 a {
+	/*color: #005dab;*/
+}
+
 .article_snippet h2 {
-	float: left;
 	font-size: 24px;
 	font-weight: normal;
 }
 
-.article_snippet .date {
-	color: #005dab;
+.article_snippet .date_and_category {
+	color: #3D4649;
 	position: relative;
 	font-size: 12px;
-	font-weight: bold;
-	/*padding:12px 0 0 15px;*/
-	float: left;
-	margin:12px 0 0 10px;
 }
 
-.article_snippet p {
-	width: 400px;
+.module_600 .article_snippet p {
+	width: 550px;
 }
-
+/*
 .article_snippet a.category {
-	color: #005dab;
-	text-decoration: none;
 	font-weight: bold;
 	font-size: 10px;
-}
+}*/
 
 #home #feature {
 	position: relative;

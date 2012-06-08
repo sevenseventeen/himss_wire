@@ -11,17 +11,17 @@
 		<div>
 			<div class="tabs">
 				<ul>
-					<li><a href="#tabs-1">Edit</a></li>
-					<li><a href="#tabs-2">Add</a></li>
+					<li><a href="#articles_edit">Edit</a></li>
+					<li><a href="#articles_add">Add</a></li>
 				</ul>
-				<div id="tabs-1">
+				<div id="articles_edit">
 					<?php
 						foreach ($articles as $article) { 
 							echo "<a href='".base_url()."admin/edit_article/$article->article_id'>".$article->article_title."</a><br />";
 						}
 					?>
 				</div>
-				<div id="tabs-2">
+				<div id="articles_add">
 					<?php echo form_open('admin/add_article'); ?>
 						<fieldset>
 						<legend>Add Article</legend>
@@ -29,7 +29,7 @@
 							<option value=''>Select a Subscriber</option>
 							<?php 
 								foreach ($subscribers_with_remaining_articles as $subscriber) { 
-									echo "<option value='".$subscriber->subscriber_account_id."'>".$subscriber->company_name."</option>";
+									echo "<option value='".$subscriber->subscriber_account_id."' ".set_select('subscriber_id', $subscriber->subscriber_account_id).">".$subscriber->company_name."</option>";
 								}
 							?>
 						</select>
@@ -39,7 +39,7 @@
 							<option value=''>Select a Category</option>
 							<?php 
 								foreach ($categories as $category) { 
-									echo "<option value='".$category->article_category_id."'>".$category->category_name."</option>";
+									echo "<option value='".$category->article_category_id."' ".set_select('article_category_id', $category->article_category_id).">".$category->category_name."</option>";
 								}
 							?>
 						</select>
@@ -89,10 +89,10 @@
 		<div>
 			<div class="tabs">
 				<ul>
-					<li><a href="#tabs-1">Edit</a></li>
-					<li><a href="#tabs-2">Add</a></li>
+					<li><a href="#internal_accounts_edit">Edit</a></li>
+					<li><a href="#internal_accounts_add">Add</a></li>
 				</ul>
-				<div id="tabs-1">
+				<div id="internal_accounts_edit">
 					Administrators
 					<?php
 						foreach ($administrators as $administrator) {
@@ -106,7 +106,7 @@
 						}
 					?>
 				</div>
-				<div id="tabs-2">
+				<div id="internal_accounts_add">
 					<?php echo form_open('admin/add_internal_account'); ?>
 						<fieldset>
 							<legend>Add User Account</legend>
@@ -114,7 +114,7 @@
 								<option value=''>Select an Account Type</option>
 								<?php 
 									foreach ($internal_account_types as $account_type) { 
-										echo "<option value='".$account_type->account_type_id."'>".$account_type->account_type_name."</option>";
+										echo "<option value='".$account_type->account_type_id."' ".set_select('account_type_id', $account_type->account_type_id).">".$account_type->account_type_name."</option>";
 									}
 								?>
 							</select>
@@ -175,7 +175,7 @@
 								<option value=''>Select an Account Type</option>
 								<?php 
 									foreach ($external_account_types as $account_type) { 
-										echo "<option value='".$account_type->account_type_id."'>".ucfirst($account_type->account_type_name)."</option>";
+										echo "<option value='".$account_type->account_type_id."' ".set_select('account_type_id', $account_type->account_type_id).">".$account_type->account_type_name."</option>";
 									}
 								?>
 							</select>

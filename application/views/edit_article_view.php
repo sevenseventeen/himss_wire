@@ -14,10 +14,15 @@
 				<?php
 					// TODO Need to set_value for select box 
 					foreach ($categories as $category) { 
-						echo "<option value='".$category->article_category_id."'>".$category->category_name."</option>";
+						echo "<option value='".$category->article_category_id."' ".set_select('account_type_id', $category->article_category_id).">".$category->category_name."</option>";
 					}
 				?>
 			</select>
+			
+			<pre>
+				<?php echo $article; ?>
+			</pre>
+			
 			<?php echo form_error('article_category_id'); ?>
 			<br class="clear_float" />
 			<label>Article Title</label> 
