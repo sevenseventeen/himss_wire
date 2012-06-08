@@ -29,7 +29,6 @@
 				var eventName = 'keypress';
 				$('textarea[maxlength]')
 					.live(eventName, function(event) {
-						alert("test");
 						var self = $(this),
 							maxlength = self.attr('maxlength'),
 							code = $.data(this, 'keycode');
@@ -52,8 +51,8 @@
 			// The configuration options for the text editors
 			var config = {
 				toolbar:[
-					[ 'Source', '-', 'Bold', 'Italic', 'Link'],
-					[ 'Format' ]
+					['Source', '-', 'Bold', 'Italic', 'Link'],
+					['Format']
 				]
 			};
 			config.format_tags = 'h1;h2;h3;h4;p';

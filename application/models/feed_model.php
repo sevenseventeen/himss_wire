@@ -6,7 +6,7 @@ class Feed_Model extends CI_Model {
 		parent::__construct();
 	}
 	
-	function get_articles() {
+	function get_published_articles() {
 		$this->db->select('*');
 		$this->db->from('articles');
 		$query = $this->db->get();

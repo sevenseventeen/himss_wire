@@ -377,16 +377,18 @@ class Admin extends CI_Controller {
 					'report_title'			=> $this->input->post('report_title'),
 					'report_path'			=> $image_data['file_name']
 				);
-				echo "Sub ACCT ID: $subscriber_account_id<br />";
-				echo "Tit: ".$report_data['report_title']."<br />";
-				echo "NAme: ".$report_data['report_path']."<br />";
+				//echo "Sub ACCT ID: $subscriber_account_id<br />";
+				//echo "Tit: ".$report_data['report_title']."<br />";
+				//echo "NAme: ".$report_data['report_path']."<br />";
 				$report_added = $this->content_model->add_report($report_data);
 				if($report_added) {
-					$this->session->set_flashdata('message', 'Success! Your edits have been saved.');
-					redirect("admin");
+					echo "Success (this should redirect to edit subscriber page)";
+					//$this->session->set_flashdata('message', 'Success! Your edits have been saved.');
+					//redirect("admin");
 				} else {
-					$this->session->set_flashdata('message', 'Sorry, there was a problem saving your edits.');
-					redirect("admin");
+					echo "Failure - admin.php, line 389.";
+					//$this->session->set_flashdata('message', 'Sorry, there was a problem saving your edits.');
+					//redirect("admin");
 				}
 			}
 		}
@@ -849,11 +851,11 @@ class Admin extends CI_Controller {
 				);
 				$module_updated = $this->content_model->update_feature_module($module_entry_id, $module_data);
 				if($module_updated) {
-					echo "Success, with update_module.";
-					//$this->session->set_flashdata('message', 'Success! Your listing has been updated.');
-					//redirect("site/edit_vehicle/");
+					$this->session->set_flashdata('message', 'Success! Your edits have been saved.');
+					redirect("admin");
 				} else {
-					echo "Failure, with update_module.";
+					$this->session->set_flashdata('message', 'Sorry, there was a problem saving your edits.');
+					redirect("admin");
 				}
 			}
 		}
@@ -883,11 +885,11 @@ class Admin extends CI_Controller {
 			);
 			$banner_updated = $this->content_model->update_banner_ad($banner_ad_id, $banner_data);
 			if($banner_updated) {
-				echo "Success, with update_banner_ad.";
-				//$this->session->set_flashdata('message', 'Success! Your listing has been updated.');
-				//redirect("site/edit_vehicle/");
+				$this->session->set_flashdata('message', 'Success! Your edits have been saved.');
+				redirect("admin");
 			} else {
-				echo "Failure, with update_banner_ad.";
+				$this->session->set_flashdata('message', 'Sorry, there was a problem saving your edits.');
+				redirect("admin");
 			}
 		}
 	}

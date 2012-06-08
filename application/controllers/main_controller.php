@@ -96,15 +96,15 @@ class Main_Controller extends CI_Controller {
 	public function rss() {
 		$this->load->helper('xml');
 		$this->load->helper('text');
-		$this->load->model('feed_model', 'feeds');
+		$this->load->model('content_model');
 		$data['feed_name'] = 'MyWebsite.com';  
 		$data['encoding'] = 'utf-8';  
 		$data['feed_url'] = 'http://www.MyWebsite.com/feed';  
-		$data['page_description'] = 'What my site is about comes here';  
+		$data['page_description'] = 'What my site is about goes here';  
 		$data['page_language'] = 'en-en';  
 		$data['creator_email'] = 'mail@me.com';  
-		$data['articles'] = $this->feeds->get_articles();  
-		header("Content-Type: application/rss+xml");   
+		$data['articles'] = $this->content_model->get_published_articles();
+		header("Content-Type: application/rss+xml");
        	$this->load->view('feed_view', $data);
 	}
 	

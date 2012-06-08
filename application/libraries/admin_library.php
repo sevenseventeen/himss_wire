@@ -16,7 +16,7 @@ class Admin_Library {
 		$data['subscribers'] = $this->ci->account_model->get_subscribers();
 		$data['subscribers_with_remaining_articles'] = $this->ci->account_model->get_subscribers_with_remaining_articles();
 		$data['network_partners'] = $this->ci->account_model->get_network_partners();
-		$data['articles'] = $this->ci->content_model->get_articles();
+		$data['articles'] = $this->ci->content_model->get_all_articles();
 		$data['static_pages'] = $this->ci->content_model->get_static_pages();
 		$data['external_account_types'] = $this->ci->account_model->get_external_account_types();
 		$data['internal_account_types'] = $this->ci->account_model->get_internal_account_types();

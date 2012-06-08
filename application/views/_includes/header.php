@@ -5,15 +5,28 @@
                     <li><a href="https://twitter.com/#!/HIMSSwire" target="_blank">Twitter</a> | </li>
                     <li><a href="http://www.linkedin.com/groups?gid=93115" target="_blank">LinkedIn</a> |</li>
                     <?php if ($this->auth->logged_in()) { ?>
-                        <li><a href="<?php echo base_url(); ?>admin/logout">Logout</a> 
-                        <?php if ($this->auth->user_type() == "Administrator") { ?>
-                        	| </li><li><a href="<?php echo base_url(); ?>admin">Admin</a></li>
-                       	<?php } elseif ($this->auth->user_type() == "Editor") { ?>
-                       		| </li><li><a href="<?php echo base_url(); ?>admin">Editor</a></li>
-                       	<?php } else { ?>
-                       		</li>
-                       	<?php } ?>
-                    <?php } else { ?>
+                    	<?php $user_id = $this->session->userdata('user_id'); ?>
+                    	<li><a href="<?php echo base_url(); ?>admin/logout">Logout</a>
+                    	<?php
+                    		switch ($this->auth->user_type()) {
+								case 'Administrator':
+									echo "| <li><a href='".base_url()."admin'>Admin</a>";
+									break;
+								case 'Editor':
+									echo "| </li><li><a href='".base_url()."admin'>Editor</a></li>";
+									break;
+								case 'Subscriber':
+									echo "| </li><li><a href='".base_url()."subscriber/$user_id'>My Account</a></li>";
+									break;
+								case 'Network Partner':
+									echo "| </li><li><a href='".base_url()."network_partner/$user_id'>My Account</a></li>";
+									break;
+								default:
+									echo '</li>'; 
+									break;
+							}
+                    	?>
+                	<?php } else { ?>
                         <li><a href="<?php echo base_url(); ?>admin/login">Login</a></li>    
                     <?php } ?> 
                     

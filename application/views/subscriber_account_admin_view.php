@@ -29,7 +29,7 @@
 				$user_id = $user_account[0]->user_id;
 				$subscriber_account_id = $subscriber_account[0]->subscriber_account_id;
 			?>
-			<p><a href='<?php echo base_url()."admin/edit_subscriber_account/$user_id/$subscriber_account_id" ?>'>Edit This Accoount</a></p>
+			<p><a href='<?php echo base_url()."admin/edit_subscriber_account/$user_id/$subscriber_account_id" ?>'>Edit This Account</a></p>
 			<h2>Subscription Package</h2>
 			<?php if ($subscription_details) { ?>
 				<p>
@@ -40,7 +40,7 @@
 					Subscription End: 	<span class="data"><?php echo $subscription_details[0]->subscription_end_date; ?></span><br />
 				</p>
 				<p>
-					<a href="#">Edit Thiss Subscription</a>
+					<a href="#">Edit This Subscription</a>
 				</p>
 			<?php } else { ?>
 				

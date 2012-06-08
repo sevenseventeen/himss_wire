@@ -11,7 +11,6 @@
 	<?php echo form_open('admin/update_static_page'); ?>
 	
 		<fieldset>
-			<?php print_r($static_page_content); ?>
 			<legend>Edit Static Page</legend>
 			
 			<label>Page Name</label> 

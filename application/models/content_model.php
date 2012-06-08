@@ -45,14 +45,14 @@ class Content_Model extends CI_Model {
 	 * 
 	 */
 	
-	function get_articles($limit='1000000') {
+	function get_all_articles($limit='1000000') {
 		$this->db->select('*');
 		$this->db->from('articles');
 		$this->db->limit($limit);
 		$query = $this->db->get();
 		return $query->result();
 	}
-
+	
 	function get_pending_articles($limit='1000000') {
 		$this->db->select('*');
 		$this->db->from('articles');
@@ -90,6 +90,7 @@ class Content_Model extends CI_Model {
 		$this->db->select('*');
 		$this->db->from('articles');
 		$this->db->where('article_id', $article_id);
+		$this->db->where('article_status', 'published');
 		$this->db->join('article_categories', 'article_categories.article_category_id = articles.article_category_id', 'left');
 		$query = $this->db->get();
 		return $query->result();
@@ -99,6 +100,7 @@ class Content_Model extends CI_Model {
 		$this->db->select('*');
 		$this->db->from('articles');
 		$this->db->where('articles.article_category_id', $category_id);
+		$this->db->where('article_status', 'published');
 		$this->db->join('article_categories', 'article_categories.article_category_id = articles.article_category_id', 'left');
 		$this->db->limit($limit);
 		$query = $this->db->get();
@@ -177,6 +179,7 @@ class Content_Model extends CI_Model {
 		$this->db->from('articles');
 		$this->db->where('article_category_id', $article_category_id);
 		$this->db->where('article_id !=', $article_id);
+		$this->db->where('article_status', 'published');
 		$query = $this->db->get();
 		return $query->result();
 	}

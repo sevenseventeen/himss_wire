@@ -290,7 +290,7 @@
 		<div>
 			<div class="tabs">
 				<ul>
-					<li><a href="#tabs-1">Tab1</a></li>
+					<li><a href="#tabs-1">Edit</a></li>
 				</ul>
 				<div id="tabs-1">
 					<?php echo form_open_multipart('admin/update_feature_module');?>
@@ -318,7 +318,7 @@
 		<div>
 			<div class="tabs">
 				<ul>
-					<li><a href="#tabs-1">Tab1</a></li>
+					<li><a href="#tabs-1">Edit</a></li>
 				</ul>
 				<div id="tabs-1">
 					<?php echo form_open_multipart('admin/update_banner_ad');?>
@@ -342,7 +342,7 @@
 		<div>
 			<div class="tabs">
 				<ul>
-					<li><a href="#tabs-1">Tab1</a></li>
+					<li><a href="#tabs-1">Add</a></li>
 				</ul>
 				<div id="tabs-1">
 					<?php echo form_open('admin/add_footer_link');?>
@@ -369,7 +369,7 @@
 		<div>
 			<div class="tabs">
 				<ul>
-					<li><a href="#tabs-1">Tab1</a></li>
+					<li><a href="#tabs-1">Edit</a></li>
 				</ul>
 				<?php echo form_open('admin/add_faq');?>
 					<fieldset>
