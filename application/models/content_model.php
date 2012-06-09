@@ -158,10 +158,11 @@ class Content_Model extends CI_Model {
 		return $query->result();
 	}
 	
-	function get_search_results($search_term) {
+	function get_search_results($search_term, $limit=1000000, $offset=0) {
 		$this->db->select('*');
 		$this->db->from('articles');
-		$this->db->where("MATCH (article_body) AGAINST ('$search_term')", NULL, FALSE);
+		$this->db->where("MATCH (article_body) AGAINST ('*$search_term*')", NULL, FALSE);
+		$this->db->limit($limit, $offset);
 		$this->db->join('article_categories', 'article_categories.article_category_id = articles.article_category_id', 'left');
 		$query = $this->db->get();
 		return $query->result();

@@ -19,6 +19,7 @@
         <link rel="stylesheet" type="text/css" href="<?php echo base_url().'_css/reset.css'; ?>" />
         <link rel="stylesheet" type="text/css" href="<?php echo base_url().'_css/main.css'; ?>" />
         <link rel="stylesheet" type="text/css" href="<?php echo base_url().'_css/debugging.css'; ?>" />
+        <link rel="stylesheet" type="text/css" href="<?php echo base_url().'_css/print.css'; ?>" media="print" />
 
         <!-- JQuery and JQuery UI -->
 
@@ -67,16 +68,31 @@
 			});
 		</script>
 		
-		<!-- Share This -->
+		<!-- Textarea maxlength unsupported browsers -->
 		
-		<script type="text/javascript">var switchTo5x=true;</script>
-		<script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
 		<script type="text/javascript">
-			stLight.options({
-				publisher: "ur-3920714f-f56c-9f11-67a7-d12e6156f1a0",
-				onhover: false
+			$(function($) {
+				var ignore = [8,9,13,33,34,35,36,37,38,39,40,46];
+				var eventName = 'keypress';
+				$('textarea[maxlength]')
+					.live(eventName, function(event) {
+						var self = $(this),
+							maxlength = self.attr('maxlength'),
+							code = $.data(this, 'keycode');
+						if (maxlength && maxlength > 0) {
+							return ( self.val().length < maxlength
+								|| $.inArray(code, ignore) !== -1 );
+						}
+					})
+					.live('keydown', function(event) {
+						$.data(this, 'keycode', event.keyCode || event.which);
+					});
 			});
 		</script>
+		
+		<!-- Add This -->
+		
+		<script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=xa-4fd2ae7257ffdec9"></script>
 		
 		
         <title>HIMMS Wire</title>

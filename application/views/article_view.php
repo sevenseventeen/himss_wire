@@ -12,15 +12,12 @@
 	<h1><?php echo $article[0]->article_title; ?></h1>
 	<?php echo $article[0]->publish_date; ?>
 	<div id="print_share"><a href="#" onclick="window.print();">Print</a> | 
-		<span class='st_sharethis_large' displayText='ShareThis'></span>
-		<span class='st_facebook_large' displayText='Facebook'></span>
-		<span class='st_twitter_large' displayText='Tweet'></span>
-		<span class='st_linkedin_large' displayText='LinkedIn'></span>
-		<span class='st_email_large' displayText='Email'></span>
+		<div class="addthis_toolbox addthis_default_style ">
+			<a href="http://www.addthis.com/bookmark.php?v=250&amp;pubid=xa-4fd2ae7257ffdec9" class="addthis_button_compact">Share</a>
+		</div>
 	</div>	
 	<br class="clear_float" />
 	<?php echo $article[0]->article_body; ?>
-	
 </div>
 
 <aside>

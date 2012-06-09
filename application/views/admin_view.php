@@ -49,8 +49,8 @@
 							<?php echo form_input('article_title', set_value('article_title', '')); ?>
 							<?php echo form_error('article_title'); ?>
 							<br class="clear_float" />
-						<label>Article Summary</label>
-							<?php echo form_textarea('article_summary', set_value('article_summary', ''), 'class="ckeditor" maxlength="10"'); ?>
+						<label>Article Summary (120 Characters)</label>
+							<?php echo form_textarea('article_summary', set_value('article_summary', ''), 'maxlength="120"'); ?>
 							<?php echo form_error('article_summary'); ?>
 							<br class="clear_float" />
 						<label>Article Body</label>
@@ -327,6 +327,10 @@
 							<label>Banner Ad Image (270 Pixels Wide)</label>
 									<?php echo form_upload('banner_image', set_value('banner_image')); ?>
 									<?php echo form_error('banner_image'); ?>
+									<br class="clear_float" />
+							<label>Banner URL</label>
+									<?php echo form_input('banner_url', set_value('banner_url')); ?>
+									<?php echo form_error('banner_url'); ?>
 									<br class="clear_float" />
 							<?php echo form_hidden('banner_ad_id', $banner_ads[0]->banner_ad_id); ?>
 						</fieldset>

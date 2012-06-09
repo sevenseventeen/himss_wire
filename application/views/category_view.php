@@ -20,8 +20,8 @@
 							echo " | <a href='".base_url().'category/'.$article->article_category_id."'>".$article->category_name."</a>";
 						?>
 					</h3>
-					<?php echo $article->article_summary; ?>
-					<a href="<?php echo base_url().'article/'.$article->article_id; ?>">Read Article</a>
+					<p><?php echo $article->article_summary; ?></p>
+					<p><a href="<?php echo base_url().'article/'.$article->article_id; ?>">Read Article</a></p>
 				</div>
 			<?php }?>
 		</div>

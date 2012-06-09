@@ -49,14 +49,31 @@ class Main_Controller extends CI_Controller {
 	}
 	
 	public function article_search() {
+		if ($this->input->post('search_term') == '') {
+			$search_term = $this->session->userdata('search_term');
+		} else {
+			$search_term = $this->input->post('search_term');
+			$this->session->set_userdata('search_term', $search_term);
+		}
 		$this->load->model('content_model');
-		$search_term = $this->input->post('search_term');
-		$data['search_results'] = $this->content_model->get_search_results($search_term);
+		$this->load->library('pagination');
+		$config['base_url'] = base_url().'article_search';
+		$config['per_page'] = 5;
+		$config['uri_segment'] = 2; 
+		$config['total_rows'] = count($this->content_model->get_search_results($search_term));
+		$this->pagination->initialize($config);
+		$limit = $config['per_page'];
+		$offset = $this->uri->segment($config['uri_segment']);
+		$data['pagination_links'] = $this->pagination->create_links();
+		$data['search_results'] = $this->content_model->get_search_results($search_term, $limit, $offset);
 		$this->load->view('article_search_results_view', $data);
 	}
 	
 	public function about_himss_wire($page_id) {
 		$this->load->model('content_model');
+		$data['articles'] = $this->content_model->get_published_articles('5');
+		$data['feature_module'] = $this->content_model->get_feature_module();
+		$data['banner_ad'] = $this->content_model->get_banner_ads();
 		$data['static_page'] = $this->content_model->get_static_page_by_id($page_id);
 		$data['static_page_content'] = $this->content_model->get_static_page_content_by_id($page_id);
 		$this->load->view('about_himss_wire_view', $data);
@@ -70,6 +87,9 @@ class Main_Controller extends CI_Controller {
 	
 	public function our_network($page_id) {
 		$this->load->model('content_model');
+		$data['articles'] = $this->content_model->get_published_articles('5');
+		$data['feature_module'] = $this->content_model->get_feature_module();
+		$data['banner_ad'] = $this->content_model->get_banner_ads();
 		$data['static_page'] = $this->content_model->get_static_page_by_id($page_id);
 		$data['static_page_content'] = $this->content_model->get_static_page_content_by_id($page_id);
 		$this->load->view('our_network_view', $data);
@@ -81,6 +101,9 @@ class Main_Controller extends CI_Controller {
 	
 	public function join_himss($page_id) {
 		$this->load->model('content_model');
+		$data['articles'] = $this->content_model->get_published_articles('5');
+		$data['feature_module'] = $this->content_model->get_feature_module();
+		$data['banner_ad'] = $this->content_model->get_banner_ads();
 		$data['static_page'] = $this->content_model->get_static_page_by_id($page_id);
 		$data['static_page_content'] = $this->content_model->get_static_page_content_by_id($page_id);
 		$this->load->view('join_himss_view', $data);

@@ -30,7 +30,6 @@ body {
 	behavior: url(/_pie.htc);
 }
 
-
 /* ************** Global Tags ************** */
 
 h1 {
@@ -297,7 +296,7 @@ a.module_header_view_all {
 	border-top: 1px solid #bebebe;
 	margin:0px 20px 20px 20px;
 	padding-top: 14px;
-	height:120px;
+	height:105px;
 }
 
 .article_snippet h2 a {
@@ -393,6 +392,15 @@ a.module_header_view_all {
 .category_module {
 	float: left;
 }
+
+.pagination_module {
+	float: left;
+}
+
+#pagination {
+	padding: 15px;
+}
+
 
 /* ************** Related Articles Module ************** */
 

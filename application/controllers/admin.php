@@ -866,7 +866,7 @@ class Admin extends CI_Controller {
 		$this->load->model('content_model');
 		$this->load->library('form_validation');
 		$this->form_validation->set_error_delimiters('<div class="error">', '</div>');
-		$this->form_validation->set_rules('module_text', 'Module Text', 'required');
+		$this->form_validation->set_rules('banner_url', 'Banner URL', 'required');
 		$config['upload_path'] = './_uploads/';
 		$config['allowed_types'] = 'gif|jpg|png';
 		$config['max_size']	= '100';
@@ -874,22 +874,27 @@ class Admin extends CI_Controller {
 		$config['max_height']  = '768';
 		$config['overwrite']  =  TRUE;
 		$this->load->library('upload', $config);
-		if (!$this->upload->do_upload("banner_image")) {
-			// TODO Set custom error system here.
-			//$error = array('error' => $this->upload->display_errors());
-			//$this->load->view('upload_form', $error);
+		if ($this->form_validation->run() == FALSE) {
+			$this->admin_library->load_admin_view();
 		} else {
-			$image_data = $this->upload->data();
-			$banner_data = array(
-				'banner_image_path'	=> $image_data['file_name']
-			);
-			$banner_updated = $this->content_model->update_banner_ad($banner_ad_id, $banner_data);
-			if($banner_updated) {
-				$this->session->set_flashdata('message', 'Success! Your edits have been saved.');
-				redirect("admin");
+			if (!$this->upload->do_upload("banner_image")) {
+				// TODO Set custom error system here.
+				//$error = array('error' => $this->upload->display_errors());
+				//$this->load->view('upload_form', $error);
 			} else {
-				$this->session->set_flashdata('message', 'Sorry, there was a problem saving your edits.');
-				redirect("admin");
+				$image_data = $this->upload->data();
+				$banner_data = array(
+					'banner_image_path'	=> $image_data['file_name'],
+					'banner_url'		=> $this->input->post('banner_url')
+				);
+				$banner_updated = $this->content_model->update_banner_ad($banner_ad_id, $banner_data);
+				if($banner_updated) {
+					$this->session->set_flashdata('message', 'Success! Your edits have been saved.');
+					redirect("admin");
+				} else {
+					$this->session->set_flashdata('message', 'Sorry, there was a problem saving your edits.');
+					redirect("admin");
+				}
 			}
 		}
 	}

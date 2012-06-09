@@ -1,0 +1,26 @@
+header, footer, aside, #breadcrumb, #print_share {
+	display: none; 
+}
+
+#main_content {
+	width: 90%; 
+	margin: 25px; 
+	float: none;
+}
+
+.rounded_top_corners_10 {
+	-moz-border-radius: 0;
+    -webkit-border-radius: 0;
+    -khtml-border-radius: 0;
+    border-radius: 0;
+    behavior: url(/_pie.htc);
+}
+
+.inner_shadow_2 {
+	-moz-box-shadow: inset 0px 0px 0px #FFF;
+  	-webkit-box-shadow: inset 0px 0px 0px #FFF;
+	box-shadow: inset 0px 0px 0px #FFF;
+	position:relative;
+	z-index:10;
+	behavior: url(/_pie.htc);
+}

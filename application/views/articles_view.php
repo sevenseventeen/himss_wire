@@ -21,8 +21,8 @@
 								echo " | <a href='".base_url().'category/'.$result[0]->article_category_id."'>".$result[0]->category_name."</a>";
 							?>
 						</h3>
-						<?php echo $result[$key]->article_summary; ?>
-						<a href="<?php echo base_url().'article/'.$result[$key]->article_id; ?>">Read Article</a>
+						<p><?php echo $result[$key]->article_summary; ?></p>
+						<p><a href="<?php echo base_url().'article/'.$result[$key]->article_id; ?>">Read Article</a></p>
 					</div>
 				<?php }?>
 			</div>

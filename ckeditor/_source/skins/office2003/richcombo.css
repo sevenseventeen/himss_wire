@@ -11,7 +11,7 @@
 
 .cke_skin_office2003 .cke_browser_ie .cke_rcombo
 {
-	#display: inline;
+	display: inline; /* Josh - Used to be #display: inline; */
 }
 
 .cke_skin_office2003 .cke_rcombopanel
