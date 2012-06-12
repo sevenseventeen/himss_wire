@@ -58,13 +58,13 @@
 							<?php echo form_error('article_body'); ?>
 							<br class="clear_float" />
 						<script>
-							$(function() {
-								$('#publish_date').datepicker({
-									onSelect: function(dateText, inst) {
-										$('#publish_date').val(dateText);
-									}
-								});
-							});
+							// $(function() {
+								// $('#publish_date').datepicker({
+									// onSelect: function(dateText, inst) {
+										// $('#publish_date').val(dateText);
+									// }
+								// });
+							// });
 						</script>
 						
 						<label>Draft</label>
@@ -72,7 +72,7 @@
 							<br class="clear_float" />
 						<div id="publish_date_container">
 							<label>Publish Date</label>
-								<input type="text" name="publish_date" id="publish_date" />
+								<input type="text" name="publish_date" id="publish_date" class="datepicker"/>
 								<?php echo form_error('publish_date'); ?>
 								<br class="clear_float" />
 						</div>
@@ -322,11 +322,11 @@
 								<?php echo form_textarea('module_text', set_value('module_text', $feature_module[0]->module_text), 'class="ckeditor"'); ?>
 								<?php echo form_error('module_text'); ?>
 								<br class="clear_float" />
-							<label>Feature Module Image</label>
-									<?php echo form_upload('userfile', set_value('userfile')); ?>
-									<?php echo form_error('userfile'); ?>
-									<br class="clear_float" />
-							<?php echo form_hidden('module_entry_id', $feature_module[0]->feature_module_id); ?>
+							<!-- <label>Feature Module Image</label>
+									<?php //echo form_upload('userfile', set_value('userfile')); ?>
+									<?php //echo form_error('userfile'); ?>
+									<br class="clear_float" /> -->
+							<?php echo form_hidden('feature_module_id', $feature_module[0]->feature_module_id); ?>
 						</fieldset>
 						<input type="submit" />
 					<?php echo form_close(); ?>
@@ -369,6 +369,7 @@
 			<div class="tabs">
 				<ul>
 					<li><a href="#tabs-1">Add</a></li>
+					<li><a href="#tabs-2">Edit</a></li>
 				</ul>
 				<div id="tabs-1">
 					<?php echo form_open('admin/add_footer_link');?>
@@ -386,6 +387,14 @@
 						<input type="submit" />
 					<?php echo form_close(); ?>
 				</div>
+				<div id="tabs-2">
+					<?php //print_r($footer_links); ?>
+					<?php
+						foreach ($footer_links as $footer_link) { 
+							echo "<a href='".base_url()."admin/edit_footer_link/$footer_link->footer_link_id'>".$footer_link->footer_link_text."</a><br />";
+						}
+					?>
+				</div>
 			</div> <!-- End Tabs -->
 		</div> <!-- End  Accordion Item -->
 		
@@ -395,22 +404,32 @@
 		<div>
 			<div class="tabs">
 				<ul>
-					<li><a href="#tabs-1">Edit</a></li>
+					<li><a href="#tabs-1">Add</a></li>
+					<li><a href="#tabs-2">Edit</a></li>
 				</ul>
-				<?php echo form_open('admin/add_faq');?>
+				<div id="tabs-1">
+					<?php echo form_open('admin/add_faq');?>
 					<fieldset>
 						<legend>Add FAQ</legend>
 							<label>FAQ Question</label>
-								<?php echo form_textarea('faq_question', set_value('faq_question'), 'class="ckeditor"'); ?>
+								<?php echo form_textarea('faq_question', set_value('faq_question'), ''); ?>
 								<?php echo form_error('faq_question'); ?>
 								<br class="clear_float" />
 							<label>FAQ Answer</label>
-								<?php echo form_textarea('faq_answer', set_value('faq_answer'), 'class="ckeditor"'); ?>
+								<?php echo form_textarea('faq_answer', set_value('faq_answer'), ''); ?>
 								<?php echo form_error('faq_answer'); ?>
 								<br class="clear_float" />
 					</fieldset>
 					<input type="submit" />
 				<?php echo form_close(); ?>
+				</div>
+				<div id="tabs-2">
+					<?php
+						foreach ($faqs as $faq) { 
+							echo "<a href='".base_url()."admin/edit_faq/$faq->faq_id'>".$faq->faq_question."</a><br />";
+						}
+					?>
+				</div>
 			</div> 	<!-- End Tabs -->
 		</div> 		<!-- End  Accordion Item -->
 		<?php } ?> 	<!-- End if_admin -->

@@ -66,7 +66,7 @@ class Admin extends CI_Controller {
 		} else {
 			if ($this->input->post('draft_status') == "true") {
 				$article_status = "Draft";
-				$formatted_publish_date = "";
+				$publish_date_formatted_for_unix_conversion = "0000-00-00 00:00:00";
 			} else {
 				/* 
 				 * 
@@ -379,7 +379,7 @@ class Admin extends CI_Controller {
 		$this->load->library('form_validation');
 		$this->form_validation->set_error_delimiters('<div class="error">', '</div>');
 		$this->form_validation->set_rules('footer_link_text', 'Footer Link Text', 'required');
-		$this->form_validation->set_rules('footer_link_url', 'Footer Link Url', 'required');
+		$this->form_validation->set_rules('footer_link_url', 'Footer Link Url', 'required|prep_url');
 		if ($this->form_validation->run() == FALSE) { // FALSE FOR PRODUCTION
 			$this->admin_library->load_admin_view();
 		} else {
@@ -525,6 +525,18 @@ class Admin extends CI_Controller {
 		$this->load->view('edit_editor_account_view', $data);
 	}
 	
+	public function edit_footer_link($footer_link_id) {
+		$this->load->model('content_model');
+		$data['footer_link'] = $this->content_model->get_footer_link_by_id($footer_link_id);
+		$this->load->view('edit_footer_link_view', $data);
+	}
+	
+	public function edit_faq($faq_id) {
+		$this->load->model('content_model');
+		$data['faq'] = $this->content_model->get_faq_by_id($faq_id);
+		$this->load->view('edit_faq_view', $data);
+	}
+	
 	/*
 	 * 
 	 * Login Functions
@@ -605,10 +617,10 @@ class Admin extends CI_Controller {
 			$article_updated = $this->content_model->update_article($article_id, $article_data);
 			if($article_updated) {
 				$this->session->set_flashdata('message', 'Success! Your edits have been saved.');
-				redirect("admin/edit_article/$article_id");
+				redirect("admin");
 			} else {
 				$this->session->set_flashdata('message', 'Sorry, there was a problem saving your edits.');
-				redirect("admin/edit_article/$article_id");
+				redirect("admin");
 			}
 		}
 	}
@@ -861,7 +873,7 @@ class Admin extends CI_Controller {
 		$this->form_validation->set_error_delimiters('<div class="error">', '</div>');
 		$this->form_validation->set_rules('subscription_summary', 'Subscription Summary', 'required');
 		$this->form_validation->set_rules('subscription_details', 'Subscription Details', 'required');
-		$this->form_validation->set_rules('stories_purchased', 'Stories Purchased', 'required');
+		$this->form_validation->set_rules('stories_purchased', 'Stories Purchased', 'required|integer');
 		$this->form_validation->set_rules('subscription_start', 'Subscription Start Date', 'required');
 		$this->form_validation->set_rules('subscription_end', 'Subscription End Date', 'required');
 		if ($this->form_validation->run() == FALSE) { // FALSE FOR PRODUCTION
@@ -894,7 +906,7 @@ class Admin extends CI_Controller {
 	}
 
 	function update_feature_module() {
-		$module_entry_id = $this->input->post('module_entry_id');
+		$feature_module_id = $this->input->post('feature_module_id');
 		$this->load->model('content_model');
 		$this->load->library('form_validation');
 		$this->form_validation->set_error_delimiters('<div class="error">', '</div>');
@@ -902,30 +914,14 @@ class Admin extends CI_Controller {
 		if ($this->form_validation->run() == FALSE) {
 			$this->admin_library->load_admin_view();
 		} else {
-			$config['upload_path'] = './_uploads/';
-			$config['allowed_types'] = 'gif|jpg|png';
-			$config['max_size']	= '100';
-			$config['max_width']  = '1024';
-			$config['overwrite']  = TRUE;
-			$this->load->library('upload', $config);
-			if (!$this->upload->do_upload()) {
-				// TODO Set custom error system here.
-				//$error = array('error' => $this->upload->display_errors());
-				//$this->load->view('upload_form', $error);
+			$module_data = array('module_text'	=> $this->input->post('module_text'));
+			$module_updated = $this->content_model->update_feature_module($feature_module_id, $module_data);
+			if($module_updated) {
+				$this->session->set_flashdata('message', 'Success! Your edits have been saved.');
+				redirect("admin");
 			} else {
-				$image_data = $this->upload->data();
-				$module_data = array(
-					'module_text'	=> $this->input->post('module_text'),
-					'module_image'	=> $image_data['file_name']
-				);
-				$module_updated = $this->content_model->update_feature_module($module_entry_id, $module_data);
-				if($module_updated) {
-					$this->session->set_flashdata('message', 'Success! Your edits have been saved.');
-					redirect("admin");
-				} else {
-					$this->session->set_flashdata('message', 'Sorry, there was a problem saving your edits.');
-					redirect("admin");
-				}
+				$this->session->set_flashdata('message', 'Sorry, there was a problem saving your edits.');
+				redirect("admin");
 			}
 		}
 	}
@@ -995,6 +991,40 @@ class Admin extends CI_Controller {
 		}
 	}
 
+	public function update_footer_link() {
+		$footer_link_id = $this->input->post('footer_link_id');
+		$this->load->model('content_model');
+		$footer_link_data = array(
+				'footer_link_text'	=> $this->input->post('footer_link_text'),
+				'footer_link_url'	=> $this->input->post('footer_link_url')
+			);
+		$footer_link_updated = $this->content_model->update_footer_link($footer_link_id, $footer_link_data);
+		if($footer_link_updated) {
+			$this->session->set_flashdata('message', 'Success! Your edits have been saved.');
+			redirect("admin");
+		} else {
+			$this->session->set_flashdata('message', 'Sorry, there was a problem saving your edits.');
+			redirect("admin");
+		}
+	}
+
+	public function update_faq() {
+		$faq_id = $this->input->post('faq_id');
+		$this->load->model('content_model');
+		$faq_data = array(
+				'faq_question'	=> $this->input->post('faq_question'),
+				'faq_answer'	=> $this->input->post('faq_answer')
+			);
+		$faq_updated= $this->content_model->update_faq($faq_id, $faq_data);
+		if($faq_updated) {
+			$this->session->set_flashdata('message', 'Success! Your edits have been saved.');
+			redirect("admin");
+		} else {
+			$this->session->set_flashdata('message', 'Sorry, there was a problem saving your edits.');
+			redirect("admin");
+		}
+	}
+
 	/*
 	 * 
 	 * Delete Functions
@@ -1012,6 +1042,29 @@ class Admin extends CI_Controller {
 			$this->session->set_flashdata('message', 'Sorry, there was a problem saving your edits.');
 			redirect("admin");
 		}
-	}
-	
+	 }	
+	 
+	 function delete_footer_link($footer_link_id) {
+		$this->load->model('content_model');
+		$footer_link_deleted = $this->content_model->delete_footer_link($footer_link_id);
+		if($footer_link_deleted) {
+			$this->session->set_flashdata('message', 'Success! Your edits have been saved.');
+			redirect("admin");
+		} else {
+			$this->session->set_flashdata('message', 'Sorry, there was a problem saving your edits.');
+			redirect("admin");
+		}
+	 }	
+	 
+	 function delete_faq($faq_id) {
+		$this->load->model('content_model');
+		$faq_deleted = $this->content_model->delete_faq($faq_id);
+		if($faq_deleted) {
+			$this->session->set_flashdata('message', 'Success! Your edits have been saved.');
+			redirect("admin");
+		} else {
+			$this->session->set_flashdata('message', 'Sorry, there was a problem saving your edits.');
+			redirect("admin");
+		}
+	 }	
 }

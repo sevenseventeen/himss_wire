@@ -23,6 +23,8 @@ class Admin_Library {
 		$data['administrators'] = $this->ci->account_model->get_administrator_accounts();
 		$data['editors'] = $this->ci->account_model->get_editor_accounts();
 		$data['user_type'] = $this->ci->auth->user_type();
+		$data['footer_links'] = $this->ci->content_model->get_footer_links();
+		$data['faqs'] = $this->ci->content_model->get_faqs();
 		$data['feature_module'] = $this->ci->content_model->get_feature_module();
 		$data['banner_ads'] = $this->ci->content_model->get_banner_ads();
 		$data['websites'] = $additional_data;

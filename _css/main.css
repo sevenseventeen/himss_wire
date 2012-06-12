@@ -336,10 +336,10 @@ a.module_header_view_all {
 }
 
 #home #feature img {
-	position: absolute;
+	/*position: absolute;
 	z-index: 10;
 	top: 24px;
-	left: 207px;
+	left: 207px;*/
 }
 
 /* ************** Search Module ************** */

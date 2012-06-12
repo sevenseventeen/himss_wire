@@ -151,9 +151,25 @@ class Content_Model extends CI_Model {
 		return $query->result();
 	}
 	
+	function get_footer_link_by_id($footer_link_id) {
+		$this->db->select('*');
+		$this->db->from('footer_links');
+		$this->db->where('footer_link_id', $footer_link_id);
+		$query = $this->db->get();
+		return $query->result();
+	}
+	
 	function get_faqs() {
 		$this->db->select('*');
 		$this->db->from('faqs');
+		$query = $this->db->get();
+		return $query->result();
+	}
+	
+	function get_faq_by_id($faq_id) {
+		$this->db->select('*');
+		$this->db->from('faqs');
+		$this->db->where('faq_id', $faq_id);
 		$query = $this->db->get();
 		return $query->result();
 	}
@@ -203,13 +219,23 @@ class Content_Model extends CI_Model {
         return $result;
 	}
 	
-	function update_feature_module($module_entry_id, $data) {
-		$result = $this->db->update('feature_module', $data, "module_entry_id = $module_entry_id");
+	function update_feature_module($feature_module_id, $data) {
+		$result = $this->db->update('feature_module', $data, "feature_module_id = $feature_module_id");
     	return $result;
 	}
 	
 	function update_banner_ad($banner_ad_id, $data) {
 		$result = $this->db->update('banner_ads', $data, "banner_ad_id = $banner_ad_id");
+    	return $result;
+	}
+	
+	function update_footer_link($footer_link_id, $data) {
+		$result = $this->db->update('footer_links', $data, "footer_link_id = $footer_link_id");
+    	return $result;
+	}
+	
+	function update_faq($faq_id, $data) {
+		$result = $this->db->update('faqs', $data, "faq_id = $faq_id");
     	return $result;
 	}
 	
@@ -237,6 +263,16 @@ class Content_Model extends CI_Model {
 	function delete_article($article_id) {
 		$article_deleted = $this->db->delete('articles', "article_id = $article_id");
 		return $article_deleted;
+	}
+	 
+	function delete_footer_link($footer_link_id) {
+		$footer_link_deleted = $this->db->delete('footer_links', "footer_link_id = $footer_link_id");
+		return $footer_link_deleted;
+	}
+	 
+	function delete_faq($faq_id) {
+		$faq_deleted = $this->db->delete('faqs', "faq_id = $faq_id");
+		return $faq_deleted;
 	}
 
 }

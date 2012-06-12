@@ -105,6 +105,15 @@
 			});
 		</script>
 		
+		<!-- DatePicker -->
+		<script type="text/javascript">
+			$(function() {
+				$( ".datepicker" ).datepicker({ 
+					dateFormat: 'yy-mm-dd'
+				});
+			});
+		</script>
+		
 		<!-- Add This -->
 		
 		<script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=xa-4fd2ae7257ffdec9"></script>

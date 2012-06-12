@@ -29,7 +29,7 @@
 				$user_id = $user_account[0]->user_id;
 				$subscriber_account_id = $subscriber_account[0]->subscriber_account_id;
 			?>
-			<p><a href='<?php echo base_url()."admin/edit_subscriber_account/$user_id/$subscriber_account_id" ?>'>Edit This Account</a></p>
+			
 			<h2>Subscription Package</h2>
 			<?php if ($subscription_details) { ?>
 				<p>
@@ -38,9 +38,6 @@
 					Number of Stories:	<span class="data"><?php echo $subscription_details[0]->stories_purchased; ?></span><br />
 					Subscription Start: <span class="data"><?php echo $subscription_details[0]->subscription_start_date; ?></span><br />
 					Subscription End: 	<span class="data"><?php echo $subscription_details[0]->subscription_end_date; ?></span><br />
-				</p>
-				<p>
-					<a href="#">Edit This Subscription</a>
 				</p>
 			<?php } else { ?>
 				
@@ -62,26 +59,12 @@
 							<?php echo form_input('stories_purchased', set_value('stories_purchased', '')); ?>
 							<?php echo form_error('stories_purchased'); ?>
 							<br class="clear_float" />
-						<script>
-							$(function() {
-								$('#subscription_start').datepicker({
-									onSelect: function(dateText, inst) {
-										$('#subscription_start').val(dateText);
-									}
-								});
-								$('#subscription_end').datepicker({
-									onSelect: function(dateText, inst) {
-										$('#subscription_end').val(dateText);
-									}
-								});
-							});
-						</script>
 						<label>Subscription Start</label>
-							<input type="text" name="subscription_start" id="subscription_start" />
+							<input type="text" name="subscription_start" class="datepicker" />
 							<?php echo form_error('subscription_start'); ?>
 							<br class="clear_float" />
 						<label>Subscription End</label>
-							<input type="text" name="subscription_end" id="subscription_end" />
+							<input type="text" name="subscription_end" class="datepicker" />
 							<?php echo form_error('subscription_end'); ?>
 							<br class="clear_float" />
 					</fieldset>
@@ -112,6 +95,7 @@
 				<input type="submit" />
 			<?php echo form_close(); ?>
 			
+			<p><a href='<?php echo base_url()."admin/edit_subscriber_account/$user_id/$subscriber_account_id" ?>'>Edit This Account</a></p>
 			
 	<hr />
 	<?php //print_r($subscription_details); ?>

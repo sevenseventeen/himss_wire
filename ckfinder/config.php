@@ -29,7 +29,7 @@ function CheckAuthentication()
 	// ... where $_SESSION['IsAuthorized'] is set to "true" as soon as the
 	// user logs in your system. To be able to use session variables don't
 	// forget to add session_start() at the top of this file.
-
+	// TODO - Check actual session data for logged in status
 	return true;
 }
 
@@ -60,7 +60,14 @@ Examples:
 
 ATTENTION: The trailing slash is required.
 */
-$baseUrl = '/ckfinder/userfiles/';
+//$baseUrl = '/ckfinder/userfiles/';
+
+
+if ($_SERVER['SERVER_NAME'] == "localhost" ) {
+    $baseUrl = 'http://localhost/development/himsswire/ckfinder/userfiles/';
+} else {
+    $baseUrl = 'https://www.himsswire.com/';
+}
 
 /*
 $baseDir : the path to the local directory (in the server) which points to the
