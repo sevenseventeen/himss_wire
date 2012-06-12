@@ -27,6 +27,7 @@ class Auth_Model extends CI_Model {
 				$session_data = array(
 					'user_id' => $result->user_id
 				);
+				//echo "USER ID: $result->user_id";
 				$this->session->set_userdata($session_data);
 				return TRUE;
 			}

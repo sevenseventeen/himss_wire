@@ -27,16 +27,19 @@
 			<!--<p><a href='<?php echo base_url()."admin/edit_subscriber_account/$user_id/$subscriber_account_id" ?>'>Edit This Accoount</a></p>-->
 			<h2>Subscription Package</h2>
 			<?php if ($subscription_details) { ?>
+				<?php 
+					$subscription_start_date_datetime = new DateTime($subscription_details[0]->subscription_start_date); 
+					$subscription_start_date_formattted = $subscription_start_date_datetime->format('Y-m-d');
+					$subscription_end_date_datetime = new DateTime($subscription_details[0]->subscription_end_date); 
+					$subscription_end_date_formattted = $subscription_end_date_datetime->format('Y-m-d');
+				?>
 				<p>
 					Package Summary: 	<span class="data"><?php echo $subscription_details[0]->subscription_summary; ?></span><br />
 					Package Details: 	<span class="data"><?php echo $subscription_details[0]->subscription_details; ?></span><br />
 					Number of Stories:	<span class="data"><?php echo $subscription_details[0]->stories_purchased; ?></span><br />
-					Subscription Start: <span class="data"><?php echo $subscription_details[0]->subscription_start_date; ?></span><br />
-					Subscription End: 	<span class="data"><?php echo $subscription_details[0]->subscription_end_date; ?></span><br />
+					Subscription Start: <span class="data"><?php echo $subscription_start_date_formattted; ?></span><br />
+					Subscription End: 	<span class="data"><?php echo $subscription_end_date_formattted; ?></span><br />
 				</p>
-				<!--<p>
-					<a href="#">Edit This Subscription</a>
-				</p>-->
 			<?php } else { ?>
 				<h3>No subscription package found.</h3>
 			<?php } ?>
@@ -46,6 +49,8 @@
 		<?php foreach ($reports as $report) { ?>
 			<a href="<?php echo base_url().'_reports/'.$report->report_path ?>"><?php echo $report->report_title; ?></a><br /> 
 		<? } ?>
+		
+		<p><a href='<?php echo base_url()."edit_subscriber_account/" ?>'>Edit This Account</a></p>
 </div>
 
 <br class="clear_float" />

@@ -152,10 +152,83 @@ class Main_Controller extends CI_Controller {
 		$data['user_account'] = $this->user_model->get_user_by_id($user_id);
 		$data['subscriber_account'] = $this->account_model->get_subscriber_by_user_id($user_id);
 		$data['subscription_details'] = $this->subscription_model->get_subscription_by_account_id($data['subscriber_account'][0]->subscriber_account_id);
-		$data['subscription_details'] = $this->subscription_model->get_subscription_by_account_id($data['subscriber_account'][0]->subscriber_account_id);
+		//$data['subscription_details'] = $this->subscription_model->get_subscription_by_account_id($data['subscriber_account'][0]->subscriber_account_id);
 		$data['reports'] = $this->content_model->get_reports_by_subscriber_account_id($data['subscriber_account'][0]->subscriber_account_id);
 		$this->load->view('subscriber_account_view', $data);
 	}
+	
+	public function edit_subscriber_account() {
+		if ($this->auth->logged_in()) {
+			$user_id = $this->session->userdata('user_id'); 
+			$this->load->model('account_model');
+			$this->load->model('user_model');
+			$data['user_account'] = $this->user_model->get_user_by_id($user_id);
+			$data['subscriber_account'] = $this->account_model->get_subscriber_by_user_id($user_id);
+			$this->load->view('edit_subscriber_account_view', $data);
+		} else {
+			redirect('admin/login');
+		}
+	}
+	
+	public function update_subscriber_account() {
+		$subscriber_account_id = $this->input->post('subscriber_account_id');
+		$user_id = $this->input->post('user_id');
+		if (!$this->auth->logged_in()) {
+			redirect('login');
+		}
+		$this->load->model('account_model');
+		$this->load->model('user_model');
+		$this->load->library('form_validation');
+		$this->form_validation->set_error_delimiters('<div class="error">', '</div>');
+		$this->form_validation->set_rules('company_name', 'Company Name', 'required');
+		$this->form_validation->set_rules('website', 'Website', 'required');
+		$this->form_validation->set_rules('first_name', 'First Name', 'required');
+		$this->form_validation->set_rules('last_name', 'Last Name', 'required');
+		$this->form_validation->set_rules('phone_number', 'Phone Number', 'required');
+		$this->form_validation->set_rules('street_address', 'Street Address', 'required');
+		$this->form_validation->set_rules('city', 'City', 'required');
+		$this->form_validation->set_rules('state', 'State', 'required');
+		$this->form_validation->set_rules('zip_code', 'Zip Code', 'required|numeric');
+		$this->form_validation->set_rules('email', 'Email', 'required');
+		$this->form_validation->set_rules('password', 'Password', 'required');
+		if ($this->form_validation->run() == FALSE) { // FALSE FOR PRODUCTION
+			$this->load->model('account_model');
+			$this->load->model('user_model');
+			$data['user_account'] = $this->user_model->get_user_by_id($user_id);
+			$data['subscriber_account'] = $this->account_model->get_subscriber_by_id($subscriber_account_id);
+			$this->load->view('edit_subscriber_account_view', $data);
+		} else {
+			$user_data = array(
+				'email'		=> $this->input->post('email'),
+				'password'	=> $this->input->post('password'),
+			);
+			$user_updated = $this->user_model->update_user($user_id, $user_data);
+			if($user_updated) {
+				$account_data = array(
+					'first_name'		=> $this->input->post('first_name'),
+					'last_name'		 	=> $this->input->post('last_name'),
+					'company_name'	  	=> $this->input->post('company_name'),
+					'website'		   	=> $this->input->post('website'),
+					'phone_number'		=> $this->input->post('phone_number'),
+					'street_address'	=> $this->input->post('street_address'),
+					'city'			  	=> $this->input->post('city'),
+					'state'			 	=> $this->input->post('state'),
+					'zip_code'		 	=> $this->input->post('zip_code'),
+				);
+				$account_updated = $this->account_model->update_subscriber_account($subscriber_account_id, $account_data);
+				if($account_updated) {
+					$this->session->set_flashdata('message', 'Success! Your edits have been saved.');
+					redirect("edit_subscriber_account");
+				} else {
+					$this->session->set_flashdata('message', 'Sorry, there was a problem saving your edits.');
+					redirect("edit_subscriber_account");
+				}
+			} else {
+				echo "Failure, with user_created.";
+			} 
+		}
+	}
+	
 }
 
 

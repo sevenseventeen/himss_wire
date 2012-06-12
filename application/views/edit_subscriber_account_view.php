@@ -5,9 +5,8 @@
 ?>
 
 <div id="main_content" class="rounded_corners_10 module_920 inner_shadow_2">
-	
-	<h2>Update Subscriber Account</h2>
-	<?php echo form_open('admin/update_subscriber_account'); ?>
+	<h1><?php echo $this->session->flashdata('message'); ?></h1>
+	<?php echo form_open('update_subscriber_account'); ?>
 	
 		<fieldset>
 			<legend>Update Subscriber Account</legend>
@@ -75,85 +74,8 @@
 		<input type="submit" />		
 	
 	<?php echo form_close(); ?>
-	
-	<!-- 
-		
-	----------- Add Subscription Package ------------- 
-		
-	-->
-	
+
 	<hr />
-	<?php //print_r($subscription_details); ?>
-	<?php if ($subscription_details) { ?>
-		<?php echo form_open('admin/update_subscription'); ?>
-		
-			<fieldset>
-				<legend>Update Subscription Package</legend>
-				
-				<label>Package Summary</label>
-					<?php echo form_textarea('subscription_summary', set_value('subscription_summary', $subscription_details[0]->subscription_summary)); ?>
-					<?php echo form_error('subscription_summary'); ?>
-					<br class="clear_float" />
-				
-				<label>Package Details</label>
-					<?php echo form_textarea('subscription_details', set_value('subscription_details', $subscription_details[0]->subscription_details)); ?>
-					<?php echo form_error('subscription_details'); ?>
-					<br class="clear_float" />
-				
-				<label>Stories Purchased</label>
-					<?php echo form_input('stories_purchased', set_value('stories_purchased', $subscription_details[0]->stories_purchased)); ?>
-					<?php echo form_error('stories_purchased'); ?>
-					<br class="clear_float" />
-				
-				<label>Subscription Start</label>
-					<?php echo form_input('subscription_start', set_value('subscription_start', $subscription_details[0]->subscription_start_date), 'class="datepicker"'); ?>
-					<?php echo form_error('subscription_start'); ?>
-					<br class="clear_float" />
-				
-				<label>Subscription End</label>
-					<?php echo form_input('subscription_end', set_value('subscription_end', $subscription_details[0]->subscription_end_date), 'class="datepicker"'); ?>
-					<?php echo form_error('subscription_end'); ?>
-					<br class="clear_float" />
-					
-			</fieldset>
-			
-			<?php echo form_hidden('subscription_id', $subscription_details[0]->subscription_id); ?>
-			<?php echo form_hidden('user_id', $subscriber_account[0]->user_id); ?>
-			
-			<input type="submit" />		
-		
-		<?php echo form_close(); ?>
-	<? } else { ?>
-		<h3>No subscription package found.</h3>
-			<?php echo form_open('admin/add_subscription_package'); ?>
-				<fieldset>
-					<legend>Add Subscription Package</legend>
-					<label>Subscription Summary</label>
-						<?php echo form_textarea('subscription_summary', set_value('subscription_summary', '')); ?>
-						<?php echo form_error('subscription_summary'); ?>
-						<br class="clear_float" />
-					<label>Subscription Details</label>
-						<?php echo form_textarea('subscription_details', set_value('subscription_details', '')); ?>
-						<?php echo form_error('subscription_details'); ?>
-						<br class="clear_float" />
-					<label>Stories Purchased</label>
-						<?php echo form_input('stories_purchased', set_value('stories_purchased', '')); ?>
-						<?php echo form_error('stories_purchased'); ?>
-						<br class="clear_float" />
-					<label>Subscription Start</label>
-						<input type="text" name="subscription_start" class="datepicker" />
-						<?php echo form_error('subscription_start'); ?>
-						<br class="clear_float" />
-					<label>Subscription End</label>
-						<input type="text" name="subscription_end" class="datepicker" />
-						<?php echo form_error('subscription_end'); ?>
-						<br class="clear_float" />
-				</fieldset>
-				<?php echo form_hidden('subscriber_account_id', $subscriber_account[0]->subscriber_account_id); ?>
-				<?php echo form_hidden('user_id', $subscriber_account[0]->user_id); ?>
-				<input type="submit" />		
-			<?php echo form_close(); ?>
-	<?php } ?>
 	
 </div>
 

@@ -478,7 +478,7 @@ class Admin extends CI_Controller {
 		$data['user_account'] = $this->user_model->get_user_by_id($user_id);
 		$data['subscriber_account'] = $this->account_model->get_subscriber_by_id($subscriber_account_id);
 		$data['subscription_details'] = $this->subscription_model->get_subscription_by_account_id($subscriber_account_id);
-		$this->load->view('edit_subscriber_account_view', $data);
+		$this->load->view('edit_subscriber_account_admin_view', $data);
 	}
 	
 	public function edit_network_partner_account($user_id, $network_partner_account_id) {
