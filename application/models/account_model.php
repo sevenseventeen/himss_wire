@@ -33,6 +33,11 @@ class Account_Model extends CI_Model {
 		return $result; 
 	}
 	
+	function add_websites($data) {
+		$result = $this->db->insert('network_partner_websites', $data);
+		return $result; 
+	}
+	
 	/*
 	 * 
 	 * Get Functions 

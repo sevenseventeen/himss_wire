@@ -14,7 +14,7 @@
 				</div>
 				<div id="footer_navigation">
 					&copy; HIMMS Media |
-					<a href="<?php echo base_url(); ?>privacy_policy">Privacy Policy</a> |
+					<a href="<?php echo base_url(); ?>privacy_policy/5">Privacy Policy</a> |
 					<a href="<?php echo base_url(); ?>">Home</a>
 				</div>
 			</footer>

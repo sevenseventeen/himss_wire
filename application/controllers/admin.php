@@ -41,7 +41,7 @@ class Admin extends CI_Controller {
 	 */
 
 	public function add_article() {
-		date_default_timezone_set('UTC');
+		date_default_timezone_set('America/New_York');
 		if (!$this->auth->logged_in()) {
 			redirect('login');
 		}
@@ -56,23 +56,61 @@ class Admin extends CI_Controller {
 		$this->form_validation->set_rules('article_title', 'Article Title', 'required');
 		$this->form_validation->set_rules('article_summary', 'Article Summary', 'required');
 		$this->form_validation->set_rules('article_body', 'Article Body', 'required');
-		//$this->form_validation->set_rules('article_status', 'Article Status', 'required');
-		$this->form_validation->set_rules('publish_date', 'Publish Date', 'required');
 		$this->form_validation->set_rules('article_tags', 'Article Tags', 'required');
-		if ($this->form_validation->run() == FALSE) { // FALSE FOR PRODUCTION
+		$this->form_validation->set_rules('draft_status', 'Draft Status', 'trim');
+		if ($this->input->post('draft_status') != "true") {
+			$this->form_validation->set_rules('publish_date', 'Publish Date', 'required');	
+		}
+		if ($this->form_validation->run() == FALSE) {
 			$this->admin_library->load_admin_view();
 		} else {
-			$publish_date = $this->input->post('publish_date');
-			$publish_date_datetime = new DateTime($publish_date);
-			$formatted_publish_date = date_format ($publish_date_datetime, 'Y-m-d');
+			if ($this->input->post('draft_status') == "true") {
+				$article_status = "Draft";
+				$formatted_publish_date = "";
+			} else {
+				/* 
+				 * 
+				 * TODO - This is incredibly convoluted and should be re-worked.
+				 * The publish date comes from jQuery in m/d/y format.
+				 * That then needs to be converted to DateTime so we can format it to Y-m-d h:i:s A
+				 * which is the required format for the human_to_unix function. We need the publish date in unix
+				 * so we can compare it with time() (which gives a unix formatted number for now.)
+				 * 
+				 * As mentioned above we're comparing the publish date to the time() now, but
+				 * this causes a problem when the publish date is today. This is because the publish date 
+				 * contains only a date and so the time portion defaults to 12:00 AM. When we compare now() 
+				 * with the publish date with the <= operator, now will always appear larger becasue it contains the time portion. 
+				 * To get around that - again, this should be reworked - we take now() and convert it to date time, but without 
+				 * the time portion. That is, just 'Y-m-d' which strips off the time portion. Then we convert the date only 
+				 * back to a DateTime object, format it as 'Y-m-d h:i:s A' so it can be converted to unix and finally compared. Gross.
+				 *   
+				 *  
+				 */  
+				$publish_date = $this->input->post('publish_date');
+				$publish_date_as_datetime = new DateTime($publish_date);
+				$publish_date_formatted_for_unix_conversion = date_format ($publish_date_as_datetime, 'Y-m-d h:i:s A');
+				$publish_date_unix = human_to_unix($publish_date_formatted_for_unix_conversion);
+				$now = time();
+				$human_now = unix_to_human($now);
+				$now_as_datetime = new DateTime($human_now);
+				$now_without_time = date_format($now_as_datetime, 'Y-m-d');
+				$now_as_datetime_without_time = new DateTime($now_without_time);
+				$now_as_datetime_without_time_formatted = date_format($now_as_datetime_without_time, 'Y-m-d h:i:s A');
+				$now_as_unix_without_seconds = human_to_unix($now_as_datetime_without_time_formatted);
+				if ($publish_date_unix <= $now_as_unix_without_seconds) {
+					$article_status = "Published";
+				} else {
+					$article_status = "Pending";
+				}
+			} 
 			$data = array(
 				'subscriber_id'			=> $this->input->post('subscriber_id'),
 				'article_category_id'	=> $this->input->post('article_category_id'),
 				'article_title'			=> $this->input->post('article_title'),
 				'article_summary'		=> $this->input->post('article_summary'),
 				'article_body'			=> $this->input->post('article_body'),
-				'article_status'		=> $this->input->post('article_status'),
-				'publish_date'			=> $formatted_publish_date,
+				'article_status'		=> $article_status,
+				'publish_date'			=> $publish_date_formatted_for_unix_conversion,
 				'article_tags'			=> $this->input->post('article_tags')
 			);
 			$article_added = $this->content_model->add_article($data);
@@ -130,14 +168,21 @@ class Admin extends CI_Controller {
 		if (!$this->auth->logged_in()) {
 			redirect('login');
 		}
+		$this->load->library('form_validation');
+		$websites = $this->input->post('websites'); 
+		if(!empty($websites)) {
+			array_filter($websites);
+		} else {
+			$this->form_validation->set_rules('websites[]', 'Website', 'trim|required');	
+		}
+		
 		$this->load->model('account_model');
 		$this->load->model('user_model');
-		$this->load->library('form_validation');
 		$this->form_validation->set_message('is_unique', 'Sorry, that email address is already in use.');
 		$this->form_validation->set_error_delimiters('<div class="error">', '</div>');
 		$this->form_validation->set_rules('account_type_id', 'Account Type', 'required');
 		$this->form_validation->set_rules('company_name', 'Company Name', 'required');
-		$this->form_validation->set_rules('website', 'Website', 'required');
+		//$this->form_validation->set_rules('websites[]', 'Website', 'trim|required');
 		$this->form_validation->set_rules('first_name', 'First Name', 'required');
 		$this->form_validation->set_rules('last_name', 'Last Name', 'required');
 		$this->form_validation->set_rules('phone_number', 'Phone Number', 'required');
@@ -145,18 +190,13 @@ class Admin extends CI_Controller {
 		$this->form_validation->set_rules('city', 'City', 'required');
 		$this->form_validation->set_rules('state', 'State', 'required');
 		$this->form_validation->set_rules('zip_code', 'Zip Code', 'required|numeric');
+		$this->form_validation->set_rules('welcome_email', 'Welcome Email', 'trim');
 		$this->form_validation->set_rules('email', 'Email', 'required|valid_email|is_unique[users.email]');
 		$this->form_validation->set_rules('password', 'password', 'required');
-		if ($this->form_validation->run() == FALSE) { // FALSE FOR PRODUCTION
-			$this->admin_library->load_admin_view();
+		$websites = $this->input->post('websites');
+		if ($this->form_validation->run() == FALSE) {
+			$this->admin_library->load_admin_view($websites);
 		} else {
-			// $email = $this->input->post('email');
-			// $this->load->model('auth_model');
-			// $user_exists = $this->auth_model->get_user_by_email($email);
-			// if ($user_exists) {
-				// $data['error'] = "Sorry that email address in already in use.";
-				// $this->admin_library->load_admin_view();
-			// }
 			$user_data = array(
 				'account_type_id'	=> $this->input->post('account_type_id'),
 				'email'		 		=> $this->input->post('email'),
@@ -165,25 +205,54 @@ class Admin extends CI_Controller {
 			);
 			$user_created = $this->user_model->add_user($user_data);
 			if($user_created) {
+				if ($this->input->post('welcome_email') == 'true') {
+					$name = $this->input->post('name');
+					$email = $this->input->post('email');
+					$password = $this->input->post('password');
+					$message = "Congratulations, we have activated your HIMSS Wire account. You can login anytime with the following information\n\n Email: $email \n\n Password: $password";
+		            $to = $this->input->post('email');
+					$from_email = $this->config->item('email_from_support');
+					$from_name = $this->config->item('email_name_from_admin');
+					$this->load->library('email');
+			        $this->email->from($from_email, $from_name);
+			        $this->email->to($to);
+			        $this->email->subject('Your HIMSS Wire Account');
+			        $this->email->message($message);
+					if ($this->email->send()) {
+						// Sent
+			        } else {
+			        	// Not Sent
+			        }
+				}
 				$user_id = $this->db->insert_id();					
 				$account_data = array(
 					'user_id'			=> $user_id,
 					'first_name'		=> $this->input->post('first_name'),
 					'last_name'			=> $this->input->post('last_name'),
 					'company_name'		=> $this->input->post('company_name'),
-					'website'			=> $this->input->post('website'),
+					
 					'phone_number'		=> $this->input->post('phone_number'),
 					'street_address'	=> $this->input->post('street_address'),
 					'city'				=> $this->input->post('city'),
 					'state'				=> $this->input->post('state'),
 					'zip_code'			=> $this->input->post('zip_code'),
 				);
+				
+				//'website'			=> $this->input->post('website'),
 				switch ($account_type_id) {
 					case '3':
 						$account_created = $this->account_model->add_subscriber($account_data);		
 						break;
 					case '4':
-						$account_created = $this->account_model->add_network_partner($account_data);		
+						$account_created = $this->account_model->add_network_partner($account_data);
+						foreach ($websites as $website) {
+							//echo "Site: $website <br />";
+							$website_data = array(
+								'user_id'	=> $user_id,
+								'url'		=> $website
+							);
+							$this->account_model->add_websites($website_data);
+						}		
 						break;
 					default:
 						$account_created = FALSE;
@@ -917,12 +986,31 @@ class Admin extends CI_Controller {
 			);
 			$page_updated = $this->content_model->update_static_page($static_page_id, $content_data, $name_data);
 			if($page_updated) {
-				echo "Success, with update_static_page.";
-				//$this->session->set_flashdata('message', 'Success! Your listing has been updated.');
-				//redirect("site/edit_vehicle/");
+				$this->session->set_flashdata('message', 'Success! Your edits have been saved.');
+				redirect("admin");
 			} else {
-				echo "Failure, with update_static_page.";
+				$this->session->set_flashdata('message', 'Sorry, there was a problem saving your edits.');
+				redirect("admin");
 			}
+		}
+	}
+
+	/*
+	 * 
+	 * Delete Functions
+	 * 
+	 * 
+	 */
+	 
+	 function delete_article($article_id) {
+		$this->load->model('content_model');
+		$article_deleted = $this->content_model->delete_article($article_id);
+		if($article_deleted) {
+			$this->session->set_flashdata('message', 'Success! Your edits have been saved.');
+			redirect("admin");
+		} else {
+			$this->session->set_flashdata('message', 'Sorry, there was a problem saving your edits.');
+			redirect("admin");
 		}
 	}
 	

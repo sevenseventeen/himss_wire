@@ -18,11 +18,6 @@
 					}
 				?>
 			</select>
-			
-			<pre>
-				<?php echo $article; ?>
-			</pre>
-			
 			<?php echo form_error('article_category_id'); ?>
 			<br class="clear_float" />
 			<label>Article Title</label> 
@@ -49,6 +44,8 @@
 		<?php echo form_hidden('article_id', $article[0]->article_id); ?>
 		<input type="submit" />	
 	<?php echo form_close(); ?>
+	<br /> <!-- TODO Remove this -->
+	<a class="delete" href="<?php echo base_url(); ?>admin/delete_article/<?php echo $article[0]->article_id; ?>">Delete Article</a>
 </div>
 <br class="clear_float" />
 

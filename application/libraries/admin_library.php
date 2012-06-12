@@ -8,7 +8,7 @@ class Admin_Library {
 		$this->ci =& get_instance();
 	}
 	
-	public function load_admin_view() {
+	public function load_admin_view($additional_data = NULL) {
 		$this->ci->load->model('content_model');
 		$this->ci->load->model('account_model');
 		$this->ci->load->model('user_model');
@@ -25,6 +25,7 @@ class Admin_Library {
 		$data['user_type'] = $this->ci->auth->user_type();
 		$data['feature_module'] = $this->ci->content_model->get_feature_module();
 		$data['banner_ads'] = $this->ci->content_model->get_banner_ads();
+		$data['websites'] = $additional_data;
 		if($data['user_type'] == "Administrator" || $data['user_type'] == "Editor") {
 			$this->ci->load->view('admin_view', $data);	
 		} else {

@@ -233,6 +233,11 @@ class Content_Model extends CI_Model {
 	 * 
 	 * 
 	 */
+	 
+	function delete_article($article_id) {
+		$article_deleted = $this->db->delete('articles', "article_id = $article_id");
+		return $article_deleted;
+	}
 
 }
 	

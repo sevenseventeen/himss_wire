@@ -95,8 +95,11 @@ class Main_Controller extends CI_Controller {
 		$this->load->view('our_network_view', $data);
 	}
 
-	public function privacy_policy() {
-		$this->load->view('privacy_policy_view');
+	public function privacy_policy($page_id) {
+		$this->load->model('content_model');
+		$data['static_page'] = $this->content_model->get_static_page_by_id($page_id);
+		$data['static_page_content'] = $this->content_model->get_static_page_content_by_id($page_id);
+		$this->load->view('privacy_policy_view', $data);
 	}
 	
 	public function join_himss($page_id) {

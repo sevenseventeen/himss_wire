@@ -66,11 +66,17 @@
 								});
 							});
 						</script>
-						<label>Publish Date</label>
-							<input type="text" name="publish_date" id="publish_date" />
-							<?php echo form_error('publish_date'); ?>
+						
+						<label>Draft</label>
+							<input type="checkbox" id="draft_status" name="draft_status" value="true" checked="checked" <?php echo set_checkbox('draft_status', 'true'); ?> />
 							<br class="clear_float" />
-						<label>Article Tags</label>
+						<div id="publish_date_container">
+							<label>Publish Date</label>
+								<input type="text" name="publish_date" id="publish_date" />
+								<?php echo form_error('publish_date'); ?>
+								<br class="clear_float" />
+						</div>
+						<label>Article Tags (separate tags with comma)</label>
 							<?php echo form_input('article_tags', set_value('article_tags', '')); ?>
 							<?php echo form_error('article_tags'); ?>
 							<br class="clear_float" />
@@ -185,9 +191,22 @@
 								<?php echo form_input('company_name', set_value('company_name', '')); ?>
 								<?php echo form_error('company_name'); ?>
 								<br class="clear_float" />
-							<label>Website</label>
-								<?php echo form_input('website', set_value('website', '')); ?>
-								<?php echo form_error('website'); ?>
+							<label>Website(s)</label>
+							<div id="website_container">
+								<?php 
+									if(!empty($websites)) {
+										
+								 		foreach ($websites as $website) { ?>
+											<input type="text" name="websites[]" id="websites" value="<?php echo $website; ?>"/><br />
+								 <?php 	} ?>
+								<?php } else { ?>
+									<p>Websites is empty...........................</p>
+									<input type="text" name="websites[]" id="websites" value=""/>
+								<?php  } ?>
+							</div> 	
+								<?php echo form_error('websites[]'); ?>
+								<br />
+								<a href="#" id="add_website">[+] Add Website</a><br />
 								<br class="clear_float" />
 							<label>First Name</label>
 								<?php echo form_input('first_name', set_value('first_name', '')); ?>
@@ -217,6 +236,9 @@
 							<label>Zip Code</label>
 								<?php echo form_input('zip_code', set_value('zip_code', '')); ?>
 								<?php echo form_error('zip_code'); ?>
+								<br class="clear_float" />
+							<label>Send Welcome Email</label>
+								<input type="checkbox" id="welcome_email" name="welcome_email" value="true" checked="checked" <?php echo set_checkbox('welcome_email', 'true'); ?> />
 								<br class="clear_float" />
 							<label>Email</label>
 								<?php echo form_input('email', set_value('email', '')); ?>
@@ -304,7 +326,7 @@
 									<?php echo form_upload('userfile', set_value('userfile')); ?>
 									<?php echo form_error('userfile'); ?>
 									<br class="clear_float" />
-							<?php echo form_hidden('module_entry_id', $feature_module[0]->module_entry_id); ?>
+							<?php echo form_hidden('module_entry_id', $feature_module[0]->feature_module_id); ?>
 						</fieldset>
 						<input type="submit" />
 					<?php echo form_close(); ?>
