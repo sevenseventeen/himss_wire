@@ -62,6 +62,7 @@
 		</fieldset>
 		<input type="submit" />		
 	<?php echo form_close(); ?>
+	<p><a href='<?php echo base_url()."edit_network_partner_account/" ?>'>Edit This Account</a></p>
 
 </div>
 

@@ -485,8 +485,8 @@ class Admin extends CI_Controller {
 		$this->load->model('account_model');
 		$this->load->model('user_model');
 		$data['user_account'] = $this->user_model->get_user_by_id($user_id);
-		$data['network_partner_account'] = $this->account_model->get_network_partner_by_id($network_partner_account_id);
-		$this->load->view('edit_network_partner_account_view', $data);
+		$data['network_partner_account'] = $this->account_model->get_network_partner_by_user_id($user_id);
+		$this->load->view('edit_network_partner_account_admin_view', $data);
 	}
 	
 	public function edit_article($article_id) {

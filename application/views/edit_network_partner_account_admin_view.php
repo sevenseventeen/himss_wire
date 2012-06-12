@@ -5,13 +5,13 @@
 ?>
 
 <div id="main_content" class="rounded_corners_10 module_920 inner_shadow_2">
-	<h1><?php echo $this->session->flashdata('message'); ?></h1>
+	
 	<h2>Edit Network Partner Account --------------------------------------</h2>
 	<pre>
-	<?php //print_r($network_partner_account); ?>
-	<?php //print_r($user_account); ?>
+	<?php print_r($network_partner_account); ?>
+	<?php print_r($user_account); ?>
 	</pre>
-	<?php echo form_open('update_network_partner_account'); ?>
+	<?php echo form_open('admin/update_network_partner_account'); ?>
 	
 		<fieldset>
 			<legend>Update External Account</legend>
@@ -71,6 +71,38 @@
 				<?php echo form_error('password'); ?>
 				<br class="clear_float" />
 				
+			
+				
+				
+<!--		  
+	
+			<label>Package Summary</label>
+				<?php echo form_input('package_summary', set_value('package_summary', 'Summary goes here.')); ?>
+				<?php echo form_error('package_summary'); ?>
+				<br class="clear_float" />
+			
+			<label>Package Details</label>
+				<?php echo form_input('package_details', set_value('package_details', 'Packae details go here.')); ?>
+				<?php echo form_error('package_details'); ?>
+				<br class="clear_float" />
+			
+			<label>Number of Stories</label>
+				<?php echo form_input('number_of_stories', set_value('number_of_stories', '5')); ?>
+				<?php echo form_error('number_of_stories'); ?>
+				<br class="clear_float" />
+			
+			<label>Subscription Start</label>
+				<?php echo form_input('subscription_start', set_value('subscription_start', now())); ?>
+				<?php echo form_error('subscription_start'); ?>
+				<br class="clear_float" />
+			
+			<label>Subscription End</label>
+				<?php echo form_input('subscription_end', set_value('subscription_end', now())); ?>
+				<?php echo form_error('subscription_end'); ?>
+				<br class="clear_float" />
+				
+		-->
+		
 		</fieldset>
 		
 		<?php echo form_hidden('network_partner_account_id', $network_partner_account[0]->network_partner_account_id); ?>
