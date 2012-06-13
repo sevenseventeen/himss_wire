@@ -8,15 +8,20 @@
 	$this->load->view('_includes/header', $data);
 ?>
 
-<div id="main_content" class="rounded_corners_10 module_600 inner_shadow_2">
+<?php 
+	$date = new DateTime($article[0]->publish_date);
+	$date_formatted = $date->format('m-d-Y');
+?>
+
+<div id="main_content" class="rounded_corners_10 module_600 inner_shadow_2 article">
 	<h1><?php echo $article[0]->article_title; ?></h1>
-	<?php echo $article[0]->publish_date; ?>
-	<div id="print_share"><a href="#" onclick="window.print();">Print</a> | 
-		<div class="addthis_toolbox addthis_default_style ">
-			<a href="http://www.addthis.com/bookmark.php?v=250&amp;pubid=xa-4fd2ae7257ffdec9" class="addthis_button_compact">Share</a>
-		</div>
-	</div>	
-	<br class="clear_float" />
+	<div class="date"><?php echo $date_formatted; ?></div>
+	<div class="addthis_toolbox addthis_default_style ">
+		<a href="http://www.addthis.com/bookmark.php?v=250&amp;pubid=xa-4fd2ae7257ffdec9" class="addthis_button_compact">Share</a>
+	</div>
+	<div id="print_share"> | <a href="#" onclick="window.print();">
+		 Print</a> 
+	</div>
 	<?php echo $article[0]->article_body; ?>
 </div>
 

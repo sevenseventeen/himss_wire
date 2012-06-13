@@ -25,24 +25,13 @@ class User_Model extends CI_Model {
 		return $query->result();
 	}
 	
-	
-	// function get_administrator_account_by_id($admin_id) {
-		// $this->db->select('*');
-		// $this->db->from('administrator_accounts');
-		// $this->db->where('administrator_account_id', $admin_id);
-		// $this->db->join('users', 'users.account_type_id = account_types.account_type_id', 'left');
-		// $query = $this->db->get();
-		// return $query->result();
-	// }
-// 	
-	// function get_editor_account_by_id($editor_id) {
-		// $this->db->select('*');
-		// $this->db->from('editor_accounts');
-		// $this->db->where('editor_accounts', $editor_id);
-		// $this->db->join('users', 'users.account_type_id = account_types.account_type_id', 'left');
-		// $query = $this->db->get();
-		// return $query->result();
-	// }
+	function get_user_by_email($email) {
+		$this->db->select('*');
+		$this->db->from('users');
+		$this->db->where('email', $email);
+		$query = $this->db->get();
+		return $query->result();
+	}
 	
 }
 	

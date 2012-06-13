@@ -5,7 +5,6 @@
 ?>
 
 <div id="main_content" class="rounded_corners_10 module_920 inner_shadow_2">
-	
 		<fieldset>
 			<p>
 				Company Name: 	<span class="data"><?php echo $subscriber_account[0]->company_name; ?></span><br />
@@ -24,7 +23,6 @@
 				$user_id = $user_account[0]->user_id;
 				$subscriber_account_id = $subscriber_account[0]->subscriber_account_id;
 			?>
-			<!--<p><a href='<?php echo base_url()."admin/edit_subscriber_account/$user_id/$subscriber_account_id" ?>'>Edit This Accoount</a></p>-->
 			<h2>Subscription Package</h2>
 			<?php if ($subscription_details) { ?>
 				<?php 
@@ -34,6 +32,7 @@
 					$subscription_end_date_formattted = $subscription_end_date_datetime->format('Y-m-d');
 				?>
 				<p>
+					Articles Published:	<span class="data"><?php echo count($articles); ?></span><br />
 					Package Summary: 	<span class="data"><?php echo $subscription_details[0]->subscription_summary; ?></span><br />
 					Package Details: 	<span class="data"><?php echo $subscription_details[0]->subscription_details; ?></span><br />
 					Number of Stories:	<span class="data"><?php echo $subscription_details[0]->stories_purchased; ?></span><br />

@@ -58,7 +58,7 @@ class Main_Controller extends CI_Controller {
 		$this->load->model('content_model');
 		$this->load->library('pagination');
 		$config['base_url'] = base_url().'article_search';
-		$config['per_page'] = 5;
+		$config['per_page'] = 4;
 		$config['uri_segment'] = 2; 
 		$config['total_rows'] = count($this->content_model->get_search_results($search_term));
 		$this->pagination->initialize($config);
@@ -82,6 +82,8 @@ class Main_Controller extends CI_Controller {
 	public function category($category_id) {
 		$this->load->model('content_model');
 		$data['articles'] = $this->content_model->get_articles_by_category_id($category_id);
+		$data['feature_module'] = $this->content_model->get_feature_module();
+		$data['banner_ad'] = $this->content_model->get_banner_ads();
 		$this->load->view('category_view', $data);
 	}
 	
@@ -152,7 +154,7 @@ class Main_Controller extends CI_Controller {
 		$data['user_account'] = $this->user_model->get_user_by_id($user_id);
 		$data['subscriber_account'] = $this->account_model->get_subscriber_by_user_id($user_id);
 		$data['subscription_details'] = $this->subscription_model->get_subscription_by_account_id($data['subscriber_account'][0]->subscriber_account_id);
-		//$data['subscription_details'] = $this->subscription_model->get_subscription_by_account_id($data['subscriber_account'][0]->subscriber_account_id);
+		$data['articles'] = $this->content_model->get_all_articles_by_account_id($data['subscriber_account'][0]->subscriber_account_id);
 		$data['reports'] = $this->content_model->get_reports_by_subscriber_account_id($data['subscriber_account'][0]->subscriber_account_id);
 		$this->load->view('subscriber_account_view', $data);
 	}
@@ -299,6 +301,40 @@ class Main_Controller extends CI_Controller {
 				echo "Failure, with user_created.";
 			} 
 		}
+	}
+
+	public function forgot_password() {
+		$this->load->view('forgot_password_view'); 
+	}
+
+	public function send_password() {
+		$email = $this->input->post('email');
+		$this->load->model('user_model');
+		$user = $this->user_model->get_user_by_email($email);
+		if ($user) {
+			$password = $user[0]->password; 
+			$name = $this->input->post('name');
+			$email = $this->input->post('email');
+			$message = "Here is your HIMSS Wire login information\n\n Email: $email \n\n Password: $password";
+			$from_email = $this->config->item('email_from_support');
+			$from_name = $this->config->item('email_name_from_admin');
+			$this->load->library('email');
+	        $this->email->from($from_email, $from_name);
+	        $this->email->to($email);
+	        $this->email->subject('Your HIMSS Wire Account');
+	        $this->email->message($message);
+			if ($this->email->send()) {
+				$this->session->set_flashdata('message', 'Please check your email to retreive your password.');
+				redirect("forgot_password");
+			} else {
+				$this->session->set_flashdata('message', 'Sorry, there was a problem sending your password. Please try again later.');
+				redirect("forgot_password");
+			}
+		} else {
+			$this->session->set_flashdata('message', 'Sorry, we didn\t find an account with that email address.');
+			redirect("forgot_password");
+		}
+		
 	}
 
 }

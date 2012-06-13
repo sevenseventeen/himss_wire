@@ -4,7 +4,7 @@
 	$this->load->view('_includes/header', $data);
 ?>
 
-<div id="main_content" class="rounded_corners_10 module_600 inner_shadow_2">
+<div id="main_content" class="rounded_corners_10 module_600 inner_shadow_2 static_page">
 	<?php echo $static_page_content[0]->content; ?>
 </div>
 <aside>

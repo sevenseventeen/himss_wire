@@ -29,8 +29,10 @@ class Admin extends CI_Controller {
 		$data['user_account'] = $this->user_model->get_user_by_id($user_id);
 		$data['subscriber_account'] = $this->account_model->get_subscriber_by_id($subscriber_account_id);
 		$data['subscription_details'] = $this->subscription_model->get_subscription_by_account_id($subscriber_account_id);
+		$data['articles'] = $this->content_model->get_all_articles_by_account_id($subscriber_account_id);
 		$data['reports'] = $this->content_model->get_reports_by_subscriber_account_id($subscriber_account_id);
 		$this->load->view('subscriber_account_admin_view', $data);
+		
 	} 
 	
 	/*
@@ -91,6 +93,7 @@ class Admin extends CI_Controller {
 				$publish_date_formatted_for_unix_conversion = date_format ($publish_date_as_datetime, 'Y-m-d h:i:s A');
 				$publish_date_unix = human_to_unix($publish_date_formatted_for_unix_conversion);
 				$now = time();
+				// TODO move this garbage into the custom helper function 
 				$human_now = unix_to_human($now);
 				$now_as_datetime = new DateTime($human_now);
 				$now_without_time = date_format($now_as_datetime, 'Y-m-d');

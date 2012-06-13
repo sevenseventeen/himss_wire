@@ -25,19 +25,32 @@
 				Email:			<span class="data"><?php echo $user_account[0]->email; ?></span><br />
 				Password: 		<span class="data"><?php echo $user_account[0]->password; ?></span><br />
 			</p>
+			
 			<?php 
 				$user_id = $user_account[0]->user_id;
 				$subscriber_account_id = $subscriber_account[0]->subscriber_account_id;
 			?>
 			
+			<?php 
+				$today_unix = unix_timestamp_to_unix_timestamp_without_time(now());
+				$end_date_unix = human_to_unix($subscription_details[0]->subscription_end_date);
+				if(timespan($today_unix, $end_date_unix) == "1 Second") {
+					$days_remaining = 'Subscription Expired';
+				} else {
+					$days_remaining = timespan($today_unix, $end_date_unix);;
+				}
+			?>
+			
 			<h2>Subscription Package</h2>
 			<?php if ($subscription_details) { ?>
 				<p>
-					Package Summary: 	<span class="data"><?php echo $subscription_details[0]->subscription_summary; ?></span><br />
-					Package Details: 	<span class="data"><?php echo $subscription_details[0]->subscription_details; ?></span><br />
-					Number of Stories:	<span class="data"><?php echo $subscription_details[0]->stories_purchased; ?></span><br />
-					Subscription Start: <span class="data"><?php echo $subscription_details[0]->subscription_start_date; ?></span><br />
-					Subscription End: 	<span class="data"><?php echo $subscription_details[0]->subscription_end_date; ?></span><br />
+					Remaining Subscription:	<span class="data"><?php echo $days_remaining; ?></span><br />
+					Articles Published:		<span class="data"><?php echo count($articles); ?></span><br />
+					Package Summary: 		<span class="data"><?php echo $subscription_details[0]->subscription_summary; ?></span><br />
+					Package Details: 		<span class="data"><?php echo $subscription_details[0]->subscription_details; ?></span><br />
+					Number of Stories:		<span class="data"><?php echo $subscription_details[0]->stories_purchased; ?></span><br />
+					Subscription Start: 	<span class="data"><?php echo $subscription_details[0]->subscription_start_date; ?></span><br />
+					Subscription End: 		<span class="data"><?php echo $subscription_details[0]->subscription_end_date; ?></span><br />
 				</p>
 			<?php } else { ?>
 				

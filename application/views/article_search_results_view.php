@@ -33,20 +33,17 @@
 	</div>
 	
 	<br class="clear_float" />
-	
-	<div class="module_600 rounded_corners_10 inner_shadow_2">
-		<div id="pagination"><?php echo $pagination_links; ?></div>		
-	</div>
-	
+	<?php if($pagination_links != '') { ?>
+		<div class="module_600 rounded_corners_10 inner_shadow_2">
+			<div id="pagination"><?php echo $pagination_links; ?></div>		
+		</div>
+	<?php } ?> 
 </div>
-
-
 
 <aside>
 	<?php $this->load->view('_includes/search_module'); ?>
 </aside>
 <br class="clear_float" />
-
 
 <?php 
 	$this->content_library->load_footer();
