@@ -50,19 +50,15 @@ $active_record = TRUE;
 
 
 if ($_SERVER['SERVER_NAME'] == "localhost" ) {
-     
     $db['default']['hostname'] = 'localhost';
     $db['default']['username'] = 'root';
     $db['default']['password'] = '';
     $db['default']['database'] = 'himss_wire';
-    
 } else {
-         
-    $db['default']['hostname'] = 'external-db.s38593.gridserver.com';
-    $db['default']['username'] = 'db38593';
-    $db['default']['password'] = 'IF430Or911s';
-    $db['default']['database'] = 'db38593_himss_wire';
-    
+    $db['default']['hostname'] = 'mysql51-003.wc1.ord1.stabletransit.com';
+    $db['default']['username'] = '684226_himss';
+    $db['default']['password'] = '94549454';
+    $db['default']['database'] = '684226_himsswire';
 }
 
 $db['default']['dbdriver'] = 'mysql';

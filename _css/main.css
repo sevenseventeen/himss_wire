@@ -67,7 +67,7 @@ a {
 
 p {
 	line-height:15px;
-	margin:20px 0 0 20px;
+	margin:20px 0 20px 20px;
 }
 
 strong {
@@ -306,7 +306,7 @@ a.module_header_view_all {
 
 .article_snippet {
 	border-top: 1px solid #bebebe;
-	padding-bottom: 20px;
+	/*padding-bottom: 20px;*/
 	/*margin:0px 20px 20px 20px;
 	padding-top: 14px;*/
 }
