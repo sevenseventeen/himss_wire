@@ -854,12 +854,12 @@ class Admin extends CI_Controller {
 				'category_name'	=> $this->input->post('category_name')
 			);
 			$category_updated = $this->content_model->update_category($category_id, $category_data);
-			if ($category_updated) {
-				echo "Success, with category_updated.";
-				//$this->session->set_flashdata('message', 'Success! Your listing has been updated.');
-				//redirect("site/edit_vehicle/");
+			if($category_updated) {
+				$this->session->set_flashdata('message', 'Success! Your edits have been saved.');
+				redirect("admin");
 			} else {
-				echo "Failure, with category_updated.";
+				$this->session->set_flashdata('message', 'Sorry, there was a problem saving your edits.');
+				redirect("admin");
 			}
 		}
 	}

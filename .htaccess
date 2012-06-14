@@ -4,6 +4,7 @@ AddHandler php5-script .php
 
 	RewriteEngine On
 	#RewriteBase /development/kingfish_media/himss_wire
+	#RewriteBase /development
 	
 	RewriteCond %{REQUEST_URI} ^system.*
 	RewriteRule ^(.*)$ /index.php?/$1 [L]

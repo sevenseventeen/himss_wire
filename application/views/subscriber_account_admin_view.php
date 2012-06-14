@@ -31,18 +31,17 @@
 				$subscriber_account_id = $subscriber_account[0]->subscriber_account_id;
 			?>
 			
-			<?php 
-				$today_unix = unix_timestamp_to_unix_timestamp_without_time(now());
-				$end_date_unix = human_to_unix($subscription_details[0]->subscription_end_date);
-				if(timespan($today_unix, $end_date_unix) == "1 Second") {
-					$days_remaining = 'Subscription Expired';
-				} else {
-					$days_remaining = timespan($today_unix, $end_date_unix);;
-				}
-			?>
-			
 			<h2>Subscription Package</h2>
 			<?php if ($subscription_details) { ?>
+				<?php 
+					$today_unix = unix_timestamp_to_unix_timestamp_without_time(now());
+					$end_date_unix = human_to_unix($subscription_details[0]->subscription_end_date);
+					if(timespan($today_unix, $end_date_unix) == "1 Second") {
+						$days_remaining = 'Subscription Expired';
+					} else {
+						$days_remaining = timespan($today_unix, $end_date_unix);;
+					}
+				?>
 				<p>
 					Remaining Subscription:	<span class="data"><?php echo $days_remaining; ?></span><br />
 					Articles Published:		<span class="data"><?php echo count($articles); ?></span><br />

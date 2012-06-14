@@ -30,6 +30,10 @@ body {
 	behavior: url(/_pie.htc);
 }
 
+/* ************** Admin Pages ************** */
+
+
+
 /* ************** Global Tags ************** */
 
 h1 {
@@ -89,6 +93,49 @@ header img {
 	float: left;
 }
 
+label {
+	display: block;
+	margin:0px 0 3px 0;
+	font-size:11px;
+	color: #333;
+}
+
+legend {
+	-webkit-margin-top-collapse: separate;
+	margin-bottom:20px;
+	font-size:20px;
+}
+
+textarea {
+	width:590px;
+	border: 1px solid #CCC;
+	margin-bottom:15px;
+}
+
+select {
+	margin-left:-1px;
+	margin-bottom:15px;
+}
+
+input {
+	border: 1px solid #CCC;
+	margin-bottom:15px;
+}
+
+input[type="text"], input[type="password"] {
+	width:400px;	
+}
+
+input[type="image"] {
+	border-width: 0;
+	margin:20px 0 0px 0;	
+}
+
+/* ************** Admin Panel ************** */
+
+#accordion h2 {
+	margin:15px 0 15px 0;
+}
 
 /* ************** Global Elements************** */
 
@@ -228,16 +275,12 @@ a.module_header_view_all {
 }
 
 #main_content form {
-	margin-left: 20px;
-	margin-right: 20px;
+	/*margin-left: 20px;
+	margin-right: 20px;*/
 }
 
 #main_content input {
 	/*position: absolute;*/
-}
-
-#main_content label {
-	margin-top:20px;
 }
 
 /* ************** Header ************** */

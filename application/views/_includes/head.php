@@ -24,7 +24,8 @@
         <!-- JQuery and JQuery UI -->
 
         <link type="text/css" href="<?php echo base_url().'_css/jquery_ui_theme/jquery-ui-1.8.20.custom.css'; ?>" rel="stylesheet" />
-        <link type="text/css" href="<?php echo base_url().'_css/jquery_ui_override.css'; ?>" rel="stylesheet" />
+        
+        
 		<script type="text/javascript" src="<?php echo base_url().'_javascript/jquery-1.7.2.min.js'; ?>"></script>
 		<script type="text/javascript" src="<?php echo base_url().'_javascript/jquery-ui-1.8.20.custom.min.js'; ?>"></script>
 
@@ -32,16 +33,17 @@
 		
 		<script type="text/javascript" src="<?php echo base_url().'/ckeditor/ckeditor.js'; ?>"></script>
 		<script type="text/javascript" src="<?php echo base_url().'/ckeditor/adapters/jquery.js'; ?>"></script>
+		
+		
 		<script>
 			// The configuration options for the text editors
 			var config = {
-				/*toolbar:[
-					['Source', '-', 'Bold', 'Italic', 'Link'],
-					['Format'],
-					['Insert', 'ShowBlocks','-','About']
-				]*/
+				toolbar:[
+					['Bold', 'Italic', 'Link', 'Image', 'Format', 'Source'],
+				]
 			};
 			config.format_tags = 'h1;h2;h3;h4;p';
+			config.width = 592;
 			config.filebrowserImageBrowseUrl = '<?php echo base_url(); ?>ckfinder/ckfinder.html';
 			config.filebrowserImageUploadUrl = '<?php echo base_url(); ?>ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files';
 			$(function() {
@@ -70,16 +72,6 @@
 					} 
 				});
 			});
-			
-			// CKEDITOR.replace( 'editor1', {
-		        // filebrowserBrowseUrl : '/ckfinder/ckfinder.html',
-		        // filebrowserImageBrowseUrl : '/ckfinder/ckfinder.html?Type=Images',
-		        // filebrowserFlashBrowseUrl : '/ckfinder/ckfinder.html?Type=Flash',
-		        // filebrowserUploadUrl : '/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files',
-		        // filebrowserImageUploadUrl : '/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images',
-		        // filebrowserFlashUploadUrl : '/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Flash'
-		    // });
-			
 			
 		</script>
 		
@@ -156,6 +148,8 @@
         	});
 
 		</script>
+		
+		<link type="text/css" href="<?php echo base_url().'_css/jquery_ui_override.css'; ?>" rel="stylesheet" />
 
         <title>HIMMS Wire</title>
     </head>

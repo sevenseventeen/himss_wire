@@ -15,6 +15,7 @@
 					<li><a href="#articles_add">Add</a></li>
 				</ul>
 				<div id="articles_edit">
+					<h2>Edit Article</h2>
 					<?php
 						foreach ($articles as $article) { 
 							echo "<a href='".base_url()."admin/edit_article/$article->article_id'>".$article->article_title."</a><br />";
@@ -24,64 +25,56 @@
 				<div id="articles_add">
 					<?php echo form_open('admin/add_article'); ?>
 						<fieldset>
-						<legend>Add Article</legend>
-						<select name="subscriber_id">
-							<option value=''>Select a Subscriber</option>
-							<?php 
-								foreach ($subscribers_with_remaining_articles as $subscriber) { 
-									echo "<option value='".$subscriber->subscriber_account_id."' ".set_select('subscriber_id', $subscriber->subscriber_account_id).">".$subscriber->company_name."</option>";
-								}
-							?>
-						</select>
-						<?php echo form_error('subscriber_id'); ?>
-						<br />
-						<select name="article_category_id">
-							<option value=''>Select a Category</option>
-							<?php 
-								foreach ($categories as $category) { 
-									echo "<option value='".$category->article_category_id."' ".set_select('article_category_id', $category->article_category_id).">".$category->category_name."</option>";
-								}
-							?>
-						</select>
-						<?php echo form_error('article_category_id'); ?>
-						<br class="clear_float" />
-						<label>Article Title</label> 
-							<?php echo form_input('article_title', set_value('article_title', '')); ?>
-							<?php echo form_error('article_title'); ?>
+							<h2>Add Article</h2>
+							<label>Subscriber</label>
+							<select name="subscriber_id">
+								<option value=''>Select a Subscriber</option>
+								<?php 
+									foreach ($subscribers_with_remaining_articles as $subscriber) { 
+										echo "<option value='".$subscriber->subscriber_account_id."' ".set_select('subscriber_id', $subscriber->subscriber_account_id).">".$subscriber->company_name."</option>";
+									}
+								?>
+							</select>
+							<?php echo form_error('subscriber_id'); ?>
+							<br />
+							<label>Article Category</label>
+							<select name="article_category_id">
+								<option value=''>Select a Category</option>
+								<?php 
+									foreach ($categories as $category) { 
+										echo "<option value='".$category->article_category_id."' ".set_select('article_category_id', $category->article_category_id).">".$category->category_name."</option>";
+									}
+								?>
+							</select>
+							<?php echo form_error('article_category_id'); ?>
 							<br class="clear_float" />
-						<label>Article Summary (120 Characters)</label>
-							<?php echo form_textarea('article_summary', set_value('article_summary', ''), 'maxlength="120"'); ?>
-							<?php echo form_error('article_summary'); ?>
-							<br class="clear_float" />
-						<label>Article Body</label>
-							<?php echo form_textarea('article_body', set_value('article_body', ''), 'class="ckeditor" maxlength="10"'); ?>
-							<?php echo form_error('article_body'); ?>
-							<br class="clear_float" />
-						<script>
-							// $(function() {
-								// $('#publish_date').datepicker({
-									// onSelect: function(dateText, inst) {
-										// $('#publish_date').val(dateText);
-									// }
-								// });
-							// });
-						</script>
-						
-						<label>Draft</label>
-							<input type="checkbox" id="draft_status" name="draft_status" value="true" checked="checked" <?php echo set_checkbox('draft_status', 'true'); ?> />
-							<br class="clear_float" />
-						<div id="publish_date_container">
-							<label>Publish Date</label>
-								<input type="text" name="publish_date" id="publish_date" class="datepicker"/>
-								<?php echo form_error('publish_date'); ?>
+							<label>Article Title</label> 
+								<?php echo form_input('article_title', set_value('article_title', '')); ?>
+								<?php echo form_error('article_title'); ?>
 								<br class="clear_float" />
-						</div>
-						<label>Article Tags (separate tags with comma)</label>
-							<?php echo form_input('article_tags', set_value('article_tags', '')); ?>
-							<?php echo form_error('article_tags'); ?>
-							<br class="clear_float" />
+							<label>Article Summary (120 Characters)</label>
+								<?php echo form_textarea('article_summary', set_value('article_summary', ''), 'maxlength="160"'); ?>
+								<?php echo form_error('article_summary'); ?>
+								<br class="clear_float" />
+							<label>Article Body</label>
+								<?php echo form_textarea('article_body', set_value('article_body', ''), 'class="ckeditor" maxlength="10"'); ?>
+								<?php echo form_error('article_body'); ?>
+								<br class="clear_float" />
+							<label>Draft</label>
+								<input type="checkbox" id="draft_status" name="draft_status" value="true" checked="checked" <?php echo set_checkbox('draft_status', 'true'); ?> />
+								<br class="clear_float" />
+							<div id="publish_date_container">
+								<label>Publish Date</label>
+									<input type="text" name="publish_date" id="publish_date" class="datepicker"/>
+									<?php echo form_error('publish_date'); ?>
+									<br class="clear_float" />
+							</div>
+							<label>Article Tags (separate tags with comma)</label>
+								<?php echo form_input('article_tags', set_value('article_tags', '')); ?>
+								<?php echo form_error('article_tags'); ?>
+								<br class="clear_float" />
 						</fieldset>
-						<input type="submit" />		
+						<input type="image" src="<?php echo base_url().'_images/submit.png'; ?>" />	
 					<?php echo form_close(); ?>
 				</div>
 			</div> <!-- End Tabs -->
@@ -99,13 +92,13 @@
 					<li><a href="#internal_accounts_add">Add</a></li>
 				</ul>
 				<div id="internal_accounts_edit">
-					Administrators
+					<h2>Administrators</h2>
 					<?php
 						foreach ($administrators as $administrator) {
 							echo "<a href='".base_url()."admin/edit_admin_account/$administrator->user_id/$administrator->administrator_account_id'>".$administrator->first_name." ".$administrator->last_name."</a><br />";
 						}
 					?>
-					Editors
+					<h2>Editors</h2>
 					<?php
 						foreach ($editors as $editor) { 
 							echo "<a href='".base_url()."admin/edit_editor_account/$editor->user_id/$editor->editor_account_id'>".$editor->first_name." ".$editor->last_name."</a><br />";
@@ -115,7 +108,7 @@
 				<div id="internal_accounts_add">
 					<?php echo form_open('admin/add_internal_account'); ?>
 						<fieldset>
-							<legend>Add User Account</legend>
+							<h2>Add User Account</h2>
 							<select name="account_type_id">
 								<option value=''>Select an Account Type</option>
 								<?php 
@@ -143,7 +136,7 @@
 								<?php echo form_error('password'); ?>
 								<br class="clear_float" />
 						</fieldset>
-						<input type="submit" />		
+						<input type="image" src="<?php echo base_url().'_images/submit.png'; ?>" />	
 					<?php echo form_close(); ?>
 				</div>
 			</div> <!-- End Tabs -->
@@ -159,13 +152,13 @@
 					<li><a href="#tabs-2">Add</a></li>
 				</ul>
 				<div id="tabs-1">
-					Subscribers<br />
+					<h2>Subscribers</h2>
 					<?php
 						foreach ($subscribers as $subscriber) { 
 							echo "<a href='".base_url()."admin/subscriber_account/$subscriber->user_id/$subscriber->subscriber_account_id'>".$subscriber->company_name."</a><br />";
 						}
 					?>
-					Network Partners<br />
+					<h2>Network Partners</h2>
 					<?php
 						foreach ($network_partners as $network_partner) { 
 							echo "<a href='".base_url()."admin/edit_network_partner_account/$network_partner->user_id/$network_partner->network_partner_account_id'>".$network_partner->company_name."</a><br />";
@@ -176,7 +169,7 @@
 				<div id="tabs-2">
 					<?php echo form_open('admin/add_external_account'); ?>
 						<fieldset>
-							<legend>Add External Account</legend>
+							<h2>Add External Account</h2>
 							<select name="account_type_id">
 								<option value=''>Select an Account Type</option>
 								<?php 
@@ -249,7 +242,7 @@
 								<?php echo form_error('password'); ?>
 								<br class="clear_float" />
 						</fieldset>
-						<input type="submit" />		
+						<input type="image" src="<?php echo base_url().'_images/submit.png'; ?>" />		
 					<?php echo form_close(); ?>
 				</div>
 			</div> <!-- End Tabs -->
@@ -265,6 +258,7 @@
 					<li><a href="#tabs-2">Add</a></li>
 				</ul>
 				<div id="tabs-1">
+					<h2>Edit Categories</h2>
 					<?php
 						foreach ($categories as $category) { 
 							echo "<a href='".base_url()."admin/edit_category/$category->article_category_id'>".$category->category_name."</a><br />";
@@ -272,15 +266,16 @@
 					?>
 				</div>
 				<div id="tabs-2">
+					
 					<?php echo form_open('admin/add_category'); ?>
 						<fieldset>
-							<legend>Add Category</legend>
+							<h2>Add Category</h2>
 							<label>Category Name</label> 
 								<?php echo form_input('category_name', set_value('category_name')); ?>
 								<?php echo form_error('company_name'); ?>
 								<br class="clear_float" />
 						</fieldset>
-						<input type="submit" />		
+						<input type="image" src="<?php echo base_url().'_images/submit.png'; ?>" />		
 					<?php echo form_close(); ?>
 				</div>
 			</div> <!-- End Tabs -->
@@ -295,7 +290,7 @@
 					<li><a href="#tabs-1">Edit</a></li>
 				</ul>
 				<div id="tabs-1">
-					Edit Static Pages<br />
+					<h2>Edit Static Pages</h2>
 					<?php 
 						foreach ($static_pages as $static_page) { 
 							echo "<a href='admin/edit_static_page/".$static_page->page_id."'>".$static_page->page_name."</a><br />";
@@ -317,18 +312,14 @@
 				<div id="tabs-1">
 					<?php echo form_open_multipart('admin/update_feature_module');?>
 						<fieldset>
-							<legend>Edit Feature Module</legend>
-							<label>Feature Module Text</label>
+							<h2>Edit Feature Module</h2>
+							<label>Feature Module Content</label>
 								<?php echo form_textarea('module_text', set_value('module_text', $feature_module[0]->module_text), 'class="ckeditor"'); ?>
 								<?php echo form_error('module_text'); ?>
 								<br class="clear_float" />
-							<!-- <label>Feature Module Image</label>
-									<?php //echo form_upload('userfile', set_value('userfile')); ?>
-									<?php //echo form_error('userfile'); ?>
-									<br class="clear_float" /> -->
 							<?php echo form_hidden('feature_module_id', $feature_module[0]->feature_module_id); ?>
 						</fieldset>
-						<input type="submit" />
+						<input type="image" src="<?php echo base_url().'_images/submit.png'; ?>" />
 					<?php echo form_close(); ?>
 				</div>
 			</div> <!-- End Tabs -->
@@ -345,7 +336,7 @@
 				<div id="tabs-1">
 					<?php echo form_open_multipart('admin/update_banner_ad');?>
 						<fieldset>
-							<legend>Edit Banner Ad</legend>
+							<h2>Edit Banner Ad</h2>
 							<label>Banner Ad Image (270 Pixels Wide)</label>
 									<?php echo form_upload('banner_image', set_value('banner_image')); ?>
 									<?php echo form_error('banner_image'); ?>
@@ -356,7 +347,7 @@
 									<br class="clear_float" />
 							<?php echo form_hidden('banner_ad_id', $banner_ads[0]->banner_ad_id); ?>
 						</fieldset>
-						<input type="submit" />
+						<input type="image" src="<?php echo base_url().'_images/submit.png'; ?>" />
 					<?php echo form_close(); ?>
 				</div>
 			</div> <!-- End Tabs -->
@@ -368,13 +359,21 @@
 		<div>
 			<div class="tabs">
 				<ul>
-					<li><a href="#tabs-1">Add</a></li>
-					<li><a href="#tabs-2">Edit</a></li>
+					<li><a href="#tabs-1">Edit</a></li>
+					<li><a href="#tabs-2">Add</a></li>
 				</ul>
 				<div id="tabs-1">
+					<h2>Edit Footer Links</h2>
+					<?php
+						foreach ($footer_links as $footer_link) { 
+							echo "<a href='".base_url()."admin/edit_footer_link/$footer_link->footer_link_id'>".$footer_link->footer_link_text."</a><br />";
+						}
+					?>
+				</div>
+				<div id="tabs-2">
 					<?php echo form_open('admin/add_footer_link');?>
 						<fieldset>
-							<legend>Add Footer Links</legend>
+							<h2>Add Footer Links</h2>
 								<label>Footer Link Text</label>
 									<?php echo form_input('footer_link_text', set_value('footer_link_text')); ?>
 									<?php echo form_error('footer_link_text'); ?>
@@ -384,16 +383,8 @@
 									<?php echo form_error('footer_link_url'); ?>
 									<br class="clear_float" />
 						</fieldset>
-						<input type="submit" />
+						<input type="image" src="<?php echo base_url().'_images/submit.png'; ?>" />
 					<?php echo form_close(); ?>
-				</div>
-				<div id="tabs-2">
-					<?php //print_r($footer_links); ?>
-					<?php
-						foreach ($footer_links as $footer_link) { 
-							echo "<a href='".base_url()."admin/edit_footer_link/$footer_link->footer_link_id'>".$footer_link->footer_link_text."</a><br />";
-						}
-					?>
 				</div>
 			</div> <!-- End Tabs -->
 		</div> <!-- End  Accordion Item -->
@@ -404,13 +395,21 @@
 		<div>
 			<div class="tabs">
 				<ul>
-					<li><a href="#tabs-1">Add</a></li>
-					<li><a href="#tabs-2">Edit</a></li>
+					<li><a href="#tabs-1">Edit</a></li>
+					<li><a href="#tabs-2">Add</a></li>
 				</ul>
 				<div id="tabs-1">
+					<h2>Edit FAQ's</h2>
+					<?php
+						foreach ($faqs as $faq) { 
+							echo "<a href='".base_url()."admin/edit_faq/$faq->faq_id'>".$faq->faq_question."</a><br />";
+						}
+					?>
+				</div>
+				<div id="tabs-2">
 					<?php echo form_open('admin/add_faq');?>
 					<fieldset>
-						<legend>Add FAQ</legend>
+						<h2>Add FAQ</h2>
 							<label>FAQ Question</label>
 								<?php echo form_textarea('faq_question', set_value('faq_question'), ''); ?>
 								<?php echo form_error('faq_question'); ?>
@@ -420,15 +419,8 @@
 								<?php echo form_error('faq_answer'); ?>
 								<br class="clear_float" />
 					</fieldset>
-					<input type="submit" />
+					<input type="image" src="<?php echo base_url().'_images/submit.png'; ?>" />
 				<?php echo form_close(); ?>
-				</div>
-				<div id="tabs-2">
-					<?php
-						foreach ($faqs as $faq) { 
-							echo "<a href='".base_url()."admin/edit_faq/$faq->faq_id'>".$faq->faq_question."</a><br />";
-						}
-					?>
 				</div>
 			</div> 	<!-- End Tabs -->
 		</div> 		<!-- End  Accordion Item -->
