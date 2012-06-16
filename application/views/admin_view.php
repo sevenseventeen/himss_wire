@@ -184,23 +184,20 @@
 								<?php echo form_input('company_name', set_value('company_name', '')); ?>
 								<?php echo form_error('company_name'); ?>
 								<br class="clear_float" />
-							<label>Website(s)</label>
+							<label>Website(s) <a href="#" id="add_website">[+] Add Website</a></label>
 							<div id="website_container">
 								<?php 
 									if(!empty($websites)) {
 										
 								 		foreach ($websites as $website) { ?>
-											<input type="text" name="websites[]" id="websites" value="<?php echo $website; ?>"/><br />
+											<input type="text" name="websites[]" id="websites" value="<?php echo $website; ?>"/>
 								 <?php 	} ?>
 								<?php } else { ?>
-									<p>Websites is empty...........................</p>
 									<input type="text" name="websites[]" id="websites" value=""/>
 								<?php  } ?>
 							</div> 	
 								<?php echo form_error('websites[]'); ?>
-								<br />
-								<a href="#" id="add_website">[+] Add Website</a><br />
-								<br class="clear_float" />
+								<!-- <br class="clear_float" /> -->
 							<label>First Name</label>
 								<?php echo form_input('first_name', set_value('first_name', '')); ?>
 								<?php echo form_error('first_name'); ?>
@@ -323,7 +320,43 @@
 					<?php echo form_close(); ?>
 				</div>
 			</div> <!-- End Tabs -->
-		</div> <!-- End  Accordian Item -->
+		</div> <!-- End  Accordion Item -->
+		
+		<!-- ••••••••••• Feature Module Optional ••••••••••••••• -->
+		
+		<h3><a href="#">Optional Feature Module</a></h3>
+		
+		<div>
+			<div class="tabs">
+				<ul>
+					<li><a href="#tabs-1">Edit</a></li>
+				</ul>
+				<div id="tabs-1">
+					<?php echo form_open_multipart('admin/update_feature_module_optional');?>
+						<fieldset>
+							<h2>Edit Optional Feature Module</h2>
+							<label>Feature Module Content</label>
+								<?php echo "ENABLED: ".$feature_module_optional[0]->enabled; ?>
+								<?php echo form_textarea('module_text_optional', set_value('module_text_optional', $feature_module_optional[0]->module_text), 'class="ckeditor"'); ?>
+								<?php echo form_error('module_text_optional'); ?>
+								<br class="clear_float" />
+							<label>Enabled</label>
+								<!-- I'm not sure why this checked business is needed -->
+								<?php 
+									if ($feature_module_optional[0]->enabled == "1") {
+										$checked = "checked='checked'"; 
+									} else {
+										$checked = "";
+									}
+								?>
+								<input type="checkbox" name="enabled" value="1" <?php echo $checked; ?> <?php echo set_checkbox('enabled', '1'); ?> />
+							<?php echo form_hidden('feature_module_optional_id', $feature_module_optional[0]->feature_module_optional_id); ?>
+						</fieldset>
+						<input type="image" src="<?php echo base_url().'_images/submit.png'; ?>" />
+					<?php echo form_close(); ?>
+				</div>
+			</div> <!-- End Tabs -->
+		</div> <!-- End  Accordion Item -->
 		
 		<!-- ••••••••••• Banner Ad ••••••••••••••• -->
 		

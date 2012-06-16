@@ -14,12 +14,17 @@
 | path to your installation.
 |
 */
+// 
+// if ($_SERVER['SERVER_NAME'] == "localhost" ) {
+    // $config['base_url'] = 'http://localhost/development/kingfish_media/himss_wire/';
+// } else {
+    // //$config['base_url'] = 'http://www.seven-seventeen.com/projects/kingfish/himss_wire/current/';
+	// $config['base_url'] = 'http://www.himsswire.com.php53-22.ord1-1.websitetestlink.com/development/';
+// }
 
-if ($_SERVER['SERVER_NAME'] == "localhost" ) {
-    $config['base_url'] = 'http://localhost/development/kingfish_media/himss_wire/';
-} else {
-    $config['base_url'] = 'http://www.seven-seventeen.com/projects/kingfish/himss_wire/current/';
-}
+
+$config['base_url'] = "http://".$_SERVER['HTTP_HOST'];
+$config['base_url'] .= str_replace(basename($_SERVER['SCRIPT_NAME']),"",$_SERVER['SCRIPT_NAME']); 
 
 /*
 |--------------------------------------------------------------------------

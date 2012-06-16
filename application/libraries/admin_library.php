@@ -26,6 +26,7 @@ class Admin_Library {
 		$data['footer_links'] = $this->ci->content_model->get_footer_links();
 		$data['faqs'] = $this->ci->content_model->get_faqs();
 		$data['feature_module'] = $this->ci->content_model->get_feature_module();
+		$data['feature_module_optional'] = $this->ci->content_model->get_feature_module_optional();
 		$data['banner_ads'] = $this->ci->content_model->get_banner_ads();
 		$data['websites'] = $additional_data;
 		if($data['user_type'] == "Administrator" || $data['user_type'] == "Editor") {

@@ -7,7 +7,7 @@
 <div id="main_content" class="rounded_corners_10 module_920 inner_shadow_2">
 	<?php echo form_open('admin/login_user'); ?>
 		<fieldset>
-			<legend>Login</legend>
+			<h2>Login</h2>
 			<label>Email</label> 
 				<?php echo form_input('email', set_value('email', 'admin@admin.com')); ?>
 				<?php echo form_error('email'); ?>
@@ -17,7 +17,7 @@
 				<?php echo form_error('password'); ?>
 				<br class="clear_float" />
 		</fieldset>
-		<input type="submit" />		
+		<input type="image" src="<?php echo base_url().'_images/submit.png'; ?>" />	
 	<?php echo form_close(); ?>
 </div>
 <br class="clear_float" />

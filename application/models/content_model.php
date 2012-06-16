@@ -146,6 +146,13 @@ class Content_Model extends CI_Model {
 		return $query->result();
 	}
 	
+	function get_feature_module_optional() {
+		$this->db->select('*');
+		$this->db->from('feature_module_optional');
+		$query = $this->db->get();
+		return $query->result();
+	}
+	
 	function get_banner_ads() {
 		$this->db->select('*');
 		$this->db->from('banner_ads');
@@ -230,6 +237,11 @@ class Content_Model extends CI_Model {
 	
 	function update_feature_module($feature_module_id, $data) {
 		$result = $this->db->update('feature_module', $data, "feature_module_id = $feature_module_id");
+    	return $result;
+	}
+	
+	function update_feature_module_optional($feature_module_optional_id, $data) {
+		$result = $this->db->update('feature_module_optional', $data, "feature_module_optional_id = $feature_module_optional_id");
     	return $result;
 	}
 	

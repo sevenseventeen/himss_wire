@@ -13,6 +13,7 @@ class Main_Controller extends CI_Controller {
 		$data['articles'] = $this->content_model->get_published_articles('5');
 		$data['feature_module'] = $this->content_model->get_feature_module();
 		$data['banner_ad'] = $this->content_model->get_banner_ads();
+		$data['feature_module_optional'] = $this->content_model->get_feature_module_optional();
 		$this->load->view('home_view', $data);
 	}
 	

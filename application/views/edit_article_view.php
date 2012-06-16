@@ -9,6 +9,7 @@
 	<h2>Edit Article</h2>
 	<?php echo form_open('admin/update_article'); ?>
 		<fieldset>
+			<label>Category</label>
 			<select name="article_category_id">
 				<option value=''>Select a Category</option>
 				<?php
@@ -33,7 +34,7 @@
 				<?php echo form_error('article_tags'); ?>
 				<br class="clear_float" />
 			<label>Article Summary</label>
-				<?php echo form_textarea('article_summary', set_value('article_summary', $article[0]->article_summary), 'class="ckeditor"'); ?>
+				<?php echo form_textarea('article_summary', set_value('article_summary', $article[0]->article_summary), 'maxlength="160"'); ?>
 				<?php echo form_error('article_summary'); ?>
 				<br class="clear_float" />
 			<label>Article Body</label>

@@ -929,6 +929,31 @@ class Admin extends CI_Controller {
 		}
 	}
 
+	function update_feature_module_optional() {
+		$feature_module_optional_id = $this->input->post('feature_module_optional_id');
+		$this->load->model('content_model');
+		$this->load->library('form_validation');
+		$this->form_validation->set_error_delimiters('<div class="error">', '</div>');
+		$this->form_validation->set_rules('module_text_optional', 'Module Text', 'required');
+		$this->form_validation->set_rules('enabled', 'Enabled', 'trim');
+		if ($this->form_validation->run() == FALSE) {
+			$this->admin_library->load_admin_view();
+		} else {
+			$module_data = array(
+				'module_text'	=> $this->input->post('module_text_optional'),
+				'enabled'		=> $this->input->post('enabled')
+			);
+			$module_updated = $this->content_model->update_feature_module_optional($feature_module_optional_id, $module_data);
+			if($module_updated) {
+				$this->session->set_flashdata('message', 'Success! Your edits have been saved.');
+				redirect("admin");
+			} else {
+				$this->session->set_flashdata('message', 'Sorry, there was a problem saving your edits.');
+				redirect("admin");
+			}
+		}
+	}
+
 	function update_banner_ad() {
 		$banner_ad_id = $this->input->post('banner_ad_id');
 		$this->load->model('content_model');
