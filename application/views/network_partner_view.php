@@ -12,6 +12,7 @@
 	<h2>Widget Embed Code</h2>
 	
 	<?php 
+		print_r($feed_modules); 
 		$widget_code = "<script type='text/javascript' src='http://cdn.widgetserver.com/syndication/subscriber/InsertWidget.js'></script>\n<script type='text/javascript'>if (WIDGETBOX) WIDGETBOX.renderWidget('2289056e-fbb8-422d-81db-d325f04dd610');</script>";	
 		echo $widget_code;
 		echo form_textarea('widget_code', set_value('widget_code', $widget_code)); 

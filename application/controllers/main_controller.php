@@ -142,6 +142,7 @@ class Main_Controller extends CI_Controller {
 		$this->load->model('account_model');
 		$this->load->model('user_model');
 		$data['network_partner'] = $this->account_model->get_network_partner_by_user_id($user_id);
+		$data['feed_modules'] = $this->account_model->get_feeds_by_user_id($user_id);
 		$data['faqs'] = $this->content_model->get_faqs();
 		$data['user'] = $this->user_model->get_user_by_id($user_id);
 		$this->load->view('network_partner_view', $data);

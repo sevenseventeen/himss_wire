@@ -5,13 +5,8 @@
 ?>
 
 <div id="main_content" class="rounded_corners_10 module_920 inner_shadow_2">
-	<pre>
-	<?php //print_r($subscriber_account); ?>
-	<hr />
-	<?php //print_r($user_account); ?>
-	</pre>
 		<fieldset>
-			<h2>Subscriber Account</h2>
+			<h2><?php echo $subscriber_account[0]->company_name; ?></h2>
 			<p>
 				Company Name: 	<span class="data"><?php echo $subscriber_account[0]->company_name; ?></span><br />
 				Website: 		<span class="data"><?php echo $subscriber_account[0]->website; ?></span><br />
@@ -104,13 +99,10 @@
 							<br class="clear_float" />
 					<?php echo form_hidden('subscriber_account_id', $subscriber_account[0]->subscriber_account_id); ?>
 				</fieldset>
-				<input type="submit" />
+				<input type="image" src="<?php echo base_url().'_images/submit.png'; ?>" />
 			<?php echo form_close(); ?>
 			
 			<p><a href='<?php echo base_url()."admin/edit_subscriber_account/$user_id/$subscriber_account_id" ?>'>Edit This Account</a></p>
-			
-	<hr />
-	<?php //print_r($subscription_details); ?>
 </div>
 <br class="clear_float" />
 

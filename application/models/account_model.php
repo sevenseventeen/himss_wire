@@ -146,6 +146,13 @@ class Account_Model extends CI_Model {
 		return $query->result();
 	}
 	
+	function get_feeds_by_user_id($user_id) {
+		$this->db->select('*');
+		$this->db->from('feed_modules');
+		$query = $this->db->get();
+		return $query->result();
+	}
+	
 	
 	
 	/*
@@ -173,6 +180,19 @@ class Account_Model extends CI_Model {
 	function update_editor_account($editor_account_id, $data) {
 		$result = $this->db->update('editor_accounts', $data, "editor_account_id = $editor_account_id");
         return $result;
+	}
+	
+	/*
+	 * 
+	 * Update Functions 
+	 * 
+	 * 
+	 */
+	 
+	function delete_account($user_id) {
+		$user_deleted = $this->db->delete('network_partner_accounts', "user_id = $user_id");
+		$user_deleted = $this->db->delete('subscriber_accounts', "user_id = $user_id");
+		return $user_deleted;
 	}
 	
 	

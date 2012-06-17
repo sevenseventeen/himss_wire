@@ -13,9 +13,13 @@
 			<select name="article_category_id">
 				<option value=''>Select a Category</option>
 				<?php
-					// TODO Need to set_value for select box 
-					foreach ($categories as $category) { 
-						echo "<option value='".$category->article_category_id."' ".set_select('account_type_id', $category->article_category_id).">".$category->category_name."</option>";
+					foreach ($categories as $category) {
+						if($category->article_category_id == $article[0]->article_category_id) {
+						    $set_select = 'selected=selected';    
+						} else {
+						    $set_select = '';
+						}
+						echo "<option ".$set_select." value='".$category->article_category_id."' ".set_select('article_category_id', $category->article_category_id).">".$category->category_name."</option>"; 
 					}
 				?>
 			</select>
@@ -43,7 +47,7 @@
 				<br class="clear_float" />
 		</fieldset>
 		<?php echo form_hidden('article_id', $article[0]->article_id); ?>
-		<input type="submit" />	
+		<input type="image" src="<?php echo base_url().'_images/submit.png'; ?>" />
 	<?php echo form_close(); ?>
 	<br /> <!-- TODO Remove this -->
 	<a class="delete" href="<?php echo base_url(); ?>admin/delete_article/<?php echo $article[0]->article_id; ?>">Delete Article</a>

@@ -33,6 +33,11 @@ class User_Model extends CI_Model {
 		return $query->result();
 	}
 	
+	function delete_user($user_id) {
+		$user_deleted = $this->db->delete('users', "user_id = $user_id");
+		return $user_deleted;
+	}
+	 
 }
 	
 ?>
