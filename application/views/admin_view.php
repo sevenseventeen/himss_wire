@@ -120,19 +120,19 @@
 							<?php echo form_error('account_type_id'); ?>
 							<br class="clear_float" />
 							<label>First Name</label>
-								<?php echo form_input('first_name', set_value('first_name', 'Josh')); ?>
+								<?php echo form_input('first_name', set_value('first_name', '')); ?>
 								<?php echo form_error('first_name'); ?>
 								<br class="clear_float" />
 							<label>Last Name</label>
-								<?php echo form_input('last_name', set_value('last_name', 'Knight')); ?>
+								<?php echo form_input('last_name', set_value('last_name', '')); ?>
 								<?php echo form_error('last_name'); ?>
 								<br class="clear_float" />
 							<label>Email</label>
-								<?php echo form_input('email', set_value('email', 'subscriber@himms.com')); ?>
+								<?php echo form_input('email', set_value('email', '')); ?>
 								<?php echo form_error('email'); ?>
 								<br class="clear_float" />
 							<label>Password</label>
-								<?php echo form_password('password', set_value('password', 'password123')); ?>
+								<?php echo form_password('password', set_value('password', '')); ?>
 								<?php echo form_error('password'); ?>
 								<br class="clear_float" />
 						</fieldset>
@@ -170,7 +170,7 @@
 					<?php echo form_open('admin/add_external_account'); ?>
 						<fieldset>
 							<h2>Add External Account</h2>
-							<select name="account_type_id">
+							<select id="account_type" name="account_type_id">
 								<option value=''>Select an Account Type</option>
 								<?php 
 									foreach ($external_account_types as $account_type) { 
@@ -184,11 +184,10 @@
 								<?php echo form_input('company_name', set_value('company_name', '')); ?>
 								<?php echo form_error('company_name'); ?>
 								<br class="clear_float" />
-							<label>Website(s) <a href="#" id="add_website">[+] Add Website</a></label>
+							<label>Website <a href="#" id="add_website">[+] Add Website</a></label>
 							<div id="website_container">
 								<?php 
 									if(!empty($websites)) {
-										
 								 		foreach ($websites as $website) { ?>
 											<input type="text" name="websites[]" id="websites" value="<?php echo $website; ?>"/>
 								 <?php 	} ?>

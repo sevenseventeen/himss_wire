@@ -7,7 +7,7 @@
 <div id="main_content" class="rounded_corners_10 module_920 inner_shadow_2">
 	<?php echo form_open('admin/update_faq');?>
 		<fieldset>
-			<legend>Edit FAQ</legend>
+			<h2>Edit FAQ</h2>
 				<label>FAQ Question</label>
 					<?php echo form_input('faq_question', set_value('faq_question', $faq[0]->faq_question)); ?>
 					<?php echo form_error('faq_question'); ?>
@@ -18,11 +18,10 @@
 					<br class="clear_float" />
 		</fieldset>
 		<?php echo form_hidden('faq_id', $faq[0]->faq_id); ?>
-		<input type="submit" />
+		<input type="image" src="<?php echo base_url().'_images/submit.png'; ?>" />
 	<?php echo form_close(); ?>
 	<a class="delete" href="<?php echo base_url(); ?>admin/delete_faq/<?php echo $faq[0]->faq_id; ?>">Delete FAQ</a>
 </div>
-
 <br class="clear_float" />
 
 <?php 

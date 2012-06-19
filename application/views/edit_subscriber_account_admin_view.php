@@ -13,7 +13,7 @@
 				<?php echo form_error('company_name'); ?>
 				<br class="clear_float" />
 			<label>Website</label>
-				<?php echo form_input('website', set_value('website', $subscriber_account[0]->website)); ?>
+				<?php echo form_input('website', set_value('website', $subscriber_account[0]->url)); ?>
 				<?php echo form_error('website'); ?>
 				<br class="clear_float" />
 			<label>First Name</label>
@@ -56,13 +56,10 @@
 		<?php echo form_hidden('subscriber_account_id', $subscriber_account[0]->subscriber_account_id); ?>
 		<?php echo form_hidden('user_id', $subscriber_account[0]->user_id); ?>
 		<input type="image" src="<?php echo base_url().'_images/submit.png'; ?>" />		
-	
 	<?php echo form_close(); ?>
-	<a class="delete" href="<?php echo base_url(); ?>admin/delete_account/<?php echo $user_account[0]->user_id; ?>">Delete Account</a>
 	
 	<!-- ••••••••••••• Add Subscription Package ••••••••••••••••••• -->
 	
-	<?php //print_r($subscription_details); ?>
 	<?php if ($subscription_details) { ?>
 		<?php echo form_open('admin/update_subscription'); ?>
 			<fieldset>
@@ -93,10 +90,9 @@
 			<input type="image" src="<?php echo base_url().'_images/submit.png'; ?>" />
 		<?php echo form_close(); ?>
 	<? } else { ?>
-		<h3>No subscription package found.</h3>
 			<?php echo form_open('admin/add_subscription_package'); ?>
 				<fieldset>
-					<legend>Add Subscription Package</legend>
+					<h2>Add Subscription Package</h2>
 					<label>Subscription Summary</label>
 						<?php echo form_textarea('subscription_summary', set_value('subscription_summary', '')); ?>
 						<?php echo form_error('subscription_summary'); ?>
@@ -123,9 +119,8 @@
 				<input type="image" src="<?php echo base_url().'_images/submit.png'; ?>" />		
 			<?php echo form_close(); ?>
 	<?php } ?>
-	
+	<a class="delete" href="<?php echo base_url(); ?>admin/delete_account/<?php echo $user_account[0]->user_id; ?>">Delete Account</a>
 </div>
-
 <br class="clear_float" />
 
 <?php 

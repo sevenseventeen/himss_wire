@@ -9,7 +9,7 @@
 			<h2><?php echo $subscriber_account[0]->company_name; ?></h2>
 			<p>
 				Company Name: 	<span class="data"><?php echo $subscriber_account[0]->company_name; ?></span><br />
-				Website: 		<span class="data"><?php echo $subscriber_account[0]->website; ?></span><br />
+				Website: 		<span class="data"><?php echo $subscriber_account[0]->url; ?></span><br />
 				First Name:		<span class="data"><?php echo $subscriber_account[0]->first_name; ?></span><br />
 				Last Name: 		<span class="data"><?php echo $subscriber_account[0]->last_name; ?></span><br />
 				Phone Number: 	<span class="data"><?php echo $subscriber_account[0]->phone_number; ?></span><br />
@@ -26,8 +26,9 @@
 				$subscriber_account_id = $subscriber_account[0]->subscriber_account_id;
 			?>
 			
-			<h2>Subscription Package</h2>
+			
 			<?php if ($subscription_details) { ?>
+				<h2>Subscription Package</h2>
 				<?php 
 					$today_unix = unix_timestamp_to_unix_timestamp_without_time(now());
 					$end_date_unix = human_to_unix($subscription_details[0]->subscription_end_date);
@@ -50,10 +51,9 @@
 				
 				<!-- If no subscription package found, add a subscription. -->
 				
-				<h3>No subscription package found.</h3>
 				<?php echo form_open('admin/add_subscription_package'); ?>
 					<fieldset>
-						<legend>Add Subscription Package</legend>
+						<h2>Add Subscription Package</h2>
 						<label>Subscription Summary</label>
 							<?php echo form_textarea('subscription_summary', set_value('subscription_summary', '')); ?>
 							<?php echo form_error('subscription_summary'); ?>
@@ -77,16 +77,16 @@
 					</fieldset>
 					<?php echo form_hidden('subscriber_account_id', $subscriber_account[0]->subscriber_account_id); ?>
 					<?php echo form_hidden('user_id', $subscriber_account[0]->user_id); ?>
-					<input type="submit" />		
+					<input type="image" src="<?php echo base_url().'_images/submit.png'; ?>" />	
 				<?php echo form_close(); ?>
 			<?php } ?>
 			
-			<h3>Past Reports</h3>
+			<h2>Past Reports</h2>
 			<?php foreach ($reports as $report) { ?>
 				<a href="<?php echo base_url().'_reports/'.$report->report_path ?>"><?php echo $report->report_title; ?></a><br /> 
 			<? } ?>
 			
-			<h3>Upload Report</h3>
+			<h2>Upload Report</h2>
 			<?php echo form_open_multipart('admin/add_report');?>
 				<fieldset>
 					<label>Report Title</label>
