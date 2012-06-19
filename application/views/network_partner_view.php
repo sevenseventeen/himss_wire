@@ -4,22 +4,18 @@
 	$this->load->view('_includes/header', $data);
 ?>
 
-<div id="main_content" class="rounded_corners_10 module_600 inner_shadow_2">
-	<p>General intro content</p>
-	
+<div id="main_content" class="rounded_corners_10 module_920 inner_shadow_2">
+	<p>General Intro Content</p>
 	<h1><?php echo $network_partner[0]->company_name; ?></h1>
-	
 	<h2>Widget Embed Code</h2>
-	
 	<?php 
-		print_r($feed_modules); 
-		$widget_code = "<script type='text/javascript' src='http://cdn.widgetserver.com/syndication/subscriber/InsertWidget.js'></script>\n<script type='text/javascript'>if (WIDGETBOX) WIDGETBOX.renderWidget('2289056e-fbb8-422d-81db-d325f04dd610');</script>";	
-		echo $widget_code;
-		echo form_textarea('widget_code', set_value('widget_code', $widget_code)); 
+		foreach($feed_modules as $feed_module) {
+			echo "<h3>".$feed_module->feed_module_name."</h3>";
+			echo $feed_module->feed_module_code;
+			echo form_textarea('feed_module_code', set_value('feed_module_code', $feed_module->feed_module_code));
+		} 
 	?>
-	
 	<h2>FAQ's</h2>
-	
 	<?php 
 		foreach ($faqs as $faq) {
 			echo "<p class='question'>$faq->faq_question</p>";
@@ -27,9 +23,7 @@
 			echo "<hr />";
 		}
 	?>
-	
-	<h2>Support Request</h2>
-	
+	<h2>Support &amp; Custom Widget Request</h2>
 	<?php echo form_open('partners/request_support'); ?>
 		<fieldset>
 			<label>First Name</label>
@@ -61,12 +55,10 @@
 				<?php echo form_error('request_specifics'); ?>
 				<br class="clear_float" />
 		</fieldset>
-		<input type="submit" />		
+		<input type="image" src="<?php echo base_url().'_images/submit.png'; ?>" />	
 	<?php echo form_close(); ?>
 	<p><a href='<?php echo base_url()."edit_network_partner_account/" ?>'>Edit This Account</a></p>
-
 </div>
-
 <br class="clear_float" />	
 
 <?php 

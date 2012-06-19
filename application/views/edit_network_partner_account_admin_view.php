@@ -5,22 +5,24 @@
 ?>
 
 <div id="main_content" class="rounded_corners_10 module_920 inner_shadow_2">
-	
 	<pre>
-	<?php //print_r($network_partner_account); ?>
-	<?php //print_r($user_account); ?>
+		<?php //print_r($network_partner_account); ?>
 	</pre>
 	<?php echo form_open('admin/update_network_partner_account'); ?>
 		<fieldset>
+			<h1><?php echo validation_errors(); ?></h1>
 			<h2>Update Network Partner Account</h2>
 			<label>Company Name</label> 
 				<?php echo form_input('company_name', set_value('company_name', $network_partner_account[0]->company_name)); ?>
 				<?php echo form_error('company_name'); ?>
 				<br class="clear_float" />
-			<label>Website</label>
-				<?php echo form_input('website', set_value('website', $network_partner_account[0]->website)); ?>
-				<?php echo form_error('website'); ?>
-				<br class="clear_float" />
+			<label>Website(s) <a href="#" id="add_website">[+] Add Website</a></label>
+				<div id="website_container">
+					<?php foreach ($network_partner_account as $website) { ?>
+						<input type="text" name="websites[]" id="websites" value="<?php echo $website->url; ?>"/><br />
+					<?php } ?>
+				</div>
+				<?php echo form_error('websites[]'); ?>
 			<label>First Name</label>
 				<?php echo form_input('first_name', set_value('first_name', $network_partner_account[0]->first_name)); ?>
 				<?php echo form_error('first_name'); ?>
@@ -56,6 +58,30 @@
 			<label>Password</label>
 				<?php echo form_input('password', set_value('password', $user_account[0]->password)); ?>
 				<?php echo form_error('password'); ?>
+				<br class="clear_float" />
+		</fieldset>
+		<?php echo form_hidden('network_partner_account_id', $network_partner_account[0]->network_partner_account_id); ?>
+		<?php echo form_hidden('user_id', $network_partner_account[0]->user_id); ?>
+		<input type="image" src="<?php echo base_url().'_images/submit.png'; ?>" />		
+	<?php echo form_close(); ?>
+	<h2>Current Feed modules</h2>
+	<p>
+	<?php 
+		foreach ($feed_modules as $feed_module) {
+			echo "<a href='".base_url()."admin/edit_feed_module/".$feed_module->feed_module_id."'>".$feed_module->feed_module_name."</a><br />";
+		}
+	?>
+	</p>
+	<?php echo form_open('admin/add_feed_module'); ?>
+		<fieldset>
+			<h2>Add Feed Module</h2>
+			<label>Module Name</label> 
+				<?php echo form_input('feed_module_name', set_value('feed_module_name')); ?>
+				<?php echo form_error('feed_module_name'); ?>
+				<br class="clear_float" />
+			<label>Module Code</label>
+				<?php echo form_textarea('feed_module_code', set_value('feed_module_code')); ?>
+				<?php echo form_error('feed_module_code'); ?>
 				<br class="clear_float" />
 		</fieldset>
 		<?php echo form_hidden('network_partner_account_id', $network_partner_account[0]->network_partner_account_id); ?>

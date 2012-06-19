@@ -38,6 +38,11 @@ class Content_Model extends CI_Model {
 		return $result;
 	}
 	
+	function add_feed_module($data) {
+		$result = $this->db->insert('feed_modules', $data);
+		return $result;
+	}
+	
 	/*
 	 * 
 	 * Get Functions
@@ -217,6 +222,14 @@ class Content_Model extends CI_Model {
 		$query = $this->db->get();
 		return $query->result();
 	}
+
+	function get_feed_module_by_id($feed_module_id) {
+		$this->db->select('*');
+		$this->db->from('feed_modules');
+		$this->db->where('feed_module_id', $feed_module_id);
+		$query = $this->db->get();
+		return $query->result();
+	}
 	
 	/*
 	 * 
@@ -260,6 +273,11 @@ class Content_Model extends CI_Model {
     	return $result;
 	}
 	
+	function update_feed_module($feed_module_id, $data) {
+		$result = $this->db->update('feed_modules', $data, "feed_module_id = $feed_module_id");
+    	return $result;
+	}
+	
 	// TODO This seems a little convoluted, double check this when awake.
 	// TODO The content should probably be based on page_content_id rather than page_id
 	
@@ -294,6 +312,11 @@ class Content_Model extends CI_Model {
 	function delete_faq($faq_id) {
 		$faq_deleted = $this->db->delete('faqs', "faq_id = $faq_id");
 		return $faq_deleted;
+	}
+	 
+	function delete_feed_module($feed_module_id) {
+		$feed_module_deleted = $this->db->delete('feed_modules', "feed_module_id = $feed_module_id");
+		return $feed_module_deleted;
 	}
 
 }

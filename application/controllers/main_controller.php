@@ -10,7 +10,7 @@ class Main_Controller extends CI_Controller {
 			//echo "not logged in";
 		}
 		$this->load->model('content_model');
-		$data['articles'] = $this->content_model->get_published_articles('5');
+		$data['articles'] = $this->content_model->get_published_articles('10');
 		$data['feature_module'] = $this->content_model->get_feature_module();
 		$data['banner_ad'] = $this->content_model->get_banner_ads();
 		$data['feature_module_optional'] = $this->content_model->get_feature_module_optional();
@@ -142,7 +142,7 @@ class Main_Controller extends CI_Controller {
 		$this->load->model('account_model');
 		$this->load->model('user_model');
 		$data['network_partner'] = $this->account_model->get_network_partner_by_user_id($user_id);
-		$data['feed_modules'] = $this->account_model->get_feeds_by_user_id($user_id);
+		$data['feed_modules'] = $this->account_model->get_feed_modules_by_user_id($user_id);
 		$data['faqs'] = $this->content_model->get_faqs();
 		$data['user'] = $this->user_model->get_user_by_id($user_id);
 		$this->load->view('network_partner_view', $data);
@@ -178,7 +178,7 @@ class Main_Controller extends CI_Controller {
 		$subscriber_account_id = $this->input->post('subscriber_account_id');
 		$user_id = $this->input->post('user_id');
 		if (!$this->auth->logged_in()) {
-			redirect('login');
+			redirect('admin/login');
 		}
 		$this->load->model('account_model');
 		$this->load->model('user_model');
@@ -250,7 +250,7 @@ class Main_Controller extends CI_Controller {
 		$network_partner_account_id = $this->input->post('network_partner_account_id');
 		$user_id = $this->input->post('user_id');
 		if (!$this->auth->logged_in()) {
-			redirect('login');
+			redirect('admin/login');
 		}
 		$this->load->model('account_model');
 		$this->load->model('user_model');

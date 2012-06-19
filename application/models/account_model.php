@@ -33,8 +33,8 @@ class Account_Model extends CI_Model {
 		return $result; 
 	}
 	
-	function add_websites($data) {
-		$result = $this->db->insert('network_partner_websites', $data);
+	function add_website($data) {
+		$result = $this->db->insert('external_account_websites', $data);
 		return $result; 
 	}
 	
@@ -86,7 +86,8 @@ class Account_Model extends CI_Model {
 	function get_subscriber_by_user_id($user_id) {
 		$this->db->select('*');
 		$this->db->from('subscriber_accounts');
-		$this->db->where('user_id', $user_id);
+		$this->db->where('subscriber_accounts.user_id', $user_id);
+		$this->db->join('external_account_websites', 'external_account_websites.user_id = subscriber_accounts.user_id', 'left');
 		$query = $this->db->get();
 		return $query->result();
 	}
@@ -102,6 +103,15 @@ class Account_Model extends CI_Model {
 	function get_network_partner_by_user_id($user_id) {
 		$this->db->select('*');
 		$this->db->from('network_partner_accounts');
+		$this->db->where('network_partner_accounts.user_id', $user_id);
+		$this->db->join('external_account_websites', 'external_account_websites.user_id = network_partner_accounts.user_id', 'left');
+		$query = $this->db->get();
+		return $query->result();
+	}
+	
+	function get_feed_modules_by_user_id($user_id){
+		$this->db->select('*');
+		$this->db->from('feed_modules');
 		$this->db->where('user_id', $user_id);
 		$query = $this->db->get();
 		return $query->result();
@@ -146,15 +156,6 @@ class Account_Model extends CI_Model {
 		return $query->result();
 	}
 	
-	function get_feeds_by_user_id($user_id) {
-		$this->db->select('*');
-		$this->db->from('feed_modules');
-		$query = $this->db->get();
-		return $query->result();
-	}
-	
-	
-	
 	/*
 	 * 
 	 * Update Functions 
@@ -192,7 +193,14 @@ class Account_Model extends CI_Model {
 	function delete_account($user_id) {
 		$user_deleted = $this->db->delete('network_partner_accounts', "user_id = $user_id");
 		$user_deleted = $this->db->delete('subscriber_accounts', "user_id = $user_id");
+		$user_deleted = $this->db->delete('administrator_accounts', "user_id = $user_id");
+		$user_deleted = $this->db->delete('editor_accounts', "user_id = $user_id");
 		return $user_deleted;
+	}
+	
+	function delete_websites($user_id) {
+		$sites_deleted = $this->db->delete('external_account_websites', "user_id = $user_id");
+		return $sites_deleted;
 	}
 	
 	

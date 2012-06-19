@@ -126,8 +126,15 @@
 			
 			// Show publish date when "draft" is unchecked. 
 			
+			$(document).ready(function() {
+				if ( $("#draft_status").attr("checked") == "checked") {
+					$("#publish_date_container").hide();
+				} else {
+					$("#publish_date_container").show();
+				}
+			});
+			
 			$(function($) {
-				$("#publish_date_container").hide();
 				$("#draft_status").click(function() {
   					if (this.checked == true) {
   						$("#publish_date_container").hide();
@@ -141,19 +148,29 @@
 			
         	$(function() {
             	$('#add_website').click(function() {
-                	$("<br />").appendTo('#website_container');
                 	$('#websites').clone().val('').appendTo('#website_container');
+                	$("<br />").appendTo('#website_container');
                 	return false;
             	});
         	});
+        	
+        	// Hide "add website" link for Subscriber accounts
+        	
+        	$(function($) {
+        		$('#add_website').hide();
+        		$('#account_type').change(function () { 
+        			if ($(this).val() == 4) {
+        				$('#add_website').show();
+        			} else {
+        				$('#add_website').hide();
+        			}
+    			});
+			});
 
 		</script>
 		
 		<link type="text/css" href="<?php echo base_url().'_css/jquery_ui_override.css'; ?>" rel="stylesheet" />
-
         <title>HIMMS Wire</title>
     </head>
-    
     <body id="home">
-        
         <div id="main_container">
