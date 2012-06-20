@@ -66,6 +66,15 @@ class Content_Model extends CI_Model {
 		$query = $this->db->get();
 		return $query->result();
 	}
+
+	function get_all_published_articles_by_account_id($subscriber_id) {
+		$this->db->select('*');
+		$this->db->from('articles');
+		$this->db->where('article_status', 'Published');
+		$this->db->where('subscriber_id', $subscriber_id);
+		$query = $this->db->get();
+		return $query->result();
+	}
 	
 	function get_pending_articles($limit='1000000') {
 		$this->db->select('*');

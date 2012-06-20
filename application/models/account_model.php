@@ -92,6 +92,7 @@ class Account_Model extends CI_Model {
 		$this->db->from('subscriber_accounts');
 		$this->db->where('subscriber_accounts.user_id', $user_id);
 		$this->db->join('external_account_websites', 'external_account_websites.user_id = subscriber_accounts.user_id', 'left');
+		$this->db->join('feed_modules', 'feed_modules.user_id = subscriber_accounts.user_id', 'left');
 		$query = $this->db->get();
 		return $query->result();
 	}

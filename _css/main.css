@@ -184,6 +184,16 @@ table.network_partners .website {
 	width:350px;
 }
 
+
+
+
+/* ************** Feed Module View ************** */
+
+.feed_module_demo .feed_module {
+	margin-top:20px;
+}
+
+
 /* ************** Admin Panel ************** */
 
 #accordion h2 {

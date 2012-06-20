@@ -550,13 +550,20 @@
 					</table>
 				</div>
 				<div id="tabs-3">
-					<p>Individual Subscriber</p>
-					a.	Subscriber name & contact info
+					<h2>Individual Subscribers</h2>
+					<?php 
+						foreach ($subscribers as $subscriber) {
+							//echo $subscriber->first_name." ".$subscriber->last_name."<br />";
+							echo "<a href='".base_url()."subscriber_account_report/$subscriber->user_id'>".$subscriber->first_name." ".$subscriber->last_name."</a><br />";
+						}	 
+					?>
+a.	Subscriber name & contact info
 b.	Subscription summary
 c.	Subscription dates
 d.	Number of stories purchased
 e.	Number remaining
 f.	Title and URL of each individual story currently published on HIMSSwire
+
 
 				</div>
 			</div> <!-- End Tabs -->

@@ -8,13 +8,13 @@
 	<p>General Intro Content</p>
 	<h1><?php echo $network_partner[0]->company_name; ?></h1>
 	<h2>Widget Embed Code</h2>
+	<p>
 	<?php 
 		foreach($feed_modules as $feed_module) {
-			echo "<h3>".$feed_module->feed_module_name."</h3>";
-			echo $feed_module->feed_module_code;
-			echo form_textarea('feed_module_code', set_value('feed_module_code', $feed_module->feed_module_code));
+			echo "<a href='".base_url()."feed_module/".$feed_module->feed_module_id."'>$feed_module->feed_module_name</a><br />";
 		} 
 	?>
+	</p>
 	<h2>FAQ's</h2>
 	<?php 
 		foreach ($faqs as $faq) {
