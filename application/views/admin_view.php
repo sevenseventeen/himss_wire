@@ -456,6 +456,112 @@
 				</div>
 			</div> 	<!-- End Tabs -->
 		</div> 		<!-- End  Accordion Item -->
+		
+		<!-- ••••••••••• Reporting ••••••••••••••• -->
+		
+		<h3><a href="#">Reporting</a></h3>
+		<div>
+			<div class="tabs">
+				<ul>
+					<li><a href="#tabs-1">All Subscribers</a></li>
+					<li><a href="#tabs-2">All Partners</a></li>
+					<li><a href="#tabs-3">Individual Subscribers</a></li>
+				</ul>
+				<div id="tabs-1">
+					<h2>All Subscribers</h2>
+					<table>
+						<tr class="heading">
+							<td class="contact_info">Subscriber<br /> Contact</td>
+							<td>Subscription<br /> Start Date</td>
+							<td>Subscription<br /> End Date</td>
+							<td>Stories<br /> Purchased</td>
+							<td>Stories<br /> Remaining</td>
+						</tr>
+						<?php foreach ($subscribers as $subscriber) { ?>
+							<?php 
+								$start_date	= new DateTime($subscriber->subscription_start_date);
+								$end_date	= new DateTime($subscriber->subscription_start_date);
+								$start_date_formatted	= $start_date->format('m-d-Y');
+								$end_date_formatted 	= $end_date->format('m-d-Y');
+							?>
+							<tr>
+								<td class="contact_info">
+									<strong><?php echo $subscriber->first_name." ".$subscriber->last_name;  ?></strong><br />
+									<?php echo $subscriber->street_address; ?><br />
+									<?php echo $subscriber->city.", ".$subscriber->state." ". $subscriber->zip_code; ?><br />
+									<?php echo $subscriber->phone_number; ?><br />
+									<?php echo "<a href='mailto:$subscriber->email;'>$subscriber->email</a>"; ?>
+								</td>
+								<td><?php echo $start_date_formatted; ?></td>
+								<td><?php echo $end_date_formatted; ?></td>
+								<td><?php echo $subscriber->stories_purchased; ?></td>
+								<td><?php echo $subscriber->stories_remaining; ?></td>
+							</tr>	
+						<?php } ?>
+					</table>
+				</div>
+				<div id="tabs-2">
+					<h2>All Network Partners</h2>
+					<table class="network_partners">
+						<!-- <pre>
+							<?php print_r($network_partners)?>
+						</pre> -->
+						<tr class="heading">
+							<td class="contact_info">Contact Information</td>
+							<td class="website">Website(s)</td>
+							<td>Start Date</td>
+						</tr>
+						
+						<?php 
+							// TODO This breaks MVC pattern, but I can't figure out how to load multiple website records for each Network Partner
+							// without creating a whole new record for the Network Partner.
+						?>  
+						
+						<?php $this->load->model('account_model'); // TODO This breaks MVC pattern ?>
+						
+						
+						
+						<?php foreach ($network_partners as $network_partner) { ?>
+							<?php 
+								$start_date	= new DateTime($network_partner->created_on);
+								$start_date_formatted = $start_date->format('m-d-Y');
+								$user_id = $network_partner->user_id;
+								$websites = $this->account_model->get_websites_by_user_id($user_id);
+							?>
+							<tr>
+								<td class="contact_info">
+									<strong><?php echo $network_partner->company_name; ?></strong><br />
+									<?php echo $network_partner->first_name." ".$network_partner->last_name;  ?><br />
+									<?php echo $network_partner->street_address; ?><br />
+									<?php echo $network_partner->city.", ".$network_partner->state." ". $network_partner->zip_code; ?><br />
+									<?php echo $network_partner->phone_number; ?><br />
+									<?php echo "<a href='mailto:$network_partner->email;'>$network_partner->email</a>"; ?>
+								</td>
+								<td>
+									<?php 
+										foreach($websites as $website) {
+											echo $website->url."<br />";
+										} 
+									?>
+								</td>
+								<td><?php echo $start_date_formatted; ?></td>
+							</tr>	
+						<?php } ?>
+					</table>
+				</div>
+				<div id="tabs-3">
+					<p>Individual Subscriber</p>
+					a.	Subscriber name & contact info
+b.	Subscription summary
+c.	Subscription dates
+d.	Number of stories purchased
+e.	Number remaining
+f.	Title and URL of each individual story currently published on HIMSSwire
+
+				</div>
+			</div> <!-- End Tabs -->
+		</div> <!-- End  Accordion Item -->
+		
 		<?php } ?> 	<!-- End if_admin -->
 	</div>			<!-- End  Accordion Container -->
 </div> 				<!-- End Main Content -->

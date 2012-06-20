@@ -48,6 +48,8 @@ class Account_Model extends CI_Model {
 	function get_subscribers() {
 		$this->db->select('*');
 		$this->db->from('subscriber_accounts');
+		$this->db->join('subscriptions', 'subscriptions.subscriber_account_id = subscriber_accounts.subscriber_account_id', 'left');
+		$this->db->join('users', 'users.user_id = subscriber_accounts.user_id', 'left');
 		$query = $this->db->get();
 		return $query->result();
 	}
@@ -64,6 +66,8 @@ class Account_Model extends CI_Model {
 	function get_network_partners() {
 		$this->db->select('*');
 		$this->db->from('network_partner_accounts');
+		$this->db->join('users', 'users.user_id = network_partner_accounts.user_id', 'left');
+		//$this->db->join('external_account_websites', 'external_account_websites.user_id = network_partner_accounts.user_id', 'left');
 		$query = $this->db->get();
 		return $query->result();
 	}
@@ -105,6 +109,14 @@ class Account_Model extends CI_Model {
 		$this->db->from('network_partner_accounts');
 		$this->db->where('network_partner_accounts.user_id', $user_id);
 		$this->db->join('external_account_websites', 'external_account_websites.user_id = network_partner_accounts.user_id', 'left');
+		$query = $this->db->get();
+		return $query->result();
+	}
+	
+	function get_websites_by_user_id($user_id) {
+		$this->db->select('*');
+		$this->db->from('external_account_websites');
+		$this->db->where('external_account_websites.user_id', $user_id);
 		$query = $this->db->get();
 		return $query->result();
 	}

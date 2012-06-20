@@ -176,16 +176,14 @@ class Admin extends CI_Controller {
 		if(!empty($websites)) {
 			array_filter($websites);
 		} else {
-			$this->form_validation->set_rules('websites[]', 'Website', 'trim|required|prep_url');	
+			$this->form_validation->set_rules('websites[]', 'Website', 'trim|required');	
 		}
-		
 		$this->load->model('account_model');
 		$this->load->model('user_model');
 		$this->form_validation->set_message('is_unique', 'Sorry, that email address is already in use.');
 		$this->form_validation->set_error_delimiters('<div class="error">', '</div>');
 		$this->form_validation->set_rules('account_type_id', 'Account Type', 'required');
 		$this->form_validation->set_rules('company_name', 'Company Name', 'required');
-		//$this->form_validation->set_rules('websites[]', 'Website', 'trim|required');
 		$this->form_validation->set_rules('first_name', 'First Name', 'required');
 		$this->form_validation->set_rules('last_name', 'Last Name', 'required');
 		$this->form_validation->set_rules('phone_number', 'Phone Number', 'required');
@@ -204,7 +202,7 @@ class Admin extends CI_Controller {
 				'account_type_id'	=> $this->input->post('account_type_id'),
 				'email'		 		=> $this->input->post('email'),
 				'password'			=> $this->input->post('password'),
-				'created_on'		=> now()
+				'created_on'		=> unix_to_human(time(), TRUE, 'us')
 			);
 			$user_created = $this->user_model->add_user($user_data);
 			if($user_created) {
@@ -245,7 +243,7 @@ class Admin extends CI_Controller {
 						foreach ($websites as $website) {
 							$website_data = array(
 								'user_id'	=> $user_id,
-								'url'		=> $website
+								'url'		=> prep_url($website)
 							);
 							$this->account_model->add_website($website_data);
 						}		
@@ -255,7 +253,7 @@ class Admin extends CI_Controller {
 						foreach ($websites as $website) {
 							$website_data = array(
 								'user_id'	=> $user_id,
-								'url'		=> $website
+								'url'		=> prep_url($website)
 							);
 							$this->account_model->add_website($website_data);
 						}

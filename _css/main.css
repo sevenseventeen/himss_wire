@@ -156,6 +156,34 @@ li {
 	list-style-type: disc;
 }
 
+table td {
+	border:1px solid #ccc;
+	width:130px;
+	text-align:center;
+}
+
+table a {
+	color:#005DAB !important;
+}
+
+tr.heading td {
+	height:35px;
+}
+
+td.contact_info {
+	width:250px;
+	text-align:left;
+	padding:10px;
+}
+
+table.network_partners .contact_info {
+	width:300px;
+}
+
+table.network_partners .website {
+	width:350px;
+}
+
 /* ************** Admin Panel ************** */
 
 #accordion h2 {
