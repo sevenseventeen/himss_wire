@@ -14,7 +14,7 @@
 				<?php echo form_error('email'); ?>
 				<br class="clear_float" />
 		</fieldset>
-		<input type="submit" />
+		<input type="image" src="<?php echo base_url().'_images/submit.png'; ?>" />
 	<?php echo form_close(); ?>
 </div>
 <br class="clear_float" />

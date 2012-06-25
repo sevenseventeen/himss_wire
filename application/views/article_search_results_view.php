@@ -24,9 +24,8 @@
 				</div>
 			<?php } ?>		
 		<?php } else { ?>
-			<div class="article_snippet">
+			<div>
 				<h2>No results found.</h2>
-				<br class=" clear_float" />
 				<p>Sorry, we did not find any articles matching that search term.</p>
 			</div>
 		<?php } ?>

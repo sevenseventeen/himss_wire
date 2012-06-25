@@ -9,7 +9,7 @@ class Partners extends CI_Controller {
 	public function request_support() {
 		date_default_timezone_set('UTC');
 		if (!$this->auth->logged_in()) {
-			redirect('admin/login');
+			redirect('authentication/login');
 		}
 		$this->load->model('account_model');
 		$this->load->model('user_model');

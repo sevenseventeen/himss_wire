@@ -7,9 +7,7 @@
 <div id="main_content" class="rounded_corners_10 module_920 inner_shadow_2">
 	<h1><?php echo $this->session->flashdata('message'); ?></h1>
 	<h2>Edit Article</h2>
-	<?php echo validation_errors(); ?>
 	<?php echo form_open('admin/update_article'); ?>
-		
 		<fieldset>
 			<label>Subscriber</label>
 			<select name="subscriber_id">
@@ -71,7 +69,11 @@
 				<br class="clear_float" />
 			<div id="publish_date_container">
 				<label>Publish Date</label>
-					<input type="text" name="publish_date" id="publish_date" class="datepicker" value="<?php echo $article[0]->publish_date; ?>"/>
+					<?php 
+						$publish_datetime = new DateTime($article[0]->publish_date);
+						$publish_date = $publish_datetime->format('Y-m-d');
+					?> 
+					<input type="text" name="publish_date" id="publish_date" class="datepicker" value="<?php echo $publish_date; ?>"/>
 					<?php echo form_error('publish_date'); ?>
 					<br class="clear_float" />
 			</div>

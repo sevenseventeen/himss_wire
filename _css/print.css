@@ -1,4 +1,4 @@
-header, footer, aside, #breadcrumb, #print_share {
+header, footer, aside, #breadcrumb, #print_share, .addthis_toolbox {
 	display: none; 
 }
 

@@ -5,7 +5,7 @@
 ?>
 
 <div id="main_content" class="rounded_corners_10 module_920 inner_shadow_2">
-	<?php echo form_open('admin/login_user'); ?>
+	<?php echo form_open('authentication/login_user'); ?>
 		<fieldset>
 			<h2>Login</h2>
 			<label>Email</label> 
@@ -14,6 +14,7 @@
 				<br class="clear_float" />
 			<label>Password</label>
 				<?php echo form_input('password', set_value('password', 'pw')); ?>
+				<a href="<?php echo base_url(); ?>forgot_password">Forgot Password</a>
 				<?php echo form_error('password'); ?>
 				<br class="clear_float" />
 		</fieldset>

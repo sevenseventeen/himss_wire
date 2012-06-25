@@ -309,6 +309,10 @@
 					<?php echo form_open_multipart('admin/update_feature_module');?>
 						<fieldset>
 							<h2>Edit Feature Module</h2>
+							<label>Feature Module Title</label>
+								<?php echo form_input('module_title', set_value('module_title', $feature_module[0]->module_title)); ?>
+								<?php echo form_error('module_title'); ?>
+								<br class="clear_float" />
 							<label>Feature Module Content</label>
 								<?php echo form_textarea('module_text', set_value('module_text', $feature_module[0]->module_text), 'class="ckeditor"'); ?>
 								<?php echo form_error('module_text'); ?>
@@ -334,8 +338,11 @@
 					<?php echo form_open_multipart('admin/update_feature_module_optional');?>
 						<fieldset>
 							<h2>Edit Optional Feature Module</h2>
+							<label>Feature Module Title</label>
+								<?php echo form_input('module_title', set_value('module_title', $feature_module_optional[0]->module_title)); ?>
+								<?php echo form_error('module_title'); ?>
+								<br class="clear_float" />
 							<label>Feature Module Content</label>
-								<?php echo "ENABLED: ".$feature_module_optional[0]->enabled; ?>
 								<?php echo form_textarea('module_text_optional', set_value('module_text_optional', $feature_module_optional[0]->module_text), 'class="ckeditor"'); ?>
 								<?php echo form_error('module_text_optional'); ?>
 								<br class="clear_float" />
@@ -554,17 +561,9 @@
 					<?php 
 						foreach ($subscribers as $subscriber) {
 							//echo $subscriber->first_name." ".$subscriber->last_name."<br />";
-							echo "<a href='".base_url()."subscriber_account_report/$subscriber->user_id'>".$subscriber->first_name." ".$subscriber->last_name."</a><br />";
+							echo "<a href='".base_url()."admin/subscriber_account_report/$subscriber->user_id'>".$subscriber->first_name." ".$subscriber->last_name."</a><br />";
 						}	 
 					?>
-a.	Subscriber name & contact info
-b.	Subscription summary
-c.	Subscription dates
-d.	Number of stories purchased
-e.	Number remaining
-f.	Title and URL of each individual story currently published on HIMSSwire
-
-
 				</div>
 			</div> <!-- End Tabs -->
 		</div> <!-- End  Accordion Item -->

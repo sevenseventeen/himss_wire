@@ -5,12 +5,12 @@ class Admin extends CI_Controller {
 	public function __construct() {
 		parent::__construct();
 		$this->load->library('admin_library');
+		if ($this->auth->user_type() != "Administrator" && $this->auth->user_type() != "Editor") {
+			redirect('authentication/login');
+		}
 	}
 
 	public function index() {
-		if (!$this->auth->logged_in()) {
-			redirect('admin/login');
-		}
 		$this->admin_library->load_admin_view();
 	}
 	
@@ -32,8 +32,21 @@ class Admin extends CI_Controller {
 		$data['articles'] = $this->content_model->get_all_articles_by_account_id($subscriber_account_id);
 		$data['reports'] = $this->content_model->get_reports_by_subscriber_account_id($subscriber_account_id);
 		$this->load->view('subscriber_account_admin_view', $data);
-		
-	} 
+	}
+	
+	public function subscriber_account_report($user_id) {
+		$this->load->model('account_model');
+		$this->load->model('user_model');
+		$this->load->model('subscription_model');
+		$this->load->model('content_model');
+		$data['user_account'] = $this->user_model->get_user_by_id($user_id);
+		$data['subscriber_account'] = $this->account_model->get_subscriber_by_user_id($user_id);
+		$data['subscription_details'] = $this->subscription_model->get_subscription_by_account_id($data['subscriber_account'][0]->subscriber_account_id);
+		$data['articles'] = $this->content_model->get_all_articles_by_account_id($data['subscriber_account'][0]->subscriber_account_id);
+		$data['published_articles'] = $this->content_model->get_all_published_articles_by_account_id($data['subscriber_account'][0]->subscriber_account_id);
+		$data['reports'] = $this->content_model->get_reports_by_subscriber_account_id($data['subscriber_account'][0]->subscriber_account_id);
+		$this->load->view('subscriber_account_report_view', $data);
+	}
 	
 	/*
 	 * 
@@ -45,7 +58,7 @@ class Admin extends CI_Controller {
 	public function add_article() {
 		date_default_timezone_set('America/New_York');
 		if (!$this->auth->logged_in()) {
-			redirect('admin/login');
+			redirect('authentication/login');
 		}
 		$user_id = $this->session->userdata('user_id');
 		$this->load->model('content_model');
@@ -141,7 +154,7 @@ class Admin extends CI_Controller {
 	public function add_category() {
 		date_default_timezone_set('UTC');
 		if (!$this->auth->logged_in()) {
-			redirect('admin/login');
+			redirect('authentication/login');
 		}
 		$user_id = $this->session->userdata('user_id');
 		$this->load->model('content_model');
@@ -169,7 +182,7 @@ class Admin extends CI_Controller {
 		$account_type_id = $this->input->post('account_type_id');
 		date_default_timezone_set('UTC');
 		if (!$this->auth->logged_in()) {
-			redirect('admin/login');
+			redirect('authentication/login');
 		}
 		$this->load->library('form_validation');
 		$websites = $this->input->post('websites'); 
@@ -279,7 +292,7 @@ class Admin extends CI_Controller {
 		$account_type_id = $this->input->post('account_type_id');
 		date_default_timezone_set('UTC');
 		if (!$this->auth->logged_in()) {
-			redirect('admin/login');
+			redirect('authentication/login');
 		}
 		$this->load->model('account_model');
 		$this->load->model('user_model');
@@ -336,7 +349,7 @@ class Admin extends CI_Controller {
 		$user_id = $this->input->post('user_id');
 		date_default_timezone_set('UTC');
 		if (!$this->auth->logged_in()) {
-			redirect('admin/login');
+			redirect('authentication/login');
 		}
 		$this->load->model('subscription_model');
 		//$this->load->model('user_model');
@@ -576,49 +589,6 @@ class Admin extends CI_Controller {
 	
 	/*
 	 * 
-	 * Login Functions
-	 * 
-	 * 
-	 */
-	
-	public function login() {
-		$this->load->view('login_view');
-	}
-	 
-	public function login_user() {
-		$this->load->model('auth_model');
-		$email = $this->input->post('email');
-		$password = $this->input->post('password');
-		$logged_in = $this->auth_model->login($email, $password);
-		if ($logged_in) {
-			$user_id = $this->session->userdata('user_id');
-			switch ($this->auth->user_type()) {
-				case "Administrator":
-					redirect('admin');
-					break;
-				case "Editor":
-					redirect('admin');
-					break;
-				case "Network Partner":
-					redirect("network_partner/$user_id");
-					break;
-				default:
-					redirect("subscriber/$user_id");
-					break;
-			}
-		} else {
-			$this->load->view('logged_out_view');
-		}
-	}
-	
-	public function logout() {
-		$this->load->model('auth_model');
-		$this->auth_model->logout();
-		$this->load->view('logged_out_view');
-	}
-	
-	/*
-	 * 
 	 * Update Functions
 	 * 
 	 * 
@@ -627,7 +597,7 @@ class Admin extends CI_Controller {
 	public function update_article() {
 		$article_id = $this->input->post('article_id');
 		if (!$this->auth->logged_in()) {
-			redirect('admin/login');
+			redirect('authentication/login');
 		}
 		$this->load->model('content_model');
 		$this->load->library('form_validation');
@@ -713,7 +683,7 @@ class Admin extends CI_Controller {
 		$subscriber_account_id = $this->input->post('subscriber_account_id');
 		$user_id = $this->input->post('user_id');
 		if (!$this->auth->logged_in()) {
-			redirect('admin/login');
+			redirect('authentication/login');
 		}
 		$this->load->model('account_model');
 		$this->load->model('user_model');
@@ -777,7 +747,7 @@ class Admin extends CI_Controller {
 		$network_partner_account_id = $this->input->post('network_partner_account_id');
 		$user_id = $this->input->post('user_id');
 		if (!$this->auth->logged_in()) {
-			redirect('admin/login');
+			redirect('authentication/login');
 		}
 		$this->load->model('account_model');
 		$this->load->model('user_model');
@@ -854,7 +824,7 @@ class Admin extends CI_Controller {
 		$admin_account_id = $this->input->post('admin_account_id');
 		$user_id = $this->input->post('user_id');
 		if (!$this->auth->logged_in()) {
-			redirect('admin/login');
+			redirect('authentication/login');
 		}
 		$this->load->model('account_model');
 		$this->load->model('user_model');
@@ -899,7 +869,7 @@ class Admin extends CI_Controller {
 		$editor_account_id = $this->input->post('editor_account_id');
 		$user_id = $this->input->post('user_id');
 		if (!$this->auth->logged_in()) {
-			redirect('admin/login');
+			redirect('authentication/login');
 		}
 		$this->load->model('account_model');
 		$this->load->model('user_model');
@@ -943,7 +913,7 @@ class Admin extends CI_Controller {
 	public function update_category() {
 		$category_id = $this->input->post('article_category_id');
 		if (!$this->auth->logged_in()) {
-			redirect('admin/login');
+			redirect('authentication/login');
 		}
 		$this->load->model('content_model');
 		$this->load->library('form_validation');
@@ -973,7 +943,7 @@ class Admin extends CI_Controller {
 		$user_id = $this->input->post('user_id');
 		date_default_timezone_set('UTC');
 		if (!$this->auth->logged_in()) {
-			redirect('admin/login');
+			redirect('authentication/login');
 		}
 		$this->load->model('subscription_model');
 		$this->load->library('form_validation');
@@ -1017,11 +987,15 @@ class Admin extends CI_Controller {
 		$this->load->model('content_model');
 		$this->load->library('form_validation');
 		$this->form_validation->set_error_delimiters('<div class="error">', '</div>');
+		$this->form_validation->set_rules('module_title', 'Module Title', 'required');
 		$this->form_validation->set_rules('module_text', 'Module Text', 'required');
 		if ($this->form_validation->run() == FALSE) {
 			$this->admin_library->load_admin_view();
 		} else {
-			$module_data = array('module_text'	=> $this->input->post('module_text'));
+			$module_data = array(
+				'module_title'	=> $this->input->post('module_title'),
+				'module_text'	=> $this->input->post('module_text')
+			);
 			$module_updated = $this->content_model->update_feature_module($feature_module_id, $module_data);
 			if($module_updated) {
 				$this->session->set_flashdata('message', 'Success! Your edits have been saved.');
@@ -1038,12 +1012,14 @@ class Admin extends CI_Controller {
 		$this->load->model('content_model');
 		$this->load->library('form_validation');
 		$this->form_validation->set_error_delimiters('<div class="error">', '</div>');
+		$this->form_validation->set_rules('module_title', 'Module Title', 'required');
 		$this->form_validation->set_rules('module_text_optional', 'Module Text', 'required');
 		$this->form_validation->set_rules('enabled', 'Enabled', 'trim');
 		if ($this->form_validation->run() == FALSE) {
 			$this->admin_library->load_admin_view();
 		} else {
 			$module_data = array(
+				'module_title'	=> $this->input->post('module_title'),
 				'module_text'	=> $this->input->post('module_text_optional'),
 				'enabled'		=> $this->input->post('enabled')
 			);

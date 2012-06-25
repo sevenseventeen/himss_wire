@@ -42,7 +42,6 @@
 					?>
 				</h3>
 				<p><?php echo $article->article_summary; ?></p>
-				<p><a href="<?php echo base_url().'article/'.$article->article_id; ?>">Read Article</a></p>
 			</div>
 		<?php }?>
 	</div>

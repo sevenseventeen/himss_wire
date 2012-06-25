@@ -76,12 +76,18 @@
 					<?php echo form_input('stories_purchased', set_value('stories_purchased', $subscription_details[0]->stories_purchased)); ?>
 					<?php echo form_error('stories_purchased'); ?>
 					<br class="clear_float" />
+				<?php 
+					$start_datetime = new DateTime($subscription_details[0]->subscription_start_date);
+					$end_datetime = new DateTime($subscription_details[0]->subscription_end_date);
+					$start_date = $start_datetime->format('Y-m-d'); 
+					$end_date = $end_datetime->format('Y-m-d'); 
+				?>
 				<label>Subscription Start</label>
-					<?php echo form_input('subscription_start', set_value('subscription_start', $subscription_details[0]->subscription_start_date), 'class="datepicker"'); ?>
+					<?php echo form_input('subscription_start', set_value('subscription_start', $start_date), 'class="datepicker"'); ?>
 					<?php echo form_error('subscription_start'); ?>
 					<br class="clear_float" />
 				<label>Subscription End</label>
-					<?php echo form_input('subscription_end', set_value('subscription_end', $subscription_details[0]->subscription_end_date), 'class="datepicker"'); ?>
+					<?php echo form_input('subscription_end', set_value('subscription_end', $end_date), 'class="datepicker"'); ?>
 					<?php echo form_error('subscription_end'); ?>
 					<br class="clear_float" />
 			</fieldset>

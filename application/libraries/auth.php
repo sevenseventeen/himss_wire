@@ -411,6 +411,11 @@ class Auth {
 		return (bool) $this->ci->session->userdata('user_id');
 	}
 	
+	public function get_logged_in_user_id() {
+		$logged_in_user_id = $this->ci->session->userdata('user_id'); 
+		return $logged_in_user_id;
+	}
+	
 	public function user_type() {
 		$user_id = $this->ci->session->userdata('user_id');
 		$this->ci->load->model('user_model');

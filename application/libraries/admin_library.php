@@ -32,7 +32,7 @@ class Admin_Library {
 		if($data['user_type'] == "Administrator" || $data['user_type'] == "Editor") {
 			$this->ci->load->view('admin_view', $data);	
 		} else {
-			redirect('admin/login');
+			redirect('authentication/login');
 		}
 		
 	}

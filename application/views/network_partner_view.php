@@ -57,7 +57,7 @@
 		</fieldset>
 		<input type="image" src="<?php echo base_url().'_images/submit.png'; ?>" />	
 	<?php echo form_close(); ?>
-	<p><a href='<?php echo base_url()."edit_network_partner_account/" ?>'>Edit This Account</a></p>
+	<p><a href='<?php echo base_url()."edit_network_partner_account/".$user[0]->user_id ?>'>Edit This Account</a></p>
 </div>
 <br class="clear_float" />	
 

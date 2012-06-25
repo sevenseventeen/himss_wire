@@ -4,11 +4,6 @@ class Main_Controller extends CI_Controller {
 
 	public function index() {
 		$this->load->model('auth_model');
-		if ($this->auth_model->logged_in()) {
-			//echo "logged in";
-		} else {
-			//echo "not logged in";
-		}
 		$this->load->model('content_model');
 		$data['articles'] = $this->content_model->get_published_articles('10');
 		$data['feature_module'] = $this->content_model->get_feature_module();
@@ -17,10 +12,6 @@ class Main_Controller extends CI_Controller {
 		$this->load->view('home_view', $data);
 	}
 	
-	public function linked_in() {
-		$this->load->view('linked_in_view');
-	}
-
 	public function articles() {
 		$this->load->model('content_model');
 		$results = array();
@@ -138,6 +129,9 @@ class Main_Controller extends CI_Controller {
 	}
 	
 	public function network_partner($user_id) {
+		if ($user_id != $this->auth->get_logged_in_user_id()) {
+			redirect('authentication/login');
+		}
 		$this->load->model('content_model');
 		$this->load->model('account_model');
 		$this->load->model('user_model');
@@ -145,10 +139,13 @@ class Main_Controller extends CI_Controller {
 		$data['feed_modules'] = $this->account_model->get_feed_modules_by_user_id($user_id);
 		$data['faqs'] = $this->content_model->get_faqs();
 		$data['user'] = $this->user_model->get_user_by_id($user_id);
-		$this->load->view('network_partner_view', $data);
+		$this->load->view('network_partner_view', $data);	
 	}
 	
 	public function subscriber($user_id) {
+		if ($user_id != $this->auth->get_logged_in_user_id()) {
+			redirect('authentication/login');
+		}
 		$this->load->model('account_model');
 		$this->load->model('user_model');
 		$this->load->model('subscription_model');
@@ -161,38 +158,23 @@ class Main_Controller extends CI_Controller {
 		$this->load->view('subscriber_account_view', $data);
 	}
 	
-	public function subscriber_account_report($user_id) {
+	public function edit_subscriber_account($user_id) {
+		if ($user_id != $this->auth->get_logged_in_user_id()) {
+			redirect('authentication/login');
+		}
+		$user_id = $this->session->userdata('user_id'); 
 		$this->load->model('account_model');
 		$this->load->model('user_model');
-		$this->load->model('subscription_model');
-		$this->load->model('content_model');
 		$data['user_account'] = $this->user_model->get_user_by_id($user_id);
 		$data['subscriber_account'] = $this->account_model->get_subscriber_by_user_id($user_id);
-		$data['subscription_details'] = $this->subscription_model->get_subscription_by_account_id($data['subscriber_account'][0]->subscriber_account_id);
-		$data['articles'] = $this->content_model->get_all_articles_by_account_id($data['subscriber_account'][0]->subscriber_account_id);
-		$data['published_articles'] = $this->content_model->get_all_published_articles_by_account_id($data['subscriber_account'][0]->subscriber_account_id);
-		$data['reports'] = $this->content_model->get_reports_by_subscriber_account_id($data['subscriber_account'][0]->subscriber_account_id);
-		$this->load->view('subscriber_account_report_view', $data);
-	}
-	
-	public function edit_subscriber_account() {
-		if ($this->auth->logged_in()) {
-			$user_id = $this->session->userdata('user_id'); 
-			$this->load->model('account_model');
-			$this->load->model('user_model');
-			$data['user_account'] = $this->user_model->get_user_by_id($user_id);
-			$data['subscriber_account'] = $this->account_model->get_subscriber_by_user_id($user_id);
-			$this->load->view('edit_subscriber_account_view', $data);
-		} else {
-			redirect('admin/login');
-		}
+		$this->load->view('edit_subscriber_account_view', $data);
 	}
 	
 	public function update_subscriber_account() {
 		$subscriber_account_id = $this->input->post('subscriber_account_id');
 		$user_id = $this->input->post('user_id');
-		if (!$this->auth->logged_in()) {
-			redirect('admin/login');
+		if ($user_id != $this->auth->get_logged_in_user_id()) {
+			redirect('authentication/login');
 		}
 		$this->load->model('account_model');
 		$this->load->model('user_model');
@@ -247,24 +229,23 @@ class Main_Controller extends CI_Controller {
 		}
 	}
 
-	public function edit_network_partner_account() {
-		if ($this->auth->logged_in()) {
-			$user_id = $this->session->userdata('user_id'); 
-			$this->load->model('account_model');
-			$this->load->model('user_model');
-			$data['user_account'] = $this->user_model->get_user_by_id($user_id);
-			$data['network_partner_account'] = $this->account_model->get_network_partner_by_user_id($user_id);
-			$this->load->view('edit_network_partner_account_view', $data);
-		} else {
-			redirect('admin/login');
+	public function edit_network_partner_account($user_id) {
+		if ($user_id != $this->auth->get_logged_in_user_id()) {
+			redirect('authentication/login');
 		}
+		$user_id = $this->session->userdata('user_id'); 
+		$this->load->model('account_model');
+		$this->load->model('user_model');
+		$data['user_account'] = $this->user_model->get_user_by_id($user_id);
+		$data['network_partner_account'] = $this->account_model->get_network_partner_by_user_id($user_id);
+		$this->load->view('edit_network_partner_account_view', $data);
 	}
 
 	public function update_network_partner_account() {
 		$network_partner_account_id = $this->input->post('network_partner_account_id');
 		$user_id = $this->input->post('user_id');
-		if (!$this->auth->logged_in()) {
-			redirect('admin/login');
+		if ($user_id != $this->auth->get_logged_in_user_id()) {
+			redirect('authentication/login');
 		}
 		$this->load->model('account_model');
 		$this->load->model('user_model');
@@ -347,20 +328,16 @@ class Main_Controller extends CI_Controller {
 				redirect("forgot_password");
 			}
 		} else {
-			$this->session->set_flashdata('message', 'Sorry, we didn\t find an account with that email address.');
+			$this->session->set_flashdata('message', 'Sorry, we didn\'t find an account with that email address.');
 			redirect("forgot_password");
 		}
 		
 	}
 
 	public function feed_module($feed_module_id) {
-		if (!$this->auth->logged_in()) {
-			redirect('admin/login');
-		} else {
-			$this->load->model('content_model');
-			$data['feed_module'] = $this->content_model->get_feed_module_by_id($feed_module_id);
-			$this->load->view('feed_module_view', $data);
-		}
+		$this->load->model('content_model');
+		$data['feed_module'] = $this->content_model->get_feed_module_by_id($feed_module_id);
+		$this->load->view('feed_module_view', $data);
 	}
 
 }

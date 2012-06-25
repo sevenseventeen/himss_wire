@@ -21,18 +21,15 @@
 					?>
 				</h3>
 				<p><?php echo $article->article_summary; ?></p>
-				<p><a href="<?php echo base_url().'article/'.$article->article_id; ?>">Read Article</a></p>
 			</div>
 		<?php }?>
 	</div>
 </div>
-
 <aside>
 	<?php $this->load->view('_includes/feature_module'); ?>
 	<?php $this->load->view('_includes/search_module'); ?>
 	<?php $this->load->view('_includes/banner_ad_module'); ?>
 </aside>
-
 <br class="clear_float" />
 	
 <?php 

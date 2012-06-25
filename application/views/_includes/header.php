@@ -6,7 +6,7 @@
         <li><a href="http://www.linkedin.com/groups?gid=93115" target="_blank">LinkedIn</a> |</li>
         <?php if ($this->auth->logged_in()) { ?>
         	<?php $user_id = $this->session->userdata('user_id'); ?>
-        	<li><a href="<?php echo base_url(); ?>admin/logout">Logout</a>
+        	<li><a href="<?php echo base_url(); ?>authentication/logout">Logout</a>
         	<?php
         		switch ($this->auth->user_type()) {
 					case 'Administrator':
@@ -27,7 +27,7 @@
 				}
         	?>
     	<?php } else { ?>
-            <li><a href="<?php echo base_url(); ?>admin/login">Login</a></li>    
+            <li><a href="<?php echo base_url(); ?>authentication/login">Login</a></li>    
         <?php } ?> 
     </ul>
     <br class="clear_float" />
@@ -44,7 +44,7 @@
 <!-- Custom Breadcrumb -->
 
 <?php
-	if(isset($_SERVER['argv'][0])) {
+	if(isset($_SERVER['argv'][0]) && $main_navigation != 'admin') {
 		$destination_url = $_SERVER['argv'][0];
 		echo "<div id='breadcrumb'>";
 		echo "<a href='".base_url()."'>Home</a>";

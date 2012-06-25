@@ -39,6 +39,8 @@
 */
 
 
+$route['authentication/(:any)'] = "auth_controller/$1";
+$route['authentication'] = "auth_controller";
 $route['ajax_controller'] = "ajax_controller";
 $route['ajax_controller/(:any)'] = "ajax_controller/$1";
 $route['feed_controller'] = "feed_controller";

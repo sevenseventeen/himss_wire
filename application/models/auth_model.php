@@ -27,7 +27,6 @@ class Auth_Model extends CI_Model {
 				$session_data = array(
 					'user_id' => $result->user_id
 				);
-				//echo "USER ID: $result->user_id";
 				$this->session->set_userdata($session_data);
 				return TRUE;
 			}
@@ -44,7 +43,7 @@ class Auth_Model extends CI_Model {
 	public function logged_in() {
 		return (bool) $this->session->userdata('user_id');
 	}
-
+	
 	public function get_user_by_email($email) {
 		$this->db->select('*');
 		$this->db->from('users');

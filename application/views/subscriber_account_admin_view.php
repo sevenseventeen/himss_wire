@@ -38,14 +38,21 @@
 						$days_remaining = timespan($today_unix, $end_date_unix);;
 					}
 				?>
+				
+				<?php 
+					$start_datetime = new DateTime($subscription_details[0]->subscription_start_date);
+					$end_datetime = new DateTime($subscription_details[0]->subscription_end_date);
+					$start_date = $start_datetime->format('Y-m-d'); 
+					$end_date = $end_datetime->format('Y-m-d'); 
+				?>	
 				<p>
 					Remaining Subscription:	<span class="data"><?php echo $days_remaining; ?></span><br />
 					Articles Published:		<span class="data"><?php echo count($articles); ?></span><br />
 					Package Summary: 		<span class="data"><?php echo $subscription_details[0]->subscription_summary; ?></span><br />
 					Package Details: 		<span class="data"><?php echo $subscription_details[0]->subscription_details; ?></span><br />
 					Number of Stories:		<span class="data"><?php echo $subscription_details[0]->stories_purchased; ?></span><br />
-					Subscription Start: 	<span class="data"><?php echo $subscription_details[0]->subscription_start_date; ?></span><br />
-					Subscription End: 		<span class="data"><?php echo $subscription_details[0]->subscription_end_date; ?></span><br />
+					Subscription Start: 	<span class="data"><?php echo $start_date; ?></span><br />
+					Subscription End: 		<span class="data"><?php echo $end_date ?></span><br />
 				</p>
 			<?php } else { ?>
 				
@@ -82,9 +89,11 @@
 			<?php } ?>
 			
 			<h2>Past Reports</h2>
+			<p>
 			<?php foreach ($reports as $report) { ?>
 				<a href="<?php echo base_url().'_reports/'.$report->report_path ?>"><?php echo $report->report_title; ?></a><br /> 
 			<? } ?>
+			</p>
 			
 			<h2>Upload Report</h2>
 			<?php echo form_open_multipart('admin/add_report');?>

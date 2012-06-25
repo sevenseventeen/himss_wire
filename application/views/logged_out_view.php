@@ -1,5 +1,5 @@
 <?php 
-	$data['main_navigation'] = '';
+	$data['main_navigation'] = 'admin';
 	$this->load->view('_includes/head');
 	$this->load->view('_includes/header', $data);
 ?>

@@ -49,7 +49,7 @@
 			<a href="<?php echo base_url().'_reports/'.$report->report_path ?>"><?php echo $report->report_title; ?></a><br /> 
 		<? } ?>
 		
-		<p><a href='<?php echo base_url()."edit_subscriber_account/" ?>'>Edit This Account</a></p>
+		<p><a href='<?php echo base_url()."edit_subscriber_account/".$user_id ?>'>Edit This Account</a></p>
 </div>
 
 <br class="clear_float" />

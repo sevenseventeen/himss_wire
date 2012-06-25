@@ -18,7 +18,7 @@
 				<br class="clear_float" />
 		</fieldset>
 		<?php echo form_hidden('static_page_id', $static_page[0]->page_id); ?>
-		<input type="submit" />	
+		<input type="image" src="<?php echo base_url().'_images/submit.png'; ?>" />	
 	<?php echo form_close(); ?>
 </div>
 <br class="clear_float" />

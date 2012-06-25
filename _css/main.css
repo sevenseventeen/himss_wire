@@ -422,12 +422,13 @@ a.module_header_view_all {
 
 .article_snippet {
 	border-top: 1px solid #bebebe;
-	padding-bottom: 20px;
+	padding-bottom: 15px;
 	margin-top:-1px;
 }
 
 .article_snippet h2 {
 	margin-right:15px;
+	margin-top:15px;
 	margin-bottom:4px;
 	font-size:18px;
 	font-weight: normal;
@@ -444,7 +445,12 @@ a.module_header_view_all {
 }
 
 .module_600 .article_snippet p {
+	margin-top:15px;
 	width: 550px;
+}
+
+.article_snippet p {
+	margin-top:15px;
 }
 /*
 .article_snippet a.category {

@@ -1,12 +1,12 @@
 <?php 
-	$data['main_navigation'] = '';
+	$data['main_navigation'] = 'admin';
 	$this->load->view('_includes/head');
 	$this->load->view('_includes/header', $data);
 ?>
 
 <div id="main_content" class="rounded_corners_10 module_920 inner_shadow_2">
 	<pre>
-		<?php print_r($subscriber_account); ?>
+		<?php //print_r($subscriber_account); ?>
 	</pre>
 		<fieldset>
 			<h2><?php echo $subscriber_account[0]->company_name; ?></h2>
@@ -14,7 +14,7 @@
 				<?php echo $subscriber_account[0]->first_name." ".$subscriber_account[0]->last_name; ?><br />
 				<?php echo $subscriber_account[0]->phone_number; ?><br />
 				<?php echo $subscriber_account[0]->street_address; ?><br />
-				<?php echo $subscriber_account[0]->city." ".$subscriber_account[0]->state; ?><br />
+				<?php echo $subscriber_account[0]->city.", ".$subscriber_account[0]->state; ?><br />
 				<?php echo $subscriber_account[0]->zip_code; ?><br />
 				<?php echo $subscriber_account[0]->website; ?><br />
 				<?php echo $user_account[0]->email; ?><br />
@@ -45,7 +45,7 @@
 			<?php } ?>
 		</fieldset>
 		
-		<h3>Current Published Articles</h3>
+		<h2>Current Published Articles</h2>
 		<p>
 			<?php 
 				foreach ($published_articles as $published_article) {
