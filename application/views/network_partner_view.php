@@ -39,7 +39,7 @@
 				<?php echo form_error('company_name'); ?>
 				<br class="clear_float" />
 			<label>Website</label>
-				<?php echo form_input('website', set_value('website', $network_partner[0]->website)); ?>
+				<?php echo form_input('website', set_value('website', $network_partner[0]->url)); ?>
 				<?php echo form_error('website'); ?>
 				<br class="clear_float" />
 			<label>Email</label>

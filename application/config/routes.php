@@ -39,6 +39,8 @@
 */
 
 
+$route['subscribers/(:any)'] = "subscribers_controller/$1";
+$route['subscribers'] = "subscribers_controller";
 $route['authentication/(:any)'] = "auth_controller/$1";
 $route['authentication'] = "auth_controller";
 $route['ajax_controller'] = "ajax_controller";
@@ -47,7 +49,6 @@ $route['feed_controller'] = "feed_controller";
 $route['partners/(:any)'] = "partners/$1";
 $route['partners'] = "partners";
 $route['cron'] = "cron_controller";
-//$route['subscriber'] = "subscriber_controller";
 $route['admin'] = "admin";
 $route['admin/(:any)'] = "admin/$1";
 $route['(:any)'] = "main_controller/$1";

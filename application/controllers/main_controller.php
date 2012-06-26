@@ -251,8 +251,14 @@ class Main_Controller extends CI_Controller {
 		$this->load->model('user_model');
 		$this->load->library('form_validation');
 		$this->form_validation->set_error_delimiters('<div class="error">', '</div>');
+		$websites = $this->input->post('websites');
+		if(!empty($websites)) {
+			$websites_filtered = array_filter($websites);
+		} else {
+			$this->form_validation->set_rules('websites[]', 'Website', 'trim|required');	
+		}
+		$this->form_validation->set_rules('websites[]', 'Website', 'prep_url');
 		$this->form_validation->set_rules('company_name', 'Company Name', 'required');
-		$this->form_validation->set_rules('website', 'Website', 'required');
 		$this->form_validation->set_rules('first_name', 'First Name', 'required');
 		$this->form_validation->set_rules('last_name', 'Last Name', 'required');
 		$this->form_validation->set_rules('phone_number', 'Phone Number', 'required');
@@ -288,15 +294,26 @@ class Main_Controller extends CI_Controller {
 				);
 				$account_updated = $this->account_model->update_network_partner_account($network_partner_account_id, $account_data);
 				if($account_updated) {
-					$this->session->set_flashdata('message', 'Success! Your edits have been saved.');
-					redirect("edit_network_partner_account");
+					$sites_deleted = $this->account_model->delete_websites($user_id);
+					foreach ($websites_filtered as $website) {
+						$website_data = array(
+							'user_id'	=> $user_id,
+							'url'		=> prep_url($website)
+						);
+						$website_added = $this->account_model->add_website($website_data);
+					}	
+					if ($website_added){
+						$this->session->set_flashdata('message', 'Success! Your edits have been saved.');
+					} else {
+						$this->session->set_flashdata('message', 'Sorry, there was a problem saving your edits.');
+					}
 				} else {
 					$this->session->set_flashdata('message', 'Sorry, there was a problem saving your edits.');
-					redirect("edit_network_partner_account");
 				}
 			} else {
-				echo "Failure, with user_created.";
-			} 
+				$this->session->set_flashdata('message', 'Sorry, there was a problem saving your edits.');
+			}
+			redirect("edit_network_partner_account/".$user_id);
 		}
 	}
 

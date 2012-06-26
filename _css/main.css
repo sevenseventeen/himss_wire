@@ -251,11 +251,11 @@ table.network_partners .website {
 
 .module_header_no_icon {
 	color: #FFF;
-	padding: 15px 0 16px 14px ;
+	padding: 16px 0 16px 14px ;
 	position:relative;
 	z-index: 0;
 	font-size: 23px;
-	height:30px;
+	height:29px;
 }
 
 h3.module_header_no_icon {
@@ -265,8 +265,10 @@ h3.module_header_no_icon {
 
 h1.module_header_no_icon, h1.module_header_with_icon {
 	margin: 0 -20px 0 -20px;
-	font-size:16px;
-	padding-top:21px;
+	font-size: 23px;
+	padding-top: 16px;
+	padding-bottom:15px;
+	height:29px;
 }
 
 a.module_header_view_all {

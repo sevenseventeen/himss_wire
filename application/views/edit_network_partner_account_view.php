@@ -13,10 +13,13 @@
 				<?php echo form_input('company_name', set_value('company_name', $network_partner_account[0]->company_name)); ?>
 				<?php echo form_error('company_name'); ?>
 				<br class="clear_float" />
-			<label>Website</label>
-				<?php echo form_input('website', set_value('website', $network_partner_account[0]->website)); ?>
-				<?php echo form_error('website'); ?>
-				<br class="clear_float" />
+			<label>Website(s) <a href="#" id="add_website">[+] Add Website</a></label>
+				<div id="website_container">
+				<?php foreach ($network_partner_account as $website) { ?>
+					<input type="text" name="websites[]" id="websites" value="<?php echo $website->url; ?>"/><br />
+				<?php } ?>
+				</div>
+				<?php echo form_error('websites[]'); ?>
 			<label>First Name</label>
 				<?php echo form_input('first_name', set_value('first_name', $network_partner_account[0]->first_name)); ?>
 				<?php echo form_error('first_name'); ?>

@@ -4,6 +4,12 @@
 	$this->load->view('_includes/header', $data);
 ?>
 
+<script>
+	$(function($) {
+		$('#add_website').hide();
+	});
+</script>
+
 <div id="main_content" class="rounded_corners_10 module_920 inner_shadow_2">
 	<h1><?php echo $this->session->flashdata('message'); ?></h1>
 	<div id="accordion">

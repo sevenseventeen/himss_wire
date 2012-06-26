@@ -161,7 +161,7 @@
         	// Hide "add website" link for Subscriber accounts
         	
         	$(function($) {
-        		$('#add_website').hide();
+        		//$('#add_website').hide();
         		$('#account_type').change(function () { 
         			if ($(this).val() == 4) {
         				$('#add_website').show();

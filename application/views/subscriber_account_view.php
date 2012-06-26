@@ -49,6 +49,47 @@
 			<a href="<?php echo base_url().'_reports/'.$report->report_path ?>"><?php echo $report->report_title; ?></a><br /> 
 		<? } ?>
 		
+		<h2>Story Request</h2>
+		<?php echo form_open_multipart('subscribers/request_story'); ?>
+			<fieldset>
+				<label>First Name</label>
+					<?php echo form_input('first_name', set_value('first_name', $subscriber_account[0]->first_name)); ?>
+					<?php echo form_error('first_name'); ?>
+					<br class="clear_float" />
+				<label>Last Name</label>
+					<?php echo form_input('last_name', set_value('last_name', $subscriber_account[0]->last_name)); ?>
+					<?php echo form_error('last_name'); ?>
+					<br class="clear_float" />
+				<label>Company Name</label> 
+					<?php echo form_input('company_name', set_value('company_name', $subscriber_account[0]->company_name)); ?>
+					<?php echo form_error('company_name'); ?>
+					<br class="clear_float" />
+				<label>Website</label>
+					<?php echo form_input('website', set_value('website', $subscriber_account[0]->url)); ?>
+					<?php echo form_error('website'); ?>
+					<br class="clear_float" />
+				<label>Email</label>
+					<?php echo form_input('email', set_value('email', $user_account[0]->email)); ?>
+					<?php echo form_error('email'); ?>
+					<br class="clear_float" />
+				<label>Phone Number</label>
+					<?php echo form_input('phone_number', set_value('phone_number', $subscriber_account[0]->phone_number)); ?>
+					<?php echo form_error('phone_number'); ?>
+					<br class="clear_float" />
+				<label>Request Specifics</label>
+					<?php echo form_textarea('request_specifics', set_value('request_specifics', '')); ?>
+					<?php echo form_error('request_specifics'); ?>
+					<br class="clear_float" />
+				<label>Supporting Documents</label>
+					<?php echo form_upload('userfile', set_value('userfile')); ?>
+					<?php echo form_error('userfile'); ?>
+					<br class="clear_float" />
+				<?php echo form_hidden('user_id', $user_account[0]->user_id); ?>
+			</fieldset>
+			<input type="image" src="<?php echo base_url().'_images/submit.png'; ?>" />
+			
+		<?php echo form_close(); ?>
+		
 		<p><a href='<?php echo base_url()."edit_subscriber_account/".$user_id ?>'>Edit This Account</a></p>
 </div>
 
