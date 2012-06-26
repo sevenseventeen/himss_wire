@@ -3,29 +3,6 @@
 	$this->load->view('_includes/head');
 	$this->load->view('_includes/header', $data);
 ?>
-	
-<script type="text/javascript" src="http://platform.linkedin.com/in.js">
-	api_key: 24kp3woxkhce
-	authorize: true
-</script>
-<script type="text/javascript">
-	function loadData() {
-		IN.API.Raw("/groups/166581:(id,name,short-description,description,posts)")
-			.result(function(result) {
-				console.debug(result);
-				profHTML = "H";
-				for (var index in result.values) {
-					profHTML += "ello";
-					profile = result.values[index]
-					if (profile.title) {
-						profHTML += "<p>Hello</p>";
-						//profHTML += "<img class=img_border height=30 align=\"left\" src=\"" + profile.pictureUrl + "\"></a>";   
-					}    
-				}
-				$("#connections").html(profHTML);
-			});
-		}
-</script>
 
 <div id="main_content">
 	<div class="category_module module_600 rounded_corners_10 inner_shadow_2">

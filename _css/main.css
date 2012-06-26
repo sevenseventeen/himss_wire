@@ -271,6 +271,14 @@ h1.module_header_no_icon, h1.module_header_with_icon {
 	height:29px;
 }
 
+.module_920 h1.module_header_with_icon {
+	margin: 0 0 0 -20px;
+	font-size: 23px;
+	padding-top: 16px;
+	padding-bottom:15px;
+	height:29px;
+}
+
 a.module_header_view_all {
 	float:right;
 	position: relative;
@@ -532,7 +540,7 @@ a.module_header_view_all {
 }
 
 .category_module {
-	float: left;
+	/*float: left;*/
 }
 
 .pagination_module {

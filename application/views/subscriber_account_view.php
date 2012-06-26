@@ -5,6 +5,7 @@
 ?>
 
 <div id="main_content" class="rounded_corners_10 module_920 inner_shadow_2">
+		<h1><?php echo $this->session->flashdata('message'); ?></h1>
 		<fieldset>
 			<p>
 				Company Name: 	<span class="data"><?php echo $subscriber_account[0]->company_name; ?></span><br />
@@ -45,10 +46,11 @@
 		</fieldset>
 		
 		<h3>Past Reports</h3>
+		<p>
 		<?php foreach ($reports as $report) { ?>
 			<a href="<?php echo base_url().'_reports/'.$report->report_path ?>"><?php echo $report->report_title; ?></a><br /> 
 		<? } ?>
-		
+		</p>
 		<h2>Story Request</h2>
 		<?php echo form_open_multipart('subscribers/request_story'); ?>
 			<fieldset>
@@ -80,12 +82,13 @@
 					<?php echo form_textarea('request_specifics', set_value('request_specifics', '')); ?>
 					<?php echo form_error('request_specifics'); ?>
 					<br class="clear_float" />
-				<label>Supporting Documents</label>
-					<?php echo form_upload('userfile', set_value('userfile')); ?>
-					<?php echo form_error('userfile'); ?>
+				<label>Supporting Documents <a href="#" id="add_file">[+] Add File</a></label>
+					<div id="supporting_files_container">
+						<input type="file" name="supporting_files0" value="" id="supporting_files"><br />
+					</div>
 					<br class="clear_float" />
-				<?php echo form_hidden('user_id', $user_account[0]->user_id); ?>
 			</fieldset>
+			<?php echo form_hidden('user_id', $user_account[0]->user_id); ?>
 			<input type="image" src="<?php echo base_url().'_images/submit.png'; ?>" />
 			
 		<?php echo form_close(); ?>

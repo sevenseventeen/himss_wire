@@ -26,6 +26,7 @@ class Main_Controller extends CI_Controller {
 			array_push($results, $article_category_groups);
 		}
 		$data['results'] = $results;
+		$data['articles'] = $this->content_model->get_published_articles('10');
 		$this->load->view('articles_view', $data);
 	}
 	

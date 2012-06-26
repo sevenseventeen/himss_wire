@@ -148,7 +148,24 @@
 				});
 			});
 			
-			// Duplicate website fields. 
+			// Duplicate file upload fields. 
+			
+        	$(function() {
+        		var name_increment = 0;
+            	$('#add_file').click(function() {
+            		name_increment++
+            		current_name = $('#supporting_files').attr("name");
+            		current_name_without_increment = current_name.substring(0, current_name.length - 1);
+            		//alert(current_name);
+                	$('#supporting_files').clone().val('').attr("name", current_name_without_increment+name_increment).appendTo('#supporting_files_container');
+                	$("<br />").appendTo('#supporting_files_container');
+                	return false;
+            	});
+        	});
+        	
+        	$("input:radio:checked").attr("name","new_name");
+        	
+			// Duplicate web site fields. 
 			
         	$(function() {
             	$('#add_website').click(function() {
@@ -158,7 +175,7 @@
             	});
         	});
         	
-        	// Hide "add website" link for Subscriber accounts
+        	// Hide "add web site" link for Subscriber accounts
         	
         	$(function($) {
         		//$('#add_website').hide();

@@ -7,7 +7,7 @@
 <div id="main_content">
 	<?php foreach ($results as $key => $result) { ?>
 		<?php if(count($result) > 0) { ?>
-			<div class="category_module module_450 rounded_corners_10 inner_shadow_2">
+			<div class="category_module module_920 rounded_corners_10 inner_shadow_2">
 				<img class="module_header_icon" src="_images/latest_article_icon.png" />
 				<a href="<?php echo base_url().'category/'.$result[0]->article_category_id; ?>">
 					<h1 class="module_header_with_icon rounded_top_corners_10 header_gradient inner_shadow_2"><?php echo $result[0]->category_name; ?></h1>
@@ -29,6 +29,7 @@
 		<?php } ?>
 	<?php } ?>
 </div>
+
 <br class="clear_float" />
 
 <?php 

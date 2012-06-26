@@ -581,7 +581,7 @@ class CI_Upload {
 	 *
 	 * @return	bool
 	 */
-	public function is_allowed_filetype($ignore_mime = FALSE)
+	public function is_allowed_filetype($ignore_mime = TRUE) // TODO - Change this to false and figure out issue.
 	{
 		if ($this->allowed_types == '*')
 		{
