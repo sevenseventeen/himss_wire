@@ -20,7 +20,6 @@
 		foreach ($faqs as $faq) {
 			echo "<p class='question'>$faq->faq_question</p>";
 			echo "<p class='answer'>$faq->faq_answer</p>";
-			echo "<hr />";
 		}
 	?>
 	<h2>Support &amp; Custom Widget Request</h2>
