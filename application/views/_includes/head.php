@@ -190,7 +190,22 @@
 
 		</script>
 		
+		<!-- HTML5 Shiv for IE <= 8 -->
+		
+		<!--[if lt IE 9]>
+			<script src="<?php echo base_url().'_javascript/html5shiv.js'; ?>"></script>
+		<![endif]-->
+		
 		<link type="text/css" href="<?php echo base_url().'_css/jquery_ui_override.css'; ?>" rel="stylesheet" />
+		
+		<!--[if IE 8]>
+			<link type="text/css" href="<?php echo base_url().'_css/ie_8.css'; ?>" rel="stylesheet" />
+		<![endif]-->
+		
+		<!--[if IE 9]>
+			<link type="text/css" href="<?php echo base_url().'_css/ie_9.css'; ?>" rel="stylesheet" />
+		<![endif]-->
+		
         <title>HIMMS Wire</title>
     </head>
     <body id="home">

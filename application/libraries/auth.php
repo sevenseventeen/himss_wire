@@ -420,7 +420,11 @@ class Auth {
 		$user_id = $this->ci->session->userdata('user_id');
 		$this->ci->load->model('user_model');
 		$user = $this->ci->user_model->get_user_by_id($user_id);
-		$user_type = $user[0]->account_type_name;
+		if ($user) {
+			$user_type = $user[0]->account_type_name;
+		} else {
+			$user_type = FALSE;
+		}
 		return $user_type;
 	}
 

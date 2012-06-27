@@ -1,20 +1,7 @@
-.counter {
-	margin-top: -4px;
-	margin-left: 4px;
+h1.module_header_no_icon, h1.module_header_with_icon, .module_header_no_icon, #search_module {
+	background-color:#004075
 }
 
-#main_navigation .current span.link_description {
-	margin: -34px 0 0 0px;
-}
-
-#upgrade .software {
-	margin-left: 125px
-}
-
-#upgrade .chart {
-	margin-left: 210px;
-}
-
-#faq p.m_shield {
-	padding-left: 75px;
+#main_container {
+	background-color:#CCCCCC;
 }
