@@ -90,6 +90,7 @@ class Content_Model extends CI_Model {
 		$this->db->from('articles');
 		$this->db->where('article_status', 'published');
 		$this->db->join('article_categories', 'article_categories.article_category_id = articles.article_category_id', 'left');
+		$this->db->order_by("publish_date", "desc");
 		$this->db->limit($limit);
 		$query = $this->db->get();
 		return $query->result();
@@ -125,6 +126,7 @@ class Content_Model extends CI_Model {
 		$this->db->where('articles.article_category_id', $category_id);
 		$this->db->where('article_status', 'published');
 		$this->db->join('article_categories', 'article_categories.article_category_id = articles.article_category_id', 'left');
+		$this->db->order_by("publish_date", "desc");
 		$this->db->limit($limit);
 		$query = $this->db->get();
 		return $query->result();

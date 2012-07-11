@@ -1,5 +1,6 @@
 h1.module_header_no_icon, h1.module_header_with_icon, .module_header_no_icon, #search_module {
-	background-color:#004075
+	background-color:#004075;
+	background-color:#1a6fb0;
 }
 
 #main_container {

@@ -34,7 +34,7 @@ class Partners extends CI_Controller {
 		} else {
 			$to = $this->config->item('email_to_admin');
 			$from_email = $this->input->post('email');
-			$from_name = "HIMSS Wire Support Request"; //$this->input->post('company_name');
+			$from_name = "HIMSSwire Support Request"; //$this->input->post('company_name');
 			$message = "First Name: "			.$this->input->post('first_name')." \n ";
 			$message .= "Last Name: "			.$this->input->post('last_name')." \n ";
 			$message .= "Company Name: "		.$this->input->post('company_name')." \n ";

@@ -1,9 +1,9 @@
 <?php echo '<?xml version="1.0" encoding="ISO-8859-1" ?>' ; ?>
 <rss version="2.0">
 	<channel>
-	  	<title>HIMSS Wire</title>
+	  	<title>HIMSSwire</title>
 	  	<link>http://www.himsswire.com</link>
-	  	<description>HIMSS Wire</description>
+	  	<description>HIMSSwire</description>
 		<?php foreach($articles as $article) { ?>
 			<item>
 		    	<title><?php echo $article->article_title; ?></title>

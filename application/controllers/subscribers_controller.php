@@ -53,7 +53,7 @@ class Subscribers_Controller extends CI_Controller {
 			$file_path = base_url()."_uploads/".$file_data['file_name'];
 			$to = $this->config->item('email_to_admin');
 			$from_email = $this->input->post('email');
-			$from_name = "HIMSS Wire Support Request"; //$this->input->post('company_name');
+			$from_name = "HIMSSwire Support Request"; //$this->input->post('company_name');
 			$message = "First Name: "			.$this->input->post('first_name')." \n ";
 			$message .= "Last Name: "			.$this->input->post('last_name')." \n ";
 			$message .= "Company Name: "		.$this->input->post('company_name')." \n ";

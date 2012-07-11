@@ -14,15 +14,15 @@ $config['test_mode'] = TRUE;
 
 if ($_SERVER['SERVER_NAME'] == "localhost" || $config['test_mode'] == TRUE) {
     $config['email_from_support']               = 'KNIGHT1902@roadrunner.com';
-    $config['email_name_from_admin']		    = 'HIMSS Wire Administrator';
-	$config['email_name_from_new_accounts']     = 'HIMSS Wire New Accounts';
-    $config['email_name_from_alerts']           = 'HIMSS Wire Alerts';
+    $config['email_name_from_admin']		    = 'HIMSSwire Administrator';
+	$config['email_name_from_new_accounts']     = 'HIMSSwire New Accounts';
+    $config['email_name_from_alerts']           = 'HIMSSwire Alerts';
     $config['email_to_admin'] 					= array('josh@seven-seventeen.com');
 } else {
     $config['email_from_support']               = 'support@himsswire.com';
-    $config['email_name_from_admin']		    = 'HIMSS Wire Administrator';
-    $config['email_name_from_new_accounts']     = 'HIMSS Wire New Accounts';
-    $config['email_name_from_alerts']           = 'HIMSS Wire Alerts';
+    $config['email_name_from_admin']		    = 'HIMSSwire Administrator';
+    $config['email_name_from_new_accounts']     = 'HIMSSwire New Accounts';
+    $config['email_name_from_alerts']           = 'HIMSSwire Alerts';
     $config['email_to_admin'] 					= array('josh@seven-seventeen.com');
 }
 

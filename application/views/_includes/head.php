@@ -43,7 +43,7 @@
 			// The configuration options for the text editors
 			var config = {
 				toolbar:[
-					['Bold', 'Italic', 'Link', 'Image', 'Format', 'Source'],
+					['Bold', 'Italic', 'Underline', 'BulletedList', 'Link', 'Image', 'Format', 'Source'],
 				]
 			};
 			config.format_tags = 'h1;h2;h3;h4;p';
@@ -198,7 +198,7 @@
 		
 		<link type="text/css" href="<?php echo base_url().'_css/jquery_ui_override.css'; ?>" rel="stylesheet" />
 		
-		<!--[if IE 8]>
+		<!--[if lte IE 8]>
 			<link type="text/css" href="<?php echo base_url().'_css/ie_8.css'; ?>" rel="stylesheet" />
 		<![endif]-->
 		
@@ -206,7 +206,7 @@
 			<link type="text/css" href="<?php echo base_url().'_css/ie_9.css'; ?>" rel="stylesheet" />
 		<![endif]-->
 		
-        <title>HIMMS Wire</title>
+        <title>HIMSSwire</title>
     </head>
     <body id="home">
         <div id="main_container">

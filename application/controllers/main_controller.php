@@ -330,13 +330,13 @@ class Main_Controller extends CI_Controller {
 			$password = $user[0]->password; 
 			$name = $this->input->post('name');
 			$email = $this->input->post('email');
-			$message = "Here is your HIMSS Wire login information\n\n Email: $email \n\n Password: $password";
+			$message = "Here is your HIMSSwire login information\n\n Email: $email \n\n Password: $password";
 			$from_email = $this->config->item('email_from_support');
 			$from_name = $this->config->item('email_name_from_admin');
 			$this->load->library('email');
 	        $this->email->from($from_email, $from_name);
 	        $this->email->to($email);
-	        $this->email->subject('Your HIMSS Wire Account');
+	        $this->email->subject('Your HIMSSwire Account');
 	        $this->email->message($message);
 			if ($this->email->send()) {
 				$this->session->set_flashdata('message', 'Please check your email to retreive your password.');

@@ -223,14 +223,14 @@ class Admin extends CI_Controller {
 					$name = $this->input->post('name');
 					$email = $this->input->post('email');
 					$password = $this->input->post('password');
-					$message = "Congratulations, we have activated your HIMSS Wire account. You can login anytime with the following information\n\n Email: $email \n\n Password: $password";
+					$message = "Congratulations, we have activated your HIMSSwire account. You can login anytime with the following information\n\n Email: $email \n\n Password: $password";
 		            $to = $this->input->post('email');
 					$from_email = $this->config->item('email_from_support');
 					$from_name = $this->config->item('email_name_from_admin');
 					$this->load->library('email');
 			        $this->email->from($from_email, $from_name);
 			        $this->email->to($to);
-			        $this->email->subject('Your HIMSS Wire Account');
+			        $this->email->subject('Your HIMSSwire Account');
 			        $this->email->message($message);
 					if ($this->email->send()) {
 						// Sent
@@ -402,7 +402,7 @@ class Admin extends CI_Controller {
 		} else {
 			$footer_link_data = array(
 				'footer_link_text'		=> $this->input->post('footer_link_text'),
-				'footer_link_url'		=> $this->input->post('footer_link_url'),
+				'footer_link_url'		=> prep_url($this->input->post('footer_link_url'))
 			);
 			$footer_link_created = $this->content_model->add_footer_link($footer_link_data);
 			if($footer_link_created) {
@@ -1104,7 +1104,7 @@ class Admin extends CI_Controller {
 		$this->load->model('content_model');
 		$footer_link_data = array(
 				'footer_link_text'	=> $this->input->post('footer_link_text'),
-				'footer_link_url'	=> $this->input->post('footer_link_url')
+				'footer_link_url'	=> prep_url($this->input->post('footer_link_url'))
 			);
 		$footer_link_updated = $this->content_model->update_footer_link($footer_link_id, $footer_link_data);
 		if($footer_link_updated) {
