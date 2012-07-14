@@ -398,9 +398,9 @@
 			</div> <!-- End Tabs -->
 		</div> <!-- End  Accordian Item -->
 		
-		<!-- ••••••••••• Footer Links ••••••••••••••• -->
+		<!-- ••••••••••• Partner Links ••••••••••••••• -->
 		
-		<h3><a href="#">Footer Links</a></h3>
+		<h3><a href="#">Partner Links</a></h3>
 		<div>
 			<div class="tabs">
 				<ul>
@@ -408,24 +408,24 @@
 					<li><a href="#tabs-2">Add</a></li>
 				</ul>
 				<div id="tabs-1">
-					<h2>Edit Footer Links</h2>
+					<h2>Edit Partner Links</h2>
 					<?php
-						foreach ($footer_links as $footer_link) { 
-							echo "<a href='".base_url()."admin/edit_footer_link/$footer_link->footer_link_id'>".$footer_link->footer_link_text."</a><br />";
+						foreach ($partner_links as $partner_link) { 
+							echo "<a href='".base_url()."admin/edit_partner_link/$partner_link->partner_link_id'>".$partner_link->partner_link_text."</a><br />";
 						}
 					?>
 				</div>
 				<div id="tabs-2">
-					<?php echo form_open('admin/add_footer_link');?>
+					<?php echo form_open('admin/add_partner_link');?>
 						<fieldset>
-							<h2>Add Footer Links</h2>
-								<label>Footer Link Text</label>
-									<?php echo form_input('footer_link_text', set_value('footer_link_text')); ?>
-									<?php echo form_error('footer_link_text'); ?>
+							<h2>Add Partner Links</h2>
+								<label>Partner Link Text</label>
+									<?php echo form_input('partner_link_text', set_value('partner_link_text')); ?>
+									<?php echo form_error('partner_link_text'); ?>
 									<br class="clear_float" />
-								<label>Footer Link Text</label>
-									<?php echo form_input('footer_link_url', set_value('footer_link_url')); ?>
-									<?php echo form_error('footer_link_url'); ?>
+								<label>Partner Link Text</label>
+									<?php echo form_input('partner_link_url', set_value('partner_link_url')); ?>
+									<?php echo form_error('partner_link_url'); ?>
 									<br class="clear_float" />
 						</fieldset>
 						<input type="image" src="<?php echo base_url().'_images/submit.png'; ?>" />

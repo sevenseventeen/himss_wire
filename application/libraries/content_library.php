@@ -9,9 +9,9 @@ class Content_Library {
 	}
 	
 	public function load_footer() {
-		$this->ci->load->model('content_model');
-		$data['footer_links'] = $this->ci->content_model->get_footer_links();
-		$this->ci->load->view('_includes/footer', $data);
+		//$this->ci->load->model('content_model');
+		//$data['partner_links'] = $this->ci->content_model->get_partner_links();
+		$this->ci->load->view('_includes/footer');
 	}
 
 }

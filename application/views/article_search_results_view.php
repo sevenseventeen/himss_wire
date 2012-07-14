@@ -40,7 +40,7 @@
 </div>
 
 <aside>
-	
+	<?php $this->load->view('_includes/partner_links_module'); ?>
 </aside>
 <br class="clear_float" />
 

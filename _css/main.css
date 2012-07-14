@@ -188,7 +188,9 @@ table.network_partners .website {
 	width:350px;
 }
 
-
+footer {
+	margin-top: 60px;
+}
 
 
 /* ************** Feed Module View ************** */

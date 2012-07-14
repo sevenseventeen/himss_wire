@@ -9,7 +9,7 @@ class Main_Controller extends CI_Controller {
 		$data['feature_module'] = $this->content_model->get_feature_module();
 		$data['banner_ad'] = $this->content_model->get_banner_ads();
 		$data['feature_module_optional'] = $this->content_model->get_feature_module_optional();
-		$data['footer_links'] = $this->content_model->get_footer_links();
+		$data['partner_links'] = $this->content_model->get_partner_links();
 		$this->load->view('home_view', $data);
 	}
 	
@@ -39,6 +39,7 @@ class Main_Controller extends CI_Controller {
 		$data['feature_module'] = $this->content_model->get_feature_module();
 		$data['banner_ad'] = $this->content_model->get_banner_ads();
 		$data['related_articles'] = $this->content_model->get_related_articles($article_category_id, $article_id);
+		$data['partner_links'] = $this->content_model->get_partner_links();
 		$this->load->view('article_view', $data);
 	}
 	
@@ -60,6 +61,7 @@ class Main_Controller extends CI_Controller {
 		$offset = $this->uri->segment($config['uri_segment']);
 		$data['pagination_links'] = $this->pagination->create_links();
 		$data['search_results'] = $this->content_model->get_search_results($search_term, $limit, $offset);
+		$data['partner_links'] = $this->content_model->get_partner_links();
 		$this->load->view('article_search_results_view', $data);
 	}
 	
@@ -70,6 +72,7 @@ class Main_Controller extends CI_Controller {
 		$data['banner_ad'] = $this->content_model->get_banner_ads();
 		$data['static_page'] = $this->content_model->get_static_page_by_id($page_id);
 		$data['static_page_content'] = $this->content_model->get_static_page_content_by_id($page_id);
+		$data['partner_links'] = $this->content_model->get_partner_links();
 		$this->load->view('about_himss_wire_view', $data);
 	}
 	
@@ -88,6 +91,7 @@ class Main_Controller extends CI_Controller {
 		$data['banner_ad'] = $this->content_model->get_banner_ads();
 		$data['static_page'] = $this->content_model->get_static_page_by_id($page_id);
 		$data['static_page_content'] = $this->content_model->get_static_page_content_by_id($page_id);
+		$data['partner_links'] = $this->content_model->get_partner_links();
 		$this->load->view('our_network_view', $data);
 	}
 
@@ -105,6 +109,7 @@ class Main_Controller extends CI_Controller {
 		$data['banner_ad'] = $this->content_model->get_banner_ads();
 		$data['static_page'] = $this->content_model->get_static_page_by_id($page_id);
 		$data['static_page_content'] = $this->content_model->get_static_page_content_by_id($page_id);
+		$data['partner_links'] = $this->content_model->get_partner_links();
 		$this->load->view('join_himss_view', $data);
 	}
 	

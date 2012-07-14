@@ -23,8 +23,8 @@ class Content_Model extends CI_Model {
 		return $result;
 	}
 	
-	function add_footer_link($data) {
-		$result = $this->db->insert('footer_links', $data);
+	function add_partner_link($data) {
+		$result = $this->db->insert('partner_links', $data);
 		return $result;
 	}
 	
@@ -176,17 +176,17 @@ class Content_Model extends CI_Model {
 		return $query->result();
 	}
 	
-	function get_footer_links() {
+	function get_partner_links() {
 		$this->db->select('*');
-		$this->db->from('footer_links');
+		$this->db->from('partner_links');
 		$query = $this->db->get();
 		return $query->result();
 	}
 	
-	function get_footer_link_by_id($footer_link_id) {
+	function get_partner_link_by_id($partner_link_id) {
 		$this->db->select('*');
-		$this->db->from('footer_links');
-		$this->db->where('footer_link_id', $footer_link_id);
+		$this->db->from('partner_links');
+		$this->db->where('partner_link_id', $partner_link_id);
 		$query = $this->db->get();
 		return $query->result();
 	}
@@ -275,8 +275,8 @@ class Content_Model extends CI_Model {
     	return $result;
 	}
 	
-	function update_footer_link($footer_link_id, $data) {
-		$result = $this->db->update('footer_links', $data, "footer_link_id = $footer_link_id");
+	function update_partner_link($partner_link_id, $data) {
+		$result = $this->db->update('partner_links', $data, "partner_link_id = $partner_link_id");
     	return $result;
 	}
 	
@@ -316,9 +316,9 @@ class Content_Model extends CI_Model {
 		return $article_deleted;
 	}
 	 
-	function delete_footer_link($footer_link_id) {
-		$footer_link_deleted = $this->db->delete('footer_links', "footer_link_id = $footer_link_id");
-		return $footer_link_deleted;
+	function delete_partner_link($partner_link_id) {
+		$partner_link_deleted = $this->db->delete('partner_links', "partner_link_id = $partner_link_id");
+		return $partner_link_deleted;
 	}
 	 
 	function delete_faq($faq_id) {

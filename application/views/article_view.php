@@ -4,7 +4,8 @@
 	$data['category_id'] = $article[0]->article_category_id;
 	$data['article_title'] = $article[0]->article_title;
 	$data['article_id'] = $article[0]->article_id;
-	$this->load->view('_includes/head');
+	$data['page_title'] = "HIMSSwire - ".$article[0]->article_title;
+	$this->load->view('_includes/head', $data);
 	$this->load->view('_includes/header', $data);
 ?>
 
@@ -38,6 +39,7 @@
 		?>
 	</div>
 	<?php $this->load->view('_includes/banner_ad_module'); ?>
+	<?php $this->load->view('_includes/partner_links_module'); ?>
 </aside>
 
 <br class="clear_float" />

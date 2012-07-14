@@ -391,21 +391,21 @@ class Admin extends CI_Controller {
 		}
 	}
 
-	public function add_footer_link() {
+	public function add_partner_link() {
 		$this->load->model('content_model');
 		$this->load->library('form_validation');
 		$this->form_validation->set_error_delimiters('<div class="error">', '</div>');
-		$this->form_validation->set_rules('footer_link_text', 'Footer Link Text', 'required');
-		$this->form_validation->set_rules('footer_link_url', 'Footer Link Url', 'required|prep_url');
+		$this->form_validation->set_rules('partner_link_text', 'Partner Link Text', 'required');
+		$this->form_validation->set_rules('partner_link_url', 'Partner Link Url', 'required|prep_url');
 		if ($this->form_validation->run() == FALSE) { // FALSE FOR PRODUCTION
 			$this->admin_library->load_admin_view();
 		} else {
-			$footer_link_data = array(
-				'footer_link_text'		=> $this->input->post('footer_link_text'),
-				'footer_link_url'		=> prep_url($this->input->post('footer_link_url'))
+			$partner_link_data = array(
+				'partner_link_text'		=> $this->input->post('partner_link_text'),
+				'partner_link_url'		=> prep_url($this->input->post('partner_link_url'))
 			);
-			$footer_link_created = $this->content_model->add_footer_link($footer_link_data);
-			if($footer_link_created) {
+			$partner_link_created = $this->content_model->add_partner_link($partner_link_data);
+			if($partner_link_created) {
 				$this->session->set_flashdata('message', 'Success! Your edits have been saved.');
 				redirect("admin");
 			} else {
@@ -569,10 +569,10 @@ class Admin extends CI_Controller {
 		$this->load->view('edit_editor_account_view', $data);
 	}
 	
-	public function edit_footer_link($footer_link_id) {
+	public function edit_partner_link($partner_link_id) {
 		$this->load->model('content_model');
-		$data['footer_link'] = $this->content_model->get_footer_link_by_id($footer_link_id);
-		$this->load->view('edit_footer_link_view', $data);
+		$data['partner_link'] = $this->content_model->get_partner_link_by_id($partner_link_id);
+		$this->load->view('edit_partner_link_view', $data);
 	}
 	
 	public function edit_faq($faq_id) {
@@ -1099,15 +1099,15 @@ class Admin extends CI_Controller {
 		}
 	}
 
-	public function update_footer_link() {
-		$footer_link_id = $this->input->post('footer_link_id');
+	public function update_partner_link() {
+		$partner_link_id = $this->input->post('partner_link_id');
 		$this->load->model('content_model');
-		$footer_link_data = array(
-				'footer_link_text'	=> $this->input->post('footer_link_text'),
-				'footer_link_url'	=> prep_url($this->input->post('footer_link_url'))
+		$partner_link_data = array(
+				'partner_link_text'	=> $this->input->post('partner_link_text'),
+				'partner_link_url'	=> prep_url($this->input->post('partner_link_url'))
 			);
-		$footer_link_updated = $this->content_model->update_footer_link($footer_link_id, $footer_link_data);
-		if($footer_link_updated) {
+		$partner_link_updated = $this->content_model->update_partner_link($partner_link_id, $partner_link_data);
+		if($partner_link_updated) {
 			$this->session->set_flashdata('message', 'Success! Your edits have been saved.');
 			redirect("admin");
 		} else {
@@ -1186,10 +1186,10 @@ class Admin extends CI_Controller {
 		}
 	 }	
 	 
-	 function delete_footer_link($footer_link_id) {
+	 function delete_partner_link($partner_link_id) {
 		$this->load->model('content_model');
-		$footer_link_deleted = $this->content_model->delete_footer_link($footer_link_id);
-		if($footer_link_deleted) {
+		$partner_link_deleted = $this->content_model->delete_partner_link($partner_link_id);
+		if($partner_link_deleted) {
 			$this->session->set_flashdata('message', 'Success! Your edits have been saved.');
 			redirect("admin");
 		} else {

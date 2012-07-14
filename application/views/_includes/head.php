@@ -206,7 +206,16 @@
 			<link type="text/css" href="<?php echo base_url().'_css/ie_9.css'; ?>" rel="stylesheet" />
 		<![endif]-->
 		
-        <title>HIMSSwire</title>
+        <title>
+        	<?php 
+        		if (isset ($page_title)) {
+        			echo $page_title; 
+				} else {
+					echo "HIMSSwire";
+				}
+			?>
+		</title>
+    
     </head>
     <body id="home">
         <div id="main_container">
