@@ -1,35 +1,41 @@
 <header class="header_gradient drop_shadow_14">
     <a href="<?php echo base_url(); ?>"><img src="<?php echo base_url(); ?>_images/himss_wire_logo.png" /></a>
-    <ul id="login_social_navigation" class="rounded_corners_10 inner_shadow_2">
-        <li><a href="<?php echo base_url(); ?>">Home</a> | </li>
-        <li><a href="https://twitter.com/#!/HIMSSwire" target="_blank">Twitter</a> | </li>
-        <li><a href="http://www.linkedin.com/groups?gid=93115" target="_blank">LinkedIn</a> |</li>
-        <?php if ($this->auth->logged_in()) { ?>
-        	<?php $user_id = $this->session->userdata('user_id'); ?>
-        	<li><a href="<?php echo base_url(); ?>authentication/logout">Logout</a>
-        	<?php
-        		switch ($this->auth->user_type()) {
-					case 'Administrator':
-						echo "| <li><a href='".base_url()."admin'>Admin</a>";
-						break;
-					case 'Editor':
-						echo "| </li><li><a href='".base_url()."admin'>Editor</a></li>";
-						break;
-					case 'Subscriber':
-						echo "| </li><li><a href='".base_url()."subscriber/$user_id'>My Account</a></li>";
-						break;
-					case 'Network Partner':
-						echo "| </li><li><a href='".base_url()."network_partner/$user_id'>My Account</a></li>";
-						break;
-					default:
-						echo '</li>'; 
-						break;
-				}
-        	?>
-    	<?php } else { ?>
-            <li><a href="<?php echo base_url(); ?>authentication/login">Login</a></li>    
-        <?php } ?> 
-    </ul>
+    <div id="header_right_side">
+	    <ul id="login_navigation">
+	        <?php if ($this->auth->logged_in()) { ?>
+	        	<?php $user_id = $this->session->userdata('user_id'); ?>
+	        	<li><a href="<?php echo base_url(); ?>authentication/logout">Logout</a>
+	        	<?php
+	        		switch ($this->auth->user_type()) {
+						case 'Administrator':
+							echo "| <li><a href='".base_url()."admin'>Admin</a>";
+							break;
+						case 'Editor':
+							echo "| </li><li><a href='".base_url()."admin'>Editor</a></li>";
+							break;
+						case 'Subscriber':
+							echo "| </li><li><a href='".base_url()."subscriber/$user_id'>My Account</a></li>";
+							break;
+						case 'Network Partner':
+							echo "| </li><li><a href='".base_url()."network_partner/$user_id'>My Account</a></li>";
+							break;
+						default:
+							echo '</li>'; 
+							break;
+					}
+	        	?>
+	    	<?php } else { ?>
+	            <li><a href="<?php echo base_url(); ?>authentication/login">Partner Login</a></li>    
+	        <?php } ?> 
+	    </ul>
+	    <br class="clear_float" />
+	    <div id="search_archive">
+			<?php echo form_open('article_search'); ?>
+				<input class="rounded_corners_10 inner_shadow_2" type="text" name="search_term" value="" />
+				<input type="submit" value="Search Archive" id="article_search_button">
+			<?php echo form_close(); ?>
+		</div>
+	</div>
     <br class="clear_float" />
     <ul id="main_navigation">
     	<?php //TODO  the static navigation items can be dynamically named (in case someone edits the name of a static page) ?>

@@ -40,7 +40,7 @@
 </div>
 
 <aside>
-	<?php $this->load->view('_includes/search_module'); ?>
+	
 </aside>
 <br class="clear_float" />
 

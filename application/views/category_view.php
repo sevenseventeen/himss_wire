@@ -27,7 +27,7 @@
 </div>
 <aside>
 	<?php $this->load->view('_includes/feature_module'); ?>
-	<?php $this->load->view('_includes/search_module'); ?>
+	
 	<?php $this->load->view('_includes/banner_ad_module'); ?>
 </aside>
 <br class="clear_float" />

@@ -26,7 +26,7 @@
 </div>
 
 <aside>
-	<?php $this->load->view('_includes/search_module'); ?>
+	
 	<div id="related_articles" class="rounded_corners_10 module_300 inner_shadow_2">
 		<h3 class="module_header_no_icon rounded_top_corners_10 header_gradient inner_shadow_2">Related Articles</h3>
 		<?php 

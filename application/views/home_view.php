@@ -27,8 +27,8 @@
 <aside>
 	<?php $this->load->view('_includes/feature_module'); ?>
 	<?php $this->load->view('_includes/feature_module_optional'); ?>
-	<?php $this->load->view('_includes/search_module'); ?>
 	<?php $this->load->view('_includes/banner_ad_module'); ?>
+	<?php $this->load->view('_includes/partner_links_module', $data); ?>
 </aside>
 
 <br class="clear_float" />

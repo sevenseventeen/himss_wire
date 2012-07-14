@@ -1,23 +1,13 @@
 			<footer>
-				<div id="partner_sites" class="module_920 inner_shadow_2 rounded_corners_10">
-					<?php 
-						$i = 0;
-						foreach ($footer_links as $footer_link) {
-							$i++;
-							echo "<a class='column_$i' href='$footer_link->footer_link_url' target='_blank'>$footer_link->footer_link_text</a>";
-							if ($i == 3) {
-								echo "<br />";
-								$i = 0;
-							}
-						}
-					?>
-					<br class="clear_both" />
-				</div>
-				
 				<div id="footer_navigation">
 					&copy; HIMSS Media |
-					<a href="<?php echo base_url(); ?>privacy_policy/5">Privacy Policy</a> |
-					<a href="<?php echo base_url(); ?>">Home</a>
+					<a href="<?php echo base_url(); ?>">Home</a> |
+					<a href="<?php echo base_url(); ?>articles">Articles</a> |
+					<a href="<?php echo base_url(); ?>about_himss_wire/1">About HIMSSwire</a> |
+					<a href="<?php echo base_url(); ?>our_network/2">Our Network</a> |
+					<a href="<?php echo base_url(); ?>join_himss/3">Join HIMSS</a> |
+					<a href="<?php echo base_url(); ?>contact_us/4">Contact Us</a> |
+					<a href="<?php echo base_url(); ?>privacy_policy/5">Privacy Policy</a>
 				</div>
 			</footer>
 		</div>  
