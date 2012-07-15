@@ -1,6 +1,7 @@
 <?php 
 	$data['main_navigation'] = 'contact';
-	$this->load->view('_includes/head');
+	$data['page_title'] = "HIMSSwire -- How to Contact HIMSSwire";
+	$this->load->view('_includes/head', $data);
 	$this->load->view('_includes/header', $data);
 ?>
 

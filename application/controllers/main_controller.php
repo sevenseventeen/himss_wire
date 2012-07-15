@@ -31,15 +31,16 @@ class Main_Controller extends CI_Controller {
 		$this->load->view('articles_view', $data);
 	}
 	
-	public function article($article_id) {
+	public function article($article_slug) {
 		$this->load->model('content_model');
-		$article = $this->content_model->get_article_by_id($article_id);
+		$article = $this->content_model->get_article_by_slug($article_slug);
 		$article_category_id = $article[0]->article_category_id; 
 		$data['article'] = $article;
 		$data['feature_module'] = $this->content_model->get_feature_module();
 		$data['banner_ad'] = $this->content_model->get_banner_ads();
-		$data['related_articles'] = $this->content_model->get_related_articles($article_category_id, $article_id);
+		$data['related_articles'] = $this->content_model->get_related_articles($article_category_id, $article_slug);
 		$data['partner_links'] = $this->content_model->get_partner_links();
+		$data['article_slug'] = $article_slug;
 		$this->load->view('article_view', $data);
 	}
 	
@@ -76,8 +77,10 @@ class Main_Controller extends CI_Controller {
 		$this->load->view('about_himss_wire_view', $data);
 	}
 	
-	public function category($category_id) {
+	public function category($category_slug) {
 		$this->load->model('content_model');
+		$category = $this->content_model->get_category_by_slug($category_slug);
+		$category_id = $category[0]->article_category_id;
 		$data['articles'] = $this->content_model->get_articles_by_category_id($category_id);
 		$data['feature_module'] = $this->content_model->get_feature_module();
 		$data['banner_ad'] = $this->content_model->get_banner_ads();

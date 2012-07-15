@@ -2,6 +2,7 @@
 	$data['main_navigation'] = 'articles';
 	$data['category_name'] = $article[0]->category_name;
 	$data['category_id'] = $article[0]->article_category_id;
+	$data['category_slug'] = $article[0]->category_slug;
 	$data['article_title'] = $article[0]->article_title;
 	$data['article_id'] = $article[0]->article_id;
 	$data['page_title'] = "HIMSSwire - ".$article[0]->article_title;
@@ -34,7 +35,7 @@
 			foreach ($related_articles as $related_article) {
 				$date = new DateTime($related_article->publish_date);
 				$date_formatted = $date->format('m-d-Y');
-				echo "<a href='".base_url()."article/".$related_article->article_id."'><h4>".$related_article->article_title."<span class='date'>".$date_formatted."</span></h4></a>";	
+				echo "<a href='".base_url()."article/".$related_article->article_slug."'><h4>".$related_article->article_title."<span class='date'>".$date_formatted."</span></h4></a>";	
 			}
 		?>
 	</div>

@@ -111,10 +111,27 @@ class Content_Model extends CI_Model {
 		return $query->result();
 	}
 	
+	function get_category_by_slug($category_slug) {
+		$this->db->select('*');
+		$this->db->from('article_categories');
+		$this->db->where('category_slug', $category_slug);
+		$query = $this->db->get();
+		return $query->result();
+	}
+	
 	function get_article_by_id($article_id) {
 		$this->db->select('*');
 		$this->db->from('articles');
 		$this->db->where('article_id', $article_id);
+		$this->db->join('article_categories', 'article_categories.article_category_id = articles.article_category_id', 'left');
+		$query = $this->db->get();
+		return $query->result();
+	}
+	
+	function get_article_by_slug($article_slug) {
+		$this->db->select('*');
+		$this->db->from('articles');
+		$this->db->where('article_slug', $article_slug);
 		$this->db->join('article_categories', 'article_categories.article_category_id = articles.article_category_id', 'left');
 		$query = $this->db->get();
 		return $query->result();
@@ -131,6 +148,18 @@ class Content_Model extends CI_Model {
 		$query = $this->db->get();
 		return $query->result();
 	}
+	
+	// function get_articles_by_category_slug($category_slug, $limit=10000000) {
+		// $this->db->select('*');
+		// $this->db->from('articles');
+		// $this->db->where('articles.category_slug', $category_slug);
+		// $this->db->where('article_status', 'published');
+		// $this->db->join('article_categories', 'article_categories.article_category_id = articles.article_category_id', 'left');
+		// $this->db->order_by("publish_date", "desc");
+		// $this->db->limit($limit);
+		// $query = $this->db->get();
+		// return $query->result();
+	// }
 	
 	function get_static_pages() {
 		$this->db->select('*');
@@ -225,11 +254,11 @@ class Content_Model extends CI_Model {
 		return $query->result();
 	}
 
-	function get_related_articles($article_category_id, $article_id) {
+	function get_related_articles($article_category_id, $article_slug) {
 		$this->db->select('*');
 		$this->db->from('articles');
 		$this->db->where('article_category_id', $article_category_id);
-		$this->db->where('article_id !=', $article_id);
+		$this->db->where('article_slug !=', $article_slug);
 		$this->db->where('article_status', 'published');
 		$query = $this->db->get();
 		return $query->result();

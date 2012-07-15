@@ -55,9 +55,9 @@
 		echo "<div id='breadcrumb'>";
 		echo "<a href='".base_url()."'>Home</a>";
 		if ($main_navigation == 'articles') {
-			echo " > <a href='".base_url()."articles'>Articles</a> > <a href='".base_url()."category/".$category_id."'>".$category_name."</a> > <a href='".base_url()."article/".$article_id."'>".$article_title."</a>";
+			echo " > <a href='".base_url()."articles'>Articles</a> > <a href='".base_url()."category/".$category_slug."'>".$category_name."</a> > <a href='".base_url()."article/".$article_slug."'>".$article_title."</a>";
 		} elseif ($main_navigation == 'category') {
-			echo " > <a href='".base_url()."category/".$category_id."'>".$category_name."</a>";
+			echo " > <a href='".base_url()."category/".$category_slug."'>".$category_name."</a>";
 		} else {
 			$destination_url_array = explode('/', $destination_url);
 			$destination_url_formatted = str_replace('_', ' ', $destination_url_array[1]);

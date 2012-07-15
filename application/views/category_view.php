@@ -2,6 +2,7 @@
 	$data['main_navigation'] = 'category';
 	$data['category_name'] = $articles[0]->category_name;
 	$data['category_id'] = $articles[0]->article_category_id;
+	$data['category_slug'] = $articles[0]->category_slug;
 	$this->load->view('_includes/head');
 	$this->load->view('_includes/header', $data);
 ?>
@@ -12,12 +13,12 @@
 		<h1 class="module_header_with_icon rounded_top_corners_10 header_gradient inner_shadow_2"><?php echo $articles[0]->category_name; ?></h1>
 		<?php foreach ($articles as $article) { ?>
 			<div class="article_snippet">
-				<h2><a href="<?php echo base_url().'article/'.$article->article_id; ?>"><?php echo $article->article_title; ?></a></h2>
+				<h2><a href="<?php echo base_url().'article/'.$article->article_slug; ?>"><?php echo $article->article_title; ?></a></h2>
 				<h3 class="date_and_category">
 					<?php 
 						$date = new DateTime($article->publish_date);
 						echo $date->format('m-d-Y');
-						echo " | <a href='".base_url().'category/'.$article->article_category_id."'>".$article->category_name."</a>";
+						echo " | <a href='".base_url().'category/'.$article->category_slug."'>".$article->category_name."</a>";
 					?>
 				</h3>
 				<p><?php echo $article->article_summary; ?></p>

@@ -65,10 +65,11 @@ class Admin extends CI_Controller {
 		$this->load->model('account_model');
 		$this->load->model('subscription_model');
 		$this->load->library('form_validation');
+		$this->form_validation->set_message('is_unique', 'This Article Title has been used. Please pick a unique title.');
 		$this->form_validation->set_error_delimiters('<div class="error">', '</div>');
 		$this->form_validation->set_rules('subscriber_id', 'Subscriber Name', 'required');
 		$this->form_validation->set_rules('article_category_id', 'Article Category', 'required');
-		$this->form_validation->set_rules('article_title', 'Article Title', 'required');
+		$this->form_validation->set_rules('article_title', 'Article Title', 'required|is_unique[articles.article_title]');
 		$this->form_validation->set_rules('article_summary', 'Article Summary', 'required');
 		$this->form_validation->set_rules('article_body', 'Article Body', 'required');
 		$this->form_validation->set_rules('article_tags', 'Article Tags', 'required');
@@ -123,6 +124,7 @@ class Admin extends CI_Controller {
 				'subscriber_id'			=> $this->input->post('subscriber_id'),
 				'article_category_id'	=> $this->input->post('article_category_id'),
 				'article_title'			=> $this->input->post('article_title'),
+				'article_slug'			=> url_title($this->input->post('article_title'), "-", TRUE),
 				'article_summary'		=> $this->input->post('article_summary'),
 				'article_body'			=> $this->input->post('article_body'),
 				'article_status'		=> $article_status,
@@ -159,13 +161,15 @@ class Admin extends CI_Controller {
 		$user_id = $this->session->userdata('user_id');
 		$this->load->model('content_model');
 		$this->load->library('form_validation');
+		$this->form_validation->set_message('is_unique', 'This category already exists. Please use a unique category.');
 		$this->form_validation->set_error_delimiters('<div class="error">', '</div>');
-		$this->form_validation->set_rules('category_name', 'Category Name', 'required');
+		$this->form_validation->set_rules('category_name', 'Category Name', 'required|is_unique[article_categories.category_name]');
 		if ($this->form_validation->run() == FALSE) { // FALSE FOR PRODUCTION
 			$this->admin_library->load_admin_view();
 		} else {
 			$data = array(
 				'category_name'	=> $this->input->post('category_name'),
+				'category_slug' => url_title($this->input->post('category_name'), "-", TRUE)
 			);
 			$category_added = $this->content_model->add_category($data);
 			if($category_added) {
@@ -602,9 +606,9 @@ class Admin extends CI_Controller {
 		$this->load->model('content_model');
 		$this->load->library('form_validation');
 		$this->form_validation->set_error_delimiters('<div class="error">', '</div>');
+		$this->form_validation->set_message('is_unique', 'This Article Title has been used. Please pick a unique title.');
 		$this->form_validation->set_rules('subscriber_id', 'Subscriber Name', 'required');
-		$this->form_validation->set_rules('article_title', 'Article Title', 'required');
-		$this->form_validation->set_rules('article_title', 'Article Title', 'required');
+		$this->form_validation->set_rules('article_title', 'Article Title', 'required|is_unique[articles.article_title]');
 		$this->form_validation->set_rules('article_summary', 'Article Summary', 'required');
 		$this->form_validation->set_rules('article_body', 'Article Body', 'required');
 		$this->form_validation->set_rules('draft_status', 'Draft Status', 'trim');
@@ -662,6 +666,7 @@ class Admin extends CI_Controller {
 				'subscriber_id'			=> $this->input->post('subscriber_id'),
 				'article_category_id'	=> $this->input->post('article_category_id'),
 				'article_title'			=> $this->input->post('article_title'),
+				'article_slug'			=> url_title($this->input->post('article_title'), "-", TRUE),
 				'article_summary'		=> $this->input->post('article_summary'),
 				'article_body'	  		=> $this->input->post('article_body'),
 				'article_status'		=> $article_status,
@@ -918,14 +923,16 @@ class Admin extends CI_Controller {
 		$this->load->model('content_model');
 		$this->load->library('form_validation');
 		$this->form_validation->set_error_delimiters('<div class="error">', '</div>');
-		$this->form_validation->set_rules('category_name', 'Category Name', 'required');
+		$this->form_validation->set_message('is_unique', 'This category already exists. Please use a unique category.');
+		$this->form_validation->set_rules('category_name', 'Category Name', 'required|is_unique[article_categories.category_name]');
 		if ($this->form_validation->run() == FALSE) { // FALSE FOR PRODUCTION
 			$this->load->model('content_model');
 			$data['category'] = $this->content_model->get_category_by_id($category_id);
 			$this->load->view('edit_category_view', $data);
 		} else {
 			$category_data = array(
-				'category_name'	=> $this->input->post('category_name')
+				'category_name'	=> $this->input->post('category_name'),
+				'category_slug' => url_title($this->input->post('category_name'), "-", TRUE)
 			);
 			$category_updated = $this->content_model->update_category($category_id, $category_data);
 			if($category_updated) {
