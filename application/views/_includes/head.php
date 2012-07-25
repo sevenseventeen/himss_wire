@@ -20,6 +20,8 @@
 			}
 		?>
 		
+		<meta name="robots" content="noindex, nofollow">
+		
         <link rel="stylesheet" type="text/css" href="<?php echo base_url().'_css/reset.css'; ?>" />
         <link rel="stylesheet" type="text/css" href="<?php echo base_url().'_css/main.css'; ?>" />
         <link rel="stylesheet" type="text/css" href="<?php echo base_url().'_css/debugging.css'; ?>" />
@@ -187,8 +189,36 @@
         			}
     			});
 			});
-
+			
+			// Draggable and Sortable for Partner Links and FAQ Lists
+			
+			$(function() {
+				$("#sortable_partner_links").sortable({
+					stop:function(i) {
+						$.ajax({
+							type: "POST",
+							url: "<?php echo base_url().'ajax_controller/order_partner_links/'; ?>",
+							data: $("#sortable_partner_links").sortable("serialize")	
+						});
+					}
+				});
+				
+				$("#sortable_faqs").sortable({
+					stop:function(i) {
+						$.ajax({
+							type: "POST",
+							url: "<?php echo base_url().'ajax_controller/order_faqs/'; ?>",
+							data: $("#sortable_faqs").sortable("serialize")	
+						});
+					}
+				});
+			});
+			
 		</script>
+		
+<!-- 					//data: $("#sortable_partner_links").sortable("serialize")
+			//url: "<?php echo base_url().'_php/partner_links_reorder.php'; ?>",
+			//data: $("#sortable_partner_links").sortable("serialize") -->
 		
 		<!-- HTML5 Shiv for IE <= 8 -->
 		

@@ -208,6 +208,7 @@ class Content_Model extends CI_Model {
 	function get_partner_links() {
 		$this->db->select('*');
 		$this->db->from('partner_links');
+		$this->db->order_by("partner_link_position", "asc");
 		$query = $this->db->get();
 		return $query->result();
 	}
@@ -223,6 +224,7 @@ class Content_Model extends CI_Model {
 	function get_faqs() {
 		$this->db->select('*');
 		$this->db->from('faqs');
+		$this->db->order_by("faq_position", "asc");
 		$query = $this->db->get();
 		return $query->result();
 	}
@@ -279,6 +281,11 @@ class Content_Model extends CI_Model {
 	 * 
 	 */
 	
+	function update_partner_link_order($partner_link_id, $partner_link_data) {
+		$result = $this->db->update('partner_links', $partner_link_data, "partner_link_id = $partner_link_id");
+        return $result;
+	}
+	
 	function update_article($article_id, $article_data) {
 		$result = $this->db->update('articles', $article_data, "article_id = $article_id");
         return $result;
@@ -310,6 +317,11 @@ class Content_Model extends CI_Model {
 	}
 	
 	function update_faq($faq_id, $data) {
+		$result = $this->db->update('faqs', $data, "faq_id = $faq_id");
+    	return $result;
+	}
+	
+	function update_faq_order($faq_id, $data) {
 		$result = $this->db->update('faqs', $data, "faq_id = $faq_id");
     	return $result;
 	}
@@ -359,7 +371,7 @@ class Content_Model extends CI_Model {
 		$feed_module_deleted = $this->db->delete('feed_modules', "feed_module_id = $feed_module_id");
 		return $feed_module_deleted;
 	}
-
+	
 }
 	
 ?>

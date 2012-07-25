@@ -2,7 +2,7 @@
 
 
 html {
-	background-color: #bdbdbd;
+	background-color: #c9c9c9;
 	color:#3d4649;
 }
 
@@ -192,6 +192,21 @@ footer {
 	margin-top: 60px;
 }
 
+.question {
+	font-weight:bold;
+}
+
+.answer {
+	margin-top: 5px;
+}
+
+.tabs table {
+	margin-top:20px;
+}
+
+.export_link {
+	color:#004499!important;
+}
 
 /* ************** Feed Module View ************** */
 
@@ -371,6 +386,10 @@ a.module_header_view_all {
 	/*position: absolute;*/
 }
 
+#main_content .date {
+	margin-top:6px;
+}
+
 /* ************** Header ************** */
 
 #login_navigation {
@@ -530,10 +549,12 @@ a.module_header_view_all {
 	padding-right: 20px;
 }
 
-.article p {
+.article p, .article li {
 	line-height: 18px;
 	font-size: 14px;
 }
+
+
 
 .category_module {
 	/*float: left;*/

@@ -49,7 +49,7 @@
 		<p>
 			<?php 
 				foreach ($published_articles as $published_article) {
-					echo "<a href='".base_url()."article/".$published_article->article_id."'>".$published_article->article_title."</a><br />";
+					echo "<a href='".base_url()."article/".$published_article->article_slug."'>".$published_article->article_title."</a><br />";
 				}
 			?>
 		</p>

@@ -1,6 +1,10 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 class Main_Controller extends CI_Controller {
+	
+	public function page_not_found() {
+		$this->load->view('404_view');
+	}
 
 	public function index() {
 		$this->load->model('auth_model');
@@ -34,14 +38,19 @@ class Main_Controller extends CI_Controller {
 	public function article($article_slug) {
 		$this->load->model('content_model');
 		$article = $this->content_model->get_article_by_slug($article_slug);
-		$article_category_id = $article[0]->article_category_id; 
-		$data['article'] = $article;
-		$data['feature_module'] = $this->content_model->get_feature_module();
-		$data['banner_ad'] = $this->content_model->get_banner_ads();
-		$data['related_articles'] = $this->content_model->get_related_articles($article_category_id, $article_slug);
-		$data['partner_links'] = $this->content_model->get_partner_links();
-		$data['article_slug'] = $article_slug;
-		$this->load->view('article_view', $data);
+		if ($article) {
+			$article_category_id = $article[0]->article_category_id;
+			$data['article'] = $article;
+			$data['feature_module'] = $this->content_model->get_feature_module();
+			$data['banner_ad'] = $this->content_model->get_banner_ads();
+			$data['related_articles'] = $this->content_model->get_related_articles($article_category_id, $article_slug);
+			$data['partner_links'] = $this->content_model->get_partner_links();
+			$data['article_slug'] = $article_slug;
+			$this->load->view('article_view', $data);	
+		} else {
+			redirect("page_not_found");
+		}
+		
 	}
 	
 	public function article_search() {

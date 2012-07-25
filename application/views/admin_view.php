@@ -160,8 +160,9 @@
 				<div id="tabs-1">
 					<h2>Subscribers</h2>
 					<?php
-						foreach ($subscribers as $subscriber) { 
-							echo "<a href='".base_url()."admin/subscriber_account/$subscriber->user_id/$subscriber->subscriber_account_id'>".$subscriber->company_name."</a><br />";
+						foreach ($subscribers as $subscriber) {
+							//echo "<a href='".base_url()."admin/subscriber_account/$subscriber->user_id/$subscriber->subscriber_account_id'>".$subscriber->company_name."</a><br />";
+							echo "<a href='".base_url()."admin/subscriber_account/$subscriber->user_id'>".$subscriber->company_name."</a><br />";
 						}
 					?>
 					<h2>Network Partners</h2>
@@ -379,15 +380,16 @@
 					<li><a href="#tabs-1">Edit</a></li>
 				</ul>
 				<div id="tabs-1">
-					<?php echo form_open_multipart('admin/update_banner_ad');?>
+					<?php echo form_open_multipart('admin/update_banner_ad'); ?>
 						<fieldset>
 							<h2>Edit Banner Ad</h2>
+							<img src="<?php echo base_url()."_uploads/".$banner_ads[0]->banner_image_path; ?>"/>
 							<label>Banner Ad Image (270 Pixels Wide)</label>
 									<?php echo form_upload('banner_image', set_value('banner_image')); ?>
 									<?php echo form_error('banner_image'); ?>
 									<br class="clear_float" />
 							<label>Banner URL</label>
-									<?php echo form_input('banner_url', set_value('banner_url')); ?>
+									<?php echo form_input('banner_url', set_value('banner_url', $banner_ads[0]->banner_url)); ?>
 									<?php echo form_error('banner_url'); ?>
 									<br class="clear_float" />
 							<?php echo form_hidden('banner_ad_id', $banner_ads[0]->banner_ad_id); ?>
@@ -408,12 +410,28 @@
 					<li><a href="#tabs-2">Add</a></li>
 				</ul>
 				<div id="tabs-1">
+
+					<!-- <ul>
+						<li id="draggable" class="ui-state-highlight">Drag me down</li>
+					</ul> -->
+					
+					<!-- <ul id="sortable">
+						<li class="ui-state-default">Item 1</li>
+						<li class="ui-state-default">Item 2</li>
+						<li class="ui-state-default">Item 3</li>
+						<li class="ui-state-default">Item 4</li>
+						<li class="ui-state-default">Item 5</li>
+					</ul> -->
+					
+					
 					<h2>Edit Partner Links</h2>
+					<ul id="sortable_partner_links">
 					<?php
 						foreach ($partner_links as $partner_link) { 
-							echo "<a href='".base_url()."admin/edit_partner_link/$partner_link->partner_link_id'>".$partner_link->partner_link_text."</a><br />";
+							echo "<li id='partner_links_$partner_link->partner_link_id'><a href='".base_url()."admin/edit_partner_link/$partner_link->partner_link_id'>".$partner_link->partner_link_text."</a></li>";
 						}
 					?>
+					</ul>
 				</div>
 				<div id="tabs-2">
 					<?php echo form_open('admin/add_partner_link');?>
@@ -445,11 +463,13 @@
 				</ul>
 				<div id="tabs-1">
 					<h2>Edit FAQ's</h2>
+					<ul id="sortable_faqs">
 					<?php
 						foreach ($faqs as $faq) { 
-							echo "<a href='".base_url()."admin/edit_faq/$faq->faq_id'>".$faq->faq_question."</a><br />";
+							echo "<li id='sortable_faqs_$faq->faq_id'><a href='".base_url()."admin/edit_faq/$faq->faq_id'>".$faq->faq_question."</a></li>";
 						}
 					?>
+					</ul>
 				</div>
 				<div id="tabs-2">
 					<?php echo form_open('admin/add_faq');?>
@@ -482,6 +502,7 @@
 				</ul>
 				<div id="tabs-1">
 					<h2>All Subscribers</h2>
+					<a class="export_link" href="<?php echo base_url(); ?>admin/all_subscribers_csv/">Export CSV &raquo;</a>
 					<table>
 						<tr class="heading">
 							<td class="contact_info">Subscriber<br /> Contact</td>
@@ -515,6 +536,7 @@
 				</div>
 				<div id="tabs-2">
 					<h2>All Network Partners</h2>
+					<a class="export_link" href="<?php echo base_url(); ?>admin/all_partners_csv/">Export CSV &raquo;</a>
 					<table class="network_partners">
 						<!-- <pre>
 							<?php print_r($network_partners)?>

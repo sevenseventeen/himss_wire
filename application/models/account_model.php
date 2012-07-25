@@ -54,6 +54,29 @@ class Account_Model extends CI_Model {
 		return $query->result();
 	}
 	
+	function get_subscribers_csv() {
+		$this->db->select('first_name, last_name, street_address, city, state, zip_code, email, subscription_start_date, subscription_end_date, stories_purchased, stories_remaining');
+		$this->db->from('subscriber_accounts');
+		$this->db->join('subscriptions', 'subscriptions.subscriber_account_id = subscriber_accounts.subscriber_account_id', 'left');
+		$this->db->join('users', 'users.user_id = subscriber_accounts.user_id', 'left');
+		$query = $this->db->get();
+		$this->load->dbutil();
+		$csv = $this->dbutil->csv_from_result($query);
+		return $csv;		
+	}
+	
+	function get_network_partners_csv() {
+		$this->db->select('company_name, first_name, last_name, street_address, city, state, zip_code, email, url, created_on');
+		$this->db->from('network_partner_accounts');
+		$this->db->join('users', 'users.user_id = network_partner_accounts.user_id', 'left');
+		$this->db->join('external_account_websites', 'external_account_websites.user_id = network_partner_accounts.user_id', 'left');
+		//$this->db->group_by("users.user_id");
+		$query = $this->db->get();
+		$this->load->dbutil();
+		$csv = $this->dbutil->csv_from_result($query);
+		return $csv;		
+	}
+	
 	function get_subscribers_with_remaining_articles() {
 		$this->db->select('*');
 		$this->db->from('subscriber_accounts');
@@ -67,7 +90,6 @@ class Account_Model extends CI_Model {
 		$this->db->select('*');
 		$this->db->from('network_partner_accounts');
 		$this->db->join('users', 'users.user_id = network_partner_accounts.user_id', 'left');
-		//$this->db->join('external_account_websites', 'external_account_websites.user_id = network_partner_accounts.user_id', 'left');
 		$query = $this->db->get();
 		return $query->result();
 	}

@@ -66,8 +66,9 @@ ATTENTION: The trailing slash is required.
 if ($_SERVER['SERVER_NAME'] == "localhost" ) {
     $baseUrl = 'http://localhost/development/himsswire/ckfinder/userfiles/';
 } else {
-    $baseUrl = 'https://www.himsswire.com/';
+    $baseUrl = 'http://www.himsswire.com/development/himsswire/ckfinder/userfiles/';
 }
+
 
 /*
 $baseDir : the path to the local directory (in the server) which points to the

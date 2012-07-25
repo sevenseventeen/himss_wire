@@ -53,7 +53,7 @@ $route['admin'] = "admin";
 $route['admin/(:any)'] = "admin/$1";
 $route['(:any)'] = "main_controller/$1";
 $route['default_controller'] = "main_controller";
-$route['404_override'] = '';
+$route['404_override'] = 'page_not_found';
 
 
 // $route['default_controller'] = "main_controller";

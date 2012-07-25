@@ -21,13 +21,15 @@ class Admin extends CI_Controller {
 	 * 
 	 */
 	 
-	public function subscriber_account($user_id, $subscriber_account_id) {
+//	public function subscriber_account($user_id, $subscriber_account_id) {
+	public function subscriber_account($user_id) {
 		$this->load->model('account_model');
 		$this->load->model('user_model');
 		$this->load->model('subscription_model');
 		$this->load->model('content_model');
 		$data['user_account'] = $this->user_model->get_user_by_id($user_id);
 		$data['subscriber_account'] = $this->account_model->get_subscriber_by_user_id($user_id);
+		$subscriber_account_id = $data['subscriber_account'][0]->subscriber_account_id;
 		$data['subscription_details'] = $this->subscription_model->get_subscription_by_account_id($subscriber_account_id);
 		$data['articles'] = $this->content_model->get_all_articles_by_account_id($subscriber_account_id);
 		$data['reports'] = $this->content_model->get_reports_by_subscriber_account_id($subscriber_account_id);
@@ -608,7 +610,7 @@ class Admin extends CI_Controller {
 		$this->form_validation->set_error_delimiters('<div class="error">', '</div>');
 		$this->form_validation->set_message('is_unique', 'This Article Title has been used. Please pick a unique title.');
 		$this->form_validation->set_rules('subscriber_id', 'Subscriber Name', 'required');
-		$this->form_validation->set_rules('article_title', 'Article Title', 'required|is_unique[articles.article_title]');
+		$this->form_validation->set_rules('article_title', 'Article Title', 'required');
 		$this->form_validation->set_rules('article_summary', 'Article Summary', 'required');
 		$this->form_validation->set_rules('article_body', 'Article Body', 'required');
 		$this->form_validation->set_rules('draft_status', 'Draft Status', 'trim');
@@ -1048,8 +1050,8 @@ class Admin extends CI_Controller {
 		$this->form_validation->set_error_delimiters('<div class="error">', '</div>');
 		$this->form_validation->set_rules('banner_url', 'Banner URL', 'required');
 		$config['upload_path'] = './_uploads/';
-		$config['allowed_types'] = 'gif|jpg|png';
-		$config['max_size']	= '100';
+		$config['allowed_types'] = 'gif|jpg|png|jpeg';
+		$config['max_size']	= '1000';
 		$config['max_width']  = '1024';
 		$config['max_height']  = '768';
 		$config['overwrite']  =  TRUE;
@@ -1057,24 +1059,25 @@ class Admin extends CI_Controller {
 		if ($this->form_validation->run() == FALSE) {
 			$this->admin_library->load_admin_view();
 		} else {
-			if (!$this->upload->do_upload("banner_image")) {
-				// TODO Set custom error system here.
-				//$error = array('error' => $this->upload->display_errors());
-				//$this->load->view('upload_form', $error);
-			} else {
+			if ($this->upload->do_upload("banner_image")) {
 				$image_data = $this->upload->data();
 				$banner_data = array(
 					'banner_image_path'	=> $image_data['file_name'],
-					'banner_url'		=> $this->input->post('banner_url')
+					'banner_url'		=> prep_url($this->input->post('banner_url'))
 				);
-				$banner_updated = $this->content_model->update_banner_ad($banner_ad_id, $banner_data);
-				if($banner_updated) {
-					$this->session->set_flashdata('message', 'Success! Your edits have been saved.');
-					redirect("admin");
-				} else {
-					$this->session->set_flashdata('message', 'Sorry, there was a problem saving your edits.');
-					redirect("admin");
-				}
+			} else {
+				//echo $this->upload->display_errors();
+				$banner_data = array(
+					'banner_url'		=> prep_url($this->input->post('banner_url'))
+				);
+			}
+			$banner_updated = $this->content_model->update_banner_ad($banner_ad_id, $banner_data);
+			if($banner_updated) {
+				$this->session->set_flashdata('message', 'Success! Your edits have been saved.');
+				redirect("admin");
+			} else {
+				$this->session->set_flashdata('message', 'Sorry, there was a problem saving your edits.');
+				redirect("admin");
 			}
 		}
 	}
@@ -1248,5 +1251,28 @@ class Admin extends CI_Controller {
 			$this->session->set_flashdata('message', 'Sorry, there was a problem saving your edits.');
 			redirect("admin");
 		}
-	 }	
+	 }
+	 
+	 /*
+	 * 
+	 * Report Functions
+	 * 
+	 * 
+	 */
+	 
+	 public function all_subscribers_csv() {
+		$this->load->model('account_model');
+		$this->load->helper('file');
+		$this->load->helper('download');
+		$result = $this->account_model->get_subscribers_csv();
+		force_download("all_suscribers_report.csv", $result);
+	}
+	 
+	 public function all_partners_csv() {
+		$this->load->model('account_model');
+		$this->load->helper('file');
+		$this->load->helper('download');
+		$result = $this->account_model->get_network_partners_csv();
+		force_download("all_network_partners_report.csv", $result);
+	}
 }

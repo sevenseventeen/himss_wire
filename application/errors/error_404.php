@@ -1,3 +1,5 @@
+<?php redirect("page_not_found"); ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
