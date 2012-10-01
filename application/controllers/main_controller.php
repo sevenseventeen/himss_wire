@@ -13,11 +13,19 @@ class Main_Controller extends CI_Controller {
 		$data['feature_module'] = $this->content_model->get_feature_module();
 		$data['banner_ad'] = $this->content_model->get_banner_ads();
 		$data['feature_module_optional'] = $this->content_model->get_feature_module_optional();
-		$data['partner_links'] = $this->content_model->get_partner_links();
+		$data['active_category_ids'] = $this->content_model->get_active_category_ids();
+		$active_cateogy_ids = $data['active_category_ids'];
+		$active_categories = array();
+		foreach ($active_cateogy_ids as $active_cateogy_id) {
+			$category_id = $active_cateogy_id->article_category_id;
+			$category = $this->content_model->get_category_by_id($category_id);
+			array_push($active_categories, $category);
+		}
+		$data['active_categories'] = $active_categories;
 		$this->load->view('home_view', $data);
 	}
 	
-	public function articles() {
+	public function news() {
 		$this->load->model('content_model');
 		$results = array();
 		$categories = $this->content_model->get_categories();
@@ -44,7 +52,15 @@ class Main_Controller extends CI_Controller {
 			$data['feature_module'] = $this->content_model->get_feature_module();
 			$data['banner_ad'] = $this->content_model->get_banner_ads();
 			$data['related_articles'] = $this->content_model->get_related_articles($article_category_id, $article_slug);
-			$data['partner_links'] = $this->content_model->get_partner_links();
+			$data['active_category_ids'] = $this->content_model->get_active_category_ids();
+			$active_cateogy_ids = $data['active_category_ids'];
+			$active_categories = array();
+			foreach ($active_cateogy_ids as $active_cateogy_id) {
+				$category_id = $active_cateogy_id->article_category_id;
+				$category = $this->content_model->get_category_by_id($category_id);
+				array_push($active_categories, $category);
+			}
+			$data['active_categories'] = $active_categories;
 			$data['article_slug'] = $article_slug;
 			$this->load->view('article_view', $data);	
 		} else {
@@ -71,18 +87,34 @@ class Main_Controller extends CI_Controller {
 		$offset = $this->uri->segment($config['uri_segment']);
 		$data['pagination_links'] = $this->pagination->create_links();
 		$data['search_results'] = $this->content_model->get_search_results($search_term, $limit, $offset);
-		$data['partner_links'] = $this->content_model->get_partner_links();
+		$data['active_category_ids'] = $this->content_model->get_active_category_ids();
+		$active_cateogy_ids = $data['active_category_ids'];
+		$active_categories = array();
+		foreach ($active_cateogy_ids as $active_cateogy_id) {
+			$category_id = $active_cateogy_id->article_category_id;
+			$category = $this->content_model->get_category_by_id($category_id);
+			array_push($active_categories, $category);
+		}
+		$data['active_categories'] = $active_categories;
 		$this->load->view('article_search_results_view', $data);
 	}
 	
-	public function about_himss_wire($page_id) {
+	public function alerts($page_id) {
 		$this->load->model('content_model');
 		$data['articles'] = $this->content_model->get_published_articles('5');
 		$data['feature_module'] = $this->content_model->get_feature_module();
 		$data['banner_ad'] = $this->content_model->get_banner_ads();
 		$data['static_page'] = $this->content_model->get_static_page_by_id($page_id);
 		$data['static_page_content'] = $this->content_model->get_static_page_content_by_id($page_id);
-		$data['partner_links'] = $this->content_model->get_partner_links();
+		$data['active_category_ids'] = $this->content_model->get_active_category_ids();
+		$active_cateogy_ids = $data['active_category_ids'];
+		$active_categories = array();
+		foreach ($active_cateogy_ids as $active_cateogy_id) {
+			$category_id = $active_cateogy_id->article_category_id;
+			$category = $this->content_model->get_category_by_id($category_id);
+			array_push($active_categories, $category);
+		}
+		$data['active_categories'] = $active_categories;
 		$this->load->view('about_himss_wire_view', $data);
 	}
 	
@@ -103,7 +135,15 @@ class Main_Controller extends CI_Controller {
 		$data['banner_ad'] = $this->content_model->get_banner_ads();
 		$data['static_page'] = $this->content_model->get_static_page_by_id($page_id);
 		$data['static_page_content'] = $this->content_model->get_static_page_content_by_id($page_id);
-		$data['partner_links'] = $this->content_model->get_partner_links();
+		$data['active_category_ids'] = $this->content_model->get_active_category_ids();
+		$active_cateogy_ids = $data['active_category_ids'];
+		$active_categories = array();
+		foreach ($active_cateogy_ids as $active_cateogy_id) {
+			$category_id = $active_cateogy_id->article_category_id;
+			$category = $this->content_model->get_category_by_id($category_id);
+			array_push($active_categories, $category);
+		}
+		$data['active_categories'] = $active_categories;
 		$this->load->view('our_network_view', $data);
 	}
 
@@ -114,14 +154,22 @@ class Main_Controller extends CI_Controller {
 		$this->load->view('privacy_policy_view', $data);
 	}
 	
-	public function join_himss($page_id) {
+	public function get_published($page_id) {
 		$this->load->model('content_model');
 		$data['articles'] = $this->content_model->get_published_articles('5');
 		$data['feature_module'] = $this->content_model->get_feature_module();
 		$data['banner_ad'] = $this->content_model->get_banner_ads();
 		$data['static_page'] = $this->content_model->get_static_page_by_id($page_id);
 		$data['static_page_content'] = $this->content_model->get_static_page_content_by_id($page_id);
-		$data['partner_links'] = $this->content_model->get_partner_links();
+		$data['active_category_ids'] = $this->content_model->get_active_category_ids();
+		$active_cateogy_ids = $data['active_category_ids'];
+		$active_categories = array();
+		foreach ($active_cateogy_ids as $active_cateogy_id) {
+			$category_id = $active_cateogy_id->article_category_id;
+			$category = $this->content_model->get_category_by_id($category_id);
+			array_push($active_categories, $category);
+		}
+		$data['active_categories'] = $active_categories;
 		$this->load->view('join_himss_view', $data);
 	}
 	
@@ -132,16 +180,63 @@ class Main_Controller extends CI_Controller {
 		$this->load->view('contact_us_view', $data);
 	}
 	
+	function send_email($page_id){
+		$this->load->library('form_validation');
+		$this->form_validation->set_error_delimiters('<div class="error">', '</div>');
+		$this->form_validation->set_rules('name', 'Name', 'required|max_length[30]');
+		$this->form_validation->set_rules('company', 'Company', 'required|[30]');
+		$this->form_validation->set_rules('email', 'Email', 'required|valid_email');
+		$this->form_validation->set_rules('phone', 'Phone', 'required');
+		$this->form_validation->set_rules('message', 'Message', 'max_length[500]');
+		if ($this->form_validation->run() == FALSE) {
+			$this->load->model('content_model');
+			$data['articles'] = $this->content_model->get_published_articles('5');
+			$data['feature_module'] = $this->content_model->get_feature_module();
+			$data['banner_ad'] = $this->content_model->get_banner_ads();
+			$data['static_page'] = $this->content_model->get_static_page_by_id($page_id);
+			$data['static_page_content'] = $this->content_model->get_static_page_content_by_id($page_id);
+			$data['active_category_ids'] = $this->content_model->get_active_category_ids();
+			$active_cateogy_ids = $data['active_category_ids'];
+			$active_categories = array();
+			foreach ($active_cateogy_ids as $active_cateogy_id) {
+				$category_id = $active_cateogy_id->article_category_id;
+				$category = $this->content_model->get_category_by_id($category_id);
+				array_push($active_categories, $category);
+			}
+			$data['active_categories'] = $active_categories;
+			$this->load->view('join_himss_view', $data);
+		} else {
+			$data = array(
+				'name'		=> $this->input->post('name'),
+				'company' 	=> $this->input->post('company'),
+				'email' 	=> $this->input->post('email'),
+				'phone' 	=> $this->input->post('phone'),
+				'message' 	=> $this->input->post('message'),
+			);
+			$this->load->library('email');
+			$this->email->from($data['email'], $data['name']);
+			$this->email->to('josh@seven-seventeen.com');
+			$this->email->subject('Contact From HIMSSWire');
+			$this->email->message("Name: ". $data["name"] . "\n" . "Company: ". $data["company"] . "\n" . "Email: ". $data["email"] . "\n" . "Phone: ". $data["phone"] . "\n" . "Message: " . $data["message"]);
+			$this->email->send();
+			redirect('email_sent');
+		}
+	}
+	
+	function email_sent(){
+		$this->load->view('email_sent_view');
+	}
+	
 	public function rss() {
 		$this->load->helper('xml');
 		$this->load->helper('text');
 		$this->load->model('content_model');
-		$data['feed_name'] = 'MyWebsite.com';  
+		$data['feed_name'] = 'HIMSSWire.org';  
 		$data['encoding'] = 'utf-8';  
-		$data['feed_url'] = 'http://www.MyWebsite.com/feed';  
-		$data['page_description'] = 'What my site is about goes here';  
+		$data['feed_url'] = 'http://www.himsswire.com/rss';  
+		$data['page_description'] = 'News and Insight from the Healthcare Community';  
 		$data['page_language'] = 'en-en';  
-		$data['creator_email'] = 'mail@me.com';  
+		$data['creator_email'] = 'josh@seven-seventeen.com';  
 		$data['articles'] = $this->content_model->get_published_articles();
 		header("Content-Type: application/rss+xml");
        	$this->load->view('feed_view', $data);

@@ -5,9 +5,9 @@
 ?>
 
 <div id="main_content" class="rounded_corners_10 module_920 inner_shadow_2">
-	<pre>
-		<?php //print_r($subscriber_account); ?>
-	</pre>
+		
+		<a class="export_link" href="<?php echo base_url(); ?>admin/individual_subscriber_txt/<?php echo $user_account[0]->user_id; ?>">Export TXT File &raquo;</a>
+		
 		<fieldset>
 			<h2><?php echo $subscriber_account[0]->company_name; ?></h2>
 			<p>

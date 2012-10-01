@@ -8,7 +8,7 @@
 <div id="main_content">
 	<div class="category_module module_600 rounded_corners_10 inner_shadow_2">
 		<img class="module_header_icon" src="_images/latest_article_icon.png" />
-		<h1 class="module_header_with_icon rounded_top_corners_10 header_gradient inner_shadow_2">The Latest</h1>
+		<h1 class="module_header_with_icon rounded_top_corners_10 header_gradient inner_shadow_2">Latest Headlines</h1>
 		<?php foreach ($articles as $article) { ?>
 			<div class="article_snippet">
 				<h2><a href="<?php echo base_url().'article/'.$article->article_slug; ?>"><?php echo $article->article_title; ?></a></h2>

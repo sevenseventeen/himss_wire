@@ -1275,4 +1275,19 @@ class Admin extends CI_Controller {
 		$result = $this->account_model->get_network_partners_csv();
 		force_download("all_network_partners_report.csv", $result);
 	}
+	 
+	 public function individual_subscriber_txt($user_id) {
+		$this->load->model('account_model');
+		$this->load->helper('file');
+		$this->load->helper('download');
+		$result = $this->account_model->get_subscriber_txt_by_user_id($user_id);
+		//echo "<pre>";
+		//print_r($result);
+		//echo "</pre>";
+		//echo $result[0]->first_name;
+		$data = $result[0]->first_name." ".$result[0]->last_name."\n";
+		$data .= $result[0]->company_name."\n";
+		$data .= $result[0]->phone_number;
+		force_download("subscriber.txt", $data);
+	}
 }

@@ -1,9 +1,8 @@
 /* ************** Body and Main Container ************** */
 
-
 html {
 	background-color: #c9c9c9;
-	color:#3d4649;
+	color: #3d4649;
 }
 
 body {
@@ -36,50 +35,48 @@ body {
 
 /* ************** Admin Pages ************** */
 
-
-
 /* ************** Global Tags ************** */
 
 h1 {
 	font-family: Verdana, Arial, Sans-Serif;
 	font-size: 24px;
-	margin:20px 0 0 0;
+	margin: 20px 0 0 0;
 	color: #505050;
-	font-weight:normal;
+	font-weight: normal;
 }
 
 h2 {
-	margin:20px 0 0 0;
-	font-size:20px;
-	font-weight:normal;	
+	margin: 20px 0 0 0;
+	font-size: 20px;
+	font-weight: normal;
 }
 
 h3 {
-	margin:20px 0 0 0;
-	font-size:16px;
+	margin: 20px 0 0 0;
+	font-size: 16px;
 	color: #505050;
-	font-weight:normal;
+	font-weight: normal;
 }
 
 h4 {
-	margin:20px 0 0 0;
-	font-size:12px;
+	margin: 20px 0 0 0;
+	font-size: 12px;
 	color: #505050;
-	font-weight:bold;
+	font-weight: bold;
 }
 
 a {
 	color: #005dab;
-	text-decoration:none;
+	text-decoration: none;
 }
 
 p {
-	line-height:15px;
-	margin:20px 0 0 0;
+	line-height: 15px;
+	margin: 20px 0 0 0;
 }
 
 strong {
-	font-weight:bold;
+	font-weight: bold;
 }
 
 aside {
@@ -88,11 +85,11 @@ aside {
 
 header {
 	height: 166px;
-	background-color: #004076;
+	background-color: #FFF;
 }
 
 #header_right_side {
-	float:right;
+	float: right;
 }
 
 header img {
@@ -103,27 +100,27 @@ header img {
 
 label {
 	display: block;
-	margin:15px 0 3px 0;
+	margin: 15px 0 3px 0;
 	/*margin:15px 0 3px 0;*/
-	font-size:11px;
+	font-size: 11px;
 	color: #333;
 }
 
 legend {
 	-webkit-margin-top-collapse: separate;
-	margin-bottom:20px;
-	font-size:20px;
+	margin-bottom: 20px;
+	font-size: 20px;
 }
 
 textarea {
-	width:590px;
+	width: 590px;
 	border: 1px solid #CCC;
-	margin-bottom:15px;
-	margin-bottom:0px;
+	margin-bottom: 15px;
+	margin-bottom: 0px;
 }
 
 select {
-	margin-left:-1px;
+	margin-left: -1px;
 }
 
 input {
@@ -132,13 +129,13 @@ input {
 }
 
 input[type="text"], input[type="password"] {
-	width:400px;
-	height:20px;
+	width: 400px;
+	height: 20px;
 }
 
 input[type="image"] {
 	border-width: 0;
-	margin:20px 0 0px 0;	
+	margin: 20px 0 0px 0;
 }
 
 form {
@@ -147,8 +144,8 @@ form {
 
 .delete {
 	/*color: red;*/
-	display:block;
-	margin-top:15px;
+	display: block;
+	margin-top: 15px;
 }
 
 ul {
@@ -161,31 +158,31 @@ li {
 }
 
 table td {
-	border:1px solid #ccc;
-	width:130px;
-	text-align:center;
+	border: 1px solid #ccc;
+	width: 130px;
+	text-align: center;
 }
 
 table a {
-	color:#005DAB !important;
+	color: #005DAB !important;
 }
 
 tr.heading td {
-	height:35px;
+	height: 35px;
 }
 
 td.contact_info {
-	width:250px;
-	text-align:left;
-	padding:10px;
+	width: 250px;
+	text-align: left;
+	padding: 10px;
 }
 
 table.network_partners .contact_info {
-	width:300px;
+	width: 300px;
 }
 
 table.network_partners .website {
-	width:350px;
+	width: 350px;
 }
 
 footer {
@@ -193,7 +190,7 @@ footer {
 }
 
 .question {
-	font-weight:bold;
+	font-weight: bold;
 }
 
 .answer {
@@ -201,28 +198,26 @@ footer {
 }
 
 .tabs table {
-	margin-top:20px;
+	margin-top: 20px;
 }
 
 .export_link {
-	color:#004499!important;
+	color: #004499 !important;
 }
 
 /* ************** Feed Module View ************** */
 
 .feed_module_demo .feed_module {
-	margin-top:20px;
+	margin-top: 20px;
 }
-
 
 /* ************** Admin Panel ************** */
 
 #accordion h2 {
-	margin:15px 0 15px 0;
+	margin: 15px 0 15px 0;
 }
 
 /* ************** Global Elements************** */
-
 
 .module_300 {
 	width: 300px;
@@ -238,34 +233,34 @@ footer {
 	width: 410px;
 	margin: 20px 0 0 20px;
 	background-color: #FFF;
-	padding:0px 20px 0 20px;
+	padding: 0px 20px 0 20px;
 }
 
 .module_600 {
-	width: 560px; /* 600-20-20 for padding */ 
+	width: 560px; /* 600-20-20 for padding */
 	margin: 20px 0 0 20px;
 	background-color: #FFF;
-	padding:0 20px 20px 20px;
+	padding: 0 20px 20px 20px;
 }
 
 .module_920 {
 	width: 900px;
 	margin: 20px 0 0 20px;
 	background-color: #FFF;
-	padding:0 0 20px 20px;
+	padding: 0 0 20px 20px;
 }
 
 .module_header_with_icon {
 	color: #FFF;
 	margin-top: 0px;
-	padding: 14px 0 16px 40px ;
-	position:absolute;
+	padding: 14px 0 16px 40px;
+	position: absolute;
 	z-index: 0;
-	height:25px;
+	height: 25px;
 }
 
 .module_header_icon {
-	position:absolute;
+	position: absolute;
 	z-index: 20;
 	margin: 10px 0 0 -8px;
 }
@@ -273,92 +268,92 @@ footer {
 .module_header_no_icon {
 	color: #FFF;
 	padding: 16px 0 16px 14px;
-	position:relative;
+	position: relative;
 	z-index: 0;
 	font-size: 23px;
-	height:29px;
+	height: 29px;
 }
 
 h3.module_header_no_icon {
 	padding: 11px 0 0px 14px;
-	margin-left:0px;
+	margin-left: 0px;
 	margin-left: -20px;
 	margin-right: -20px;
-	font-size:14px;
+	font-size: 14px;
 }
 
 h1.module_header_no_icon, h1.module_header_with_icon {
 	margin: 0 -20px 0 -20px;
 	padding-top: 11px;
-	padding-bottom:15px;
-	height:14px;
-	font-size:14px;
+	padding-bottom: 15px;
+	height: 14px;
+	font-size: 14px;
 }
 
 .module_920 h1.module_header_with_icon {
 	margin: 0 0 0 -20px;
 	/*font-size: 23px;
-	padding-top: 16px;
-	padding-bottom:15px;
-	height:29px;*/
+	 padding-top: 16px;
+	 padding-bottom:15px;
+	 height:29px;*/
 }
 
 a.module_header_view_all {
-	float:right;
+	float: right;
 	position: relative;
 	z-index: 10;
-	margin:-38px 0 0 0;
-	color:#FFF;
+	margin: -38px 0 0 0;
+	color: #FFF;
 	text-decoration: none;
 }
 
 .header_gradient {
-	background: #1a6fb0; /*fallback for non-CSS3 browsers*/
-    background: -webkit-gradient(linear, 0 0, 0 100%, from(#4f8fc5) to(#004076)); /*old webkit*/
-    background: -webkit-linear-gradient(#4f8fc5, #004076); /*new webkit*/
-    background: -moz-linear-gradient(#4f8fc5, #004076); /*gecko*/
-    background: -ms-linear-gradient(#4f8fc5, #004076); /*IE10*/
-    background: -o-linear-gradient(#4f8fc5, #004076); /*opera 11.10+*/
-    background: linear-gradient(#4f8fc5, #004076); /*future CSS3 browsers*/
-    -pie-background: linear-gradient(#4f8fc5, #004076); /*PIE*/
-    behavior: url(/_pie.htc);
+	background: #1a6fb0;
+	 background: -webkit-gradient(linear, 0 0, 0 100%, from(#4f8fc5) to(#004076));
+	 background: -webkit-linear-gradient(#4f8fc5, #004076);
+	 background: -moz-linear-gradient(#4f8fc5, #004076);
+	 background: -ms-linear-gradient(#4f8fc5, #004076);
+	 background: -o-linear-gradient(#4f8fc5, #004076);
+	 background: linear-gradient(#4f8fc5, #004076);
+	 -pie-background: linear-gradient(#4f8fc5, #004076);
+	 behavior: url(/_pie.htc);
 }
 
 .rounded_corners_10 {
 	-moz-border-radius: 10px;
-    -webkit-border-radius: 10px;
-    -khtml-border-radius: 10px;
-    border-radius: 10px;
-    behavior: url(/_pie.htc);
+	-webkit-border-radius: 10px;
+	-khtml-border-radius: 10px;
+	border-radius: 10px;
+	behavior: url(/_pie.htc);
 }
 
 .rounded_top_corners_10 {
 	-moz-border-radius: 10px 10px 0px 0px;
-    -webkit-border-radius: 10px 10px 0px 0px;
-    -khtml-border-radius: 10px 10px 0px 0px;
-    border-radius: 10px 10px 0px 0px;
-    behavior: url(/_pie.htc);
+	-webkit-border-radius: 10px 10px 0px 0px;
+	-khtml-border-radius: 10px 10px 0px 0px;
+	border-radius: 10px 10px 0px 0px;
+	behavior: url(/_pie.htc);
 }
 
 .drop_shadow_14 {
 	-moz-box-shadow: 14px 14px 14px #000;
-  	-webkit-box-shadow: 14px 14px 14px #000;
+	-webkit-box-shadow: 14px 14px 14px #000;
 	box-shadow: 0px 14px 14px #8c8c8c;
 	behavior: url(/_pie.htc);
 }
 
 .inner_shadow_2 {
 	/*-moz-box-shadow: inset 2px 2px 2px #7a7a7a;
-  	-webkit-box-shadow: inset 2px 2px 2px #7a7a7a;
-	box-shadow: inset 2px 2px 2px #7a7a7a;*/
-	position:relative;
-	z-index:10;
+	 -webkit-box-shadow: inset 2px 2px 2px #7a7a7a;
+	 box-shadow: inset 2px 2px 2px #7a7a7a;*/
+	position: relative;
+	z-index: 10;
 	behavior: url(/_pie.htc);
 }
 
 .clear_float {
-	clear:both;
-	height:0;
+	clear: both;
+	height: 0;
 	font-size: 1px;
 	line-height: 0px;
 }
@@ -373,13 +368,13 @@ a.module_header_view_all {
 
 #main_content h2 {
 	/*margin-left: 20px;
-	margin-top: 20px;*/
+	 margin-top: 20px;*/
 
 }
 
 #main_content form {
 	/*margin-left: 20px;
-	margin-right: 20px;*/
+	 margin-right: 20px;*/
 }
 
 #main_content input {
@@ -387,13 +382,13 @@ a.module_header_view_all {
 }
 
 #main_content .date {
-	margin-top:6px;
+	margin-top: 6px;
 }
 
 /* ************** Header ************** */
 
 #login_navigation {
-	color: #FFF;
+	color: #005cab;
 	float: right;
 	margin-top: 20px;
 	margin-right: 27px;
@@ -402,50 +397,48 @@ a.module_header_view_all {
 
 #login_navigation a {
 	font-size: 10px;
-	color: #FFF;
-	float:left;
+	color: #005cab;
+	float: left;
 	text-decoration: none;
 	margin-top: 2px;
 	padding: 0 6px;
 }
 
 #login_navigation li {
-	float:left;
-	margin-left:0;
-	list-style-type:none;
+	float: left;
+	margin-left: 0;
+	list-style-type: none;
 }
 
 #main_navigation {
 	margin-top: 12px;
-	
 }
 
 #main_navigation li a {
 	text-decoration: none;
 	color: #737373;
-	display:block;
+	display: block;
 	padding: 10px 0;
-	font-weight:bold;
+	font-weight: bold;
 }
 
 #main_navigation li {
 	text-transform: uppercase;
 	text-align: center;
-	float:left;
+	float: left;
 	width: 191px;
 	background-color: black;
 	border-top: 1px solid #91aac0;
 	border-right: 1px solid #CCC;
 	background: #FFF url('../_images/main_navigation_gradient.png') repeat-x left top;
-	margin-left:0;
+	margin-left: 0;
 	list-style-type: none;
 }
 
 #main_navigation li.current {
-	color:blue;
+	color: blue;
 	background: #FFF url('../_images/main_navigation_gradient_current.png') repeat-x left top;
 }
-
 
 #footer_navigation {
 	text-align: center;
@@ -453,26 +446,24 @@ a.module_header_view_all {
 	font-size: 11px;
 }
 
-
 /* ************** Home ************** */
-
 
 .article_snippet {
 	border-top: 1px solid #bebebe;
 	padding-bottom: 15px;
-	margin-top:-1px;
+	margin-top: -1px;
 }
 
 .article_snippet h2 {
-	margin-right:15px;
-	margin-top:15px;
-	margin-bottom:4px;
-	font-size:18px;
+	margin-right: 15px;
+	margin-top: 15px;
+	margin-bottom: 4px;
+	font-size: 18px;
 	font-weight: normal;
 }
 
 .article_snippet h3 {
-	margin-top:0px;
+	margin-top: 0px;
 }
 
 .article_snippet .date_and_category {
@@ -482,12 +473,12 @@ a.module_header_view_all {
 }
 
 .module_600 .article_snippet p {
-	margin-top:15px;
+	margin-top: 15px;
 	width: 550px;
 }
 
 .article_snippet p {
-	margin-top:15px;
+	margin-top: 15px;
 }
 
 #feature, #related_articles {
@@ -515,12 +506,12 @@ a.module_header_view_all {
 }
 
 #article_search_button {
-   border: none;
-   text-transform: uppercase;
-   background-color: transparent;
-   text-decoration: none;
-   color: #FFF;
-   margin-left: 8px;
+	border: none;
+	text-transform: uppercase;
+	background-color: transparent;
+	text-decoration: none;
+	color: #005cab;
+	margin-left: 8px;
 }
 
 #home #banner_ad img {
@@ -530,17 +521,17 @@ a.module_header_view_all {
 #breadcrumb {
 	margin-top: 25px;
 	margin-left: 25px;
-	color:#505050;
-	font-weight:bold;
+	color: #505050;
+	font-weight: bold;
 }
 
 #breadcrumb a {
-	color:#005DAB;
-	text-decoration:none;
+	color: #005DAB;
+	text-decoration: none;
 }
 
 #breadcrumb a:hover {
-	text-decoration:underline;
+	text-decoration: underline;
 }
 
 /* ************** Articles ************** */
@@ -553,8 +544,6 @@ a.module_header_view_all {
 	line-height: 18px;
 	font-size: 14px;
 }
-
-
 
 .category_module {
 	/*float: left;*/
@@ -581,7 +570,29 @@ a.module_header_view_all {
 /* ************** Static Pages ************** */
 
 .static_page p {
-	padding-right:20px;
+	padding-right: 20px;
+}
+
+/* ************** Static Pages ************** */
+
+.get_published input {
+	margin-top:25px;
+	width:300px;
+	padding-left:5px;
+}
+
+.get_published textarea {
+	margin-top:25px;
+	width:470px;
+	padding-left:5px;
+	padding-top:2px;
+}
+
+.get_published input[type='submit'] {
+	margin-top:25px;
+	width:100px;
+	height:40px;
+	padding-left:0px;
 }
 
 /* ************** Partner Links Module ************** */
@@ -604,11 +615,11 @@ a.module_header_view_all {
 /* ************** Related Articles Module ************** */
 
 #related_articles a {
-	text-decoration:none;
+	text-decoration: none;
 }
 
 #related_articles a:hover {
-	text-decoration:underline;
+	text-decoration: underline;
 }
 
 #related_articles h4 {
@@ -630,7 +641,7 @@ a.module_header_view_all {
 /* ************** Footer ************** */
 
 #partner_sites {
-	padding-top:20px;
+	padding-top: 20px;
 }
 
 #partner_sites a {

@@ -12,4 +12,7 @@
 			</footer>
 		</div>  
 	</body>
+	<script>
+		$('input').toggleField({textsrc:"title"});
+	</script>
 </html>

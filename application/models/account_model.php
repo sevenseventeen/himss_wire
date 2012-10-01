@@ -119,6 +119,16 @@ class Account_Model extends CI_Model {
 		return $query->result();
 	}
 	
+	function get_subscriber_txt_by_user_id($user_id) {
+		$this->db->select('*');
+		$this->db->from('subscriber_accounts');
+		$this->db->where('subscriber_accounts.user_id', $user_id);
+		$this->db->join('external_account_websites', 'external_account_websites.user_id = subscriber_accounts.user_id', 'left');
+		$this->db->join('feed_modules', 'feed_modules.user_id = subscriber_accounts.user_id', 'left');
+		$query = $this->db->get();
+		return $query->result();
+	}
+	
 	function get_network_partner_by_id($network_partner_account_id) {
 		$this->db->select('*');
 		$this->db->from('network_partner_accounts');

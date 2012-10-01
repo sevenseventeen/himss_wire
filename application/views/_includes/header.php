@@ -1,4 +1,4 @@
-<header class="header_gradient drop_shadow_14">
+<header class="drop_shadow_14">
     <a href="<?php echo base_url(); ?>"><img src="<?php echo base_url(); ?>_images/himss_wire_logo.png" /></a>
     <div id="header_right_side">
 	    <ul id="login_navigation">
@@ -39,10 +39,10 @@
     <br class="clear_float" />
     <ul id="main_navigation">
     	<?php //TODO  the static navigation items can be dynamically named (in case someone edits the name of a static page) ?>
-        <li <?php if ($main_navigation == "articles_home" || $main_navigation == "category" || $main_navigation == "articles") { echo "class='current'"; } ?>><a href="<?php echo base_url(); ?>articles">Articles</a></li>
-        <li <?php if ($main_navigation == "about") 			{ echo "class='current'"; } ?>><a href="<?php echo base_url(); ?>about_himss_wire/1">About HIMSSwire</a></li>
+        <li <?php if ($main_navigation == "articles_home" || $main_navigation == "category" || $main_navigation == "articles") { echo "class='current'"; } ?>><a href="<?php echo base_url(); ?>news">News</a></li>
+        <li <?php if ($main_navigation == "about") 			{ echo "class='current'"; } ?>><a href="<?php echo base_url(); ?>alerts/1">Alerts</a></li>
         <li <?php if ($main_navigation == "our_network") 	{ echo "class='current'"; } ?>><a href="<?php echo base_url(); ?>our_network/2">Our Network</a></li>
-        <li <?php if ($main_navigation == "join") 			{ echo "class='current'"; } ?>><a href="<?php echo base_url(); ?>join_himss/3">Join HIMSS</a></li>
+        <li <?php if ($main_navigation == "join") 			{ echo "class='current'"; } ?>><a href="<?php echo base_url(); ?>get_published/3">Get Published</a></li>
         <li <?php if ($main_navigation == "contact") 		{ echo "class='current'"; } ?>><a href="<?php echo base_url(); ?>contact_us/4">Contact Us</a></li>
     </ul>
 </header>

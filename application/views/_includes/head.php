@@ -34,7 +34,8 @@
         
 		<script type="text/javascript" src="<?php echo base_url().'_javascript/jquery-1.7.2.min.js'; ?>"></script>
 		<script type="text/javascript" src="<?php echo base_url().'_javascript/jquery-ui-1.8.20.custom.min.js'; ?>"></script>
-
+		<script type="text/javascript" src="<?php echo base_url().'_javascript/toggleField.jquery.js'; ?>"></script>
+		
 		<!-- CK Editor -->
 		
 		<script type="text/javascript" src="<?php echo base_url().'/ckeditor/ckeditor.js'; ?>"></script>

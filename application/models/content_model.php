@@ -103,6 +103,14 @@ class Content_Model extends CI_Model {
 		return $query->result();
 	}
 	
+	function get_active_category_ids() {
+		$this->db->select('article_category_id');
+		$this->db->group_by("article_category_id"); 
+		$this->db->from('articles');
+		$query = $this->db->get();
+		return $query->result();
+	}
+	
 	function get_category_by_id($category_id) {
 		$this->db->select('*');
 		$this->db->from('article_categories');
