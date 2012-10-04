@@ -180,6 +180,13 @@ class Main_Controller extends CI_Controller {
 		$this->load->view('contact_us_view', $data);
 	}
 	
+	public function about_himss_wire($page_id) {
+		$this->load->model('content_model');
+		$data['static_page'] = $this->content_model->get_static_page_by_id($page_id);
+		$data['static_page_content'] = $this->content_model->get_static_page_content_by_id($page_id);
+		$this->load->view('contact_us_view', $data);
+	}
+	
 	function send_email($page_id){
 		$this->load->library('form_validation');
 		$this->form_validation->set_error_delimiters('<div class="error">', '</div>');

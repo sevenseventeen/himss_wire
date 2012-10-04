@@ -43,7 +43,7 @@
         <li <?php if ($main_navigation == "about") 			{ echo "class='current'"; } ?>><a href="<?php echo base_url(); ?>alerts/1">Alerts</a></li>
         <li <?php if ($main_navigation == "our_network") 	{ echo "class='current'"; } ?>><a href="<?php echo base_url(); ?>our_network/2">Our Network</a></li>
         <li <?php if ($main_navigation == "join") 			{ echo "class='current'"; } ?>><a href="<?php echo base_url(); ?>get_published/3">Get Published</a></li>
-        <li <?php if ($main_navigation == "contact") 		{ echo "class='current'"; } ?>><a href="<?php echo base_url(); ?>contact_us/4">Contact Us</a></li>
+        <li <?php if ($main_navigation == "contact") 		{ echo "class='current'"; } ?>><a href="<?php echo base_url(); ?>about_himss_wire/4">About HIMSSWire</a></li>
     </ul>
 </header>
 
