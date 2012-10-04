@@ -24,9 +24,11 @@
 		
         <link rel="stylesheet" type="text/css" href="<?php echo base_url().'_css/reset.css'; ?>" />
         <link rel="stylesheet" type="text/css" href="<?php echo base_url().'_css/main.css'; ?>" />
+        <link rel="stylesheet" type="text/css" href="http://cdn-images.mailchimp.com/embedcode/classic-081711.css" />
+        <link rel="stylesheet" type="text/css" href="<?php echo base_url().'_css/mailchimp_override.css'; ?>" />
         <link rel="stylesheet" type="text/css" href="<?php echo base_url().'_css/debugging.css'; ?>" />
         <link rel="stylesheet" type="text/css" href="<?php echo base_url().'_css/print.css'; ?>" media="print" />
-
+        
         <!-- JQuery and JQuery UI -->
 
         <link type="text/css" href="<?php echo base_url().'_css/jquery_ui_theme/jquery-ui-1.8.20.custom.css'; ?>" rel="stylesheet" />
