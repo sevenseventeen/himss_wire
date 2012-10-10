@@ -35,7 +35,9 @@ class Auth_Controller extends CI_Controller {
 					break;
 			}
 		} else {
-			$this->load->view('logged_out_view');
+			//$this->load->view('logged_out_view');
+			$this->session->set_flashdata('message', 'Sorry, that email/password combination does not match our records.');
+			redirect('authentication/login');
 		}
 	}
 	

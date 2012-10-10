@@ -459,7 +459,7 @@ class Main_Controller extends CI_Controller {
 	        $this->email->subject('Your HIMSSwire Account');
 	        $this->email->message($message);
 			if ($this->email->send()) {
-				$this->session->set_flashdata('message', 'Please check your email to retreive your password.');
+				$this->session->set_flashdata('message', 'Please check your email to retrieve your password.');
 				redirect("forgot_password");
 			} else {
 				$this->session->set_flashdata('message', 'Sorry, there was a problem sending your password. Please try again later.');

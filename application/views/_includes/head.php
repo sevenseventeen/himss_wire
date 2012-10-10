@@ -20,7 +20,7 @@
 			}
 		?>
 		
-		<meta name="robots" content="noindex, nofollow">
+		<!-- <meta name="robots" content="noindex, nofollow"> -->
 		
         <link rel="stylesheet" type="text/css" href="<?php echo base_url().'_css/reset.css'; ?>" />
         <link rel="stylesheet" type="text/css" href="<?php echo base_url().'_css/main.css'; ?>" />

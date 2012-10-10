@@ -6,10 +6,10 @@
 	  	<description>HIMSSwire</description>
 		<?php foreach($articles as $article) { ?>
 			<item>
-		    	<title><?php echo $article->article_title; ?></title>
-		    	<link>http://www.himsswire.com/development/article/<?php echo $article->article_slug; ?></link>
-		    	<guid>http://www.himsswire.com/development/article/<?php echo $article->article_slug; ?></guid>
-				<description><?php echo strip_tags($article->article_summary); ?></description>
+		    	<title><?php echo htmlspecialchars($article->article_title); ?></title>
+		    	<link>http://www.himsswire.com/article/<?php echo $article->article_slug; ?></link>
+		    	<guid>http://www.himsswire.com/article/<?php echo $article->article_slug; ?></guid>
+				<description><?php echo htmlspecialchars($article->article_summary); ?></description>
 			</item>	
 	  	<?php } ?>
 	</channel>
