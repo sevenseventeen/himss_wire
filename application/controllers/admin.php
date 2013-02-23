@@ -1265,7 +1265,7 @@ class Admin extends CI_Controller {
 		$this->load->helper('file');
 		$this->load->helper('download');
 		$result = $this->account_model->get_subscribers_csv();
-		force_download("all_suscribers_report.csv", $result);
+		force_download("all_subscribers_report.csv", $result);
 	}
 	 
 	 public function all_partners_csv() {
