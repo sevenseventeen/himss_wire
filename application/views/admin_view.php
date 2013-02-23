@@ -588,8 +588,7 @@
 					<h2>Individual Subscribers</h2>
 					<?php 
 						foreach ($subscribers as $subscriber) {
-							//echo $subscriber->first_name." ".$subscriber->last_name."<br />";
-							echo "<a href='".base_url()."admin/subscriber_account_report/$subscriber->user_id'>".$subscriber->first_name." ".$subscriber->last_name."</a><br />";
+							echo "<a href='".base_url()."admin/subscriber_account_report/$subscriber->user_id'>".$subscriber->company_name."</a><br />";
 						}	 
 					?>
 				</div>
