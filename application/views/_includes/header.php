@@ -27,6 +27,7 @@
 	    	<?php } else { ?>
 	            <li><a href="<?php echo base_url(); ?>authentication/login">Partner Login</a></li>    
 	        <?php } ?> 
+	        <li id="twitter_icon"><a href="http://www.twitter.com/HIMSSwire" target="_blank"><img src="<?php echo base_url(); ?>_images/twitter_icon.jpg" /></a></li>
 	    </ul>
 	    <br class="clear_float" />
 	    <div id="search_archive">
@@ -50,12 +51,13 @@
 <!-- Custom Breadcrumb -->
 
 <?php
+	//echo $main_navigation;
 	if(isset($_SERVER['argv'][0]) && $main_navigation != 'admin') {
 		$destination_url = $_SERVER['argv'][0];
 		echo "<div id='breadcrumb'>";
 		echo "<a href='".base_url()."'>Home</a>";
 		if ($main_navigation == 'articles') {
-			echo " > <a href='".base_url()."articles'>Articles</a> > <a href='".base_url()."category/".$category_slug."'>".$category_name."</a> > <a href='".base_url()."article/".$article_slug."'>".$article_title."</a>";
+			echo " > <a href='".base_url()."news'>News</a> > <a href='".base_url()."category/".$category_slug."'>".$category_name."</a> > <a href='".base_url()."article/".$article_slug."'>".$article_title."</a>";
 		} elseif ($main_navigation == 'category') {
 			echo " > <a href='".base_url()."category/".$category_slug."'>".$category_name."</a>";
 		} else {

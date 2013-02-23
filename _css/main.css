@@ -22,6 +22,7 @@ body {
 	margin-right: auto;
 	width: 960px;
 	text-align: left;
+	position:relative;
 	background: #1a6fb0; /*fallback for non-CSS3 browsers*/
 	background: -webkit-gradient(linear, 0 0, 0 100%, from(#FFFFFF) to(#c2dfef)); /*old webkit*/
 	background: -webkit-linear-gradient(#FFFFFF, #c2dfef); /*new webkit*/
@@ -444,6 +445,16 @@ a.module_header_view_all {
 	text-align: center;
 	margin-top: 14px;
 	font-size: 11px;
+}
+
+#twitter_icon img {
+	margin: 0;
+	padding: 0;
+}
+
+#twitter_icon a {
+	padding: 0;
+	margin: -6px 0 0 10px;
 }
 
 /* ************** Home ************** */

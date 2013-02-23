@@ -20,10 +20,10 @@
 			}
 		?>
 		
-		<!-- <meta name="robots" content="noindex, nofollow"> -->
+		<meta name="google-site-verification" content="VM90qENyXeV_OyThgGfyppXmE3iTMIWf1BVb3rypbeE" />
 		
         <link rel="stylesheet" type="text/css" href="<?php echo base_url().'_css/reset.css'; ?>" />
-        <link rel="stylesheet" type="text/css" href="<?php echo base_url().'_css/main.css'; ?>" />
+        <link rel="stylesheet" type="text/css" href="<?php echo base_url().'_css/main.css?v=1'; ?>" />
         <link rel="stylesheet" type="text/css" href="http://cdn-images.mailchimp.com/embedcode/classic-081711.css" />
         <link rel="stylesheet" type="text/css" href="<?php echo base_url().'_css/mailchimp_override.css'; ?>" />
         <link rel="stylesheet" type="text/css" href="<?php echo base_url().'_css/debugging.css'; ?>" />
