@@ -55,7 +55,7 @@ class Account_Model extends CI_Model {
 	}
 	
 	function get_subscribers_csv() {
-		$this->db->select('first_name, last_name, street_address, city, state, zip_code, email, subscription_start_date, subscription_end_date, stories_purchased, stories_remaining');
+		$this->db->select('company_name, first_name, last_name, street_address, city, state, zip_code, email, subscription_start_date, subscription_end_date, stories_purchased, stories_remaining');
 		$this->db->from('subscriber_accounts');
 		$this->db->join('subscriptions', 'subscriptions.subscriber_account_id = subscriber_accounts.subscriber_account_id', 'left');
 		$this->db->join('users', 'users.user_id = subscriber_accounts.user_id', 'left');
