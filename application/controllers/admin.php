@@ -50,6 +50,20 @@ class Admin extends CI_Controller {
 		$this->load->view('subscriber_account_report_view', $data);
 	}
 	
+	public function subscriber_account_report_print($user_id) {
+		$this->load->model('account_model');
+		$this->load->model('user_model');
+		$this->load->model('subscription_model');
+		$this->load->model('content_model');
+		$data['user_account'] = $this->user_model->get_user_by_id($user_id);
+		$data['subscriber_account'] = $this->account_model->get_subscriber_by_user_id($user_id);
+		$data['subscription_details'] = $this->subscription_model->get_subscription_by_account_id($data['subscriber_account'][0]->subscriber_account_id);
+		$data['articles'] = $this->content_model->get_all_articles_by_account_id($data['subscriber_account'][0]->subscriber_account_id);
+		$data['published_articles'] = $this->content_model->get_all_published_articles_by_account_id($data['subscriber_account'][0]->subscriber_account_id);
+		$data['reports'] = $this->content_model->get_reports_by_subscriber_account_id($data['subscriber_account'][0]->subscriber_account_id);
+		$this->load->view('subscriber_account_report_print_view', $data);
+	}
+	
 	/*
 	 * 
 	 * Add Functions
