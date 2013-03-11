@@ -22,7 +22,7 @@ body {
 	margin-right: auto;
 	width: 960px;
 	text-align: left;
-	position:relative;
+	position: relative;
 	background: #1a6fb0; /*fallback for non-CSS3 browsers*/
 	background: -webkit-gradient(linear, 0 0, 0 100%, from(#FFFFFF) to(#c2dfef)); /*old webkit*/
 	background: -webkit-linear-gradient(#FFFFFF, #c2dfef); /*new webkit*/
@@ -204,6 +204,8 @@ footer {
 
 .export_link {
 	color: #004499 !important;
+	display: block;
+	margin-top: 15px;
 }
 
 /* ************** Feed Module View ************** */
@@ -310,14 +312,14 @@ a.module_header_view_all {
 
 .header_gradient {
 	background: #1a6fb0;
-	 background: -webkit-gradient(linear, 0 0, 0 100%, from(#4f8fc5) to(#004076));
-	 background: -webkit-linear-gradient(#4f8fc5, #004076);
-	 background: -moz-linear-gradient(#4f8fc5, #004076);
-	 background: -ms-linear-gradient(#4f8fc5, #004076);
-	 background: -o-linear-gradient(#4f8fc5, #004076);
-	 background: linear-gradient(#4f8fc5, #004076);
-	 -pie-background: linear-gradient(#4f8fc5, #004076);
-	 behavior: url(/_pie.htc);
+	background: -webkit-gradient(linear, 0 0, 0 100%, from(#4f8fc5) to(#004076));
+	background: -webkit-linear-gradient(#4f8fc5, #004076);
+	background: -moz-linear-gradient(#4f8fc5, #004076);
+	background: -ms-linear-gradient(#4f8fc5, #004076);
+	background: -o-linear-gradient(#4f8fc5, #004076);
+	background: linear-gradient(#4f8fc5, #004076);
+	-pie-background: linear-gradient(#4f8fc5, #004076);
+	behavior: url(/_pie.htc);
 }
 
 .rounded_corners_10 {
@@ -587,23 +589,23 @@ a.module_header_view_all {
 /* ************** Static Pages ************** */
 
 .get_published input {
-	margin-top:25px;
-	width:300px;
-	padding-left:5px;
+	margin-top: 25px;
+	width: 300px;
+	padding-left: 5px;
 }
 
 .get_published textarea {
-	margin-top:25px;
-	width:470px;
-	padding-left:5px;
-	padding-top:2px;
+	margin-top: 25px;
+	width: 470px;
+	padding-left: 5px;
+	padding-top: 2px;
 }
 
 .get_published input[type='submit'] {
-	margin-top:25px;
-	width:100px;
-	height:40px;
-	padding-left:0px;
+	margin-top: 25px;
+	width: 100px;
+	height: 40px;
+	padding-left: 0px;
 }
 
 /* ************** Partner Links Module ************** */
