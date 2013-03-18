@@ -544,7 +544,8 @@
 							?>
 							<tr>
 								<td class="contact_info">
-									<strong><?php echo $subscriber->first_name." ".$subscriber->last_name;  ?></strong><br />
+									<strong><?php echo $subscriber->company_name;  ?></strong><br />
+									<?php echo $subscriber->first_name." ".$subscriber->last_name;  ?><br />
 									<?php echo $subscriber->street_address; ?><br />
 									<?php echo $subscriber->city.", ".$subscriber->state." ". $subscriber->zip_code; ?><br />
 									<?php echo $subscriber->phone_number; ?><br />

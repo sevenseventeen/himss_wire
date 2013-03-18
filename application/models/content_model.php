@@ -275,6 +275,8 @@ class Content_Model extends CI_Model {
 		$this->db->where('article_category_id', $article_category_id);
 		$this->db->where('article_slug !=', $article_slug);
 		$this->db->where('article_status', 'published');
+		$this->db->order_by("publish_date", "desc");
+		$this->db->limit(5);
 		$query = $this->db->get();
 		return $query->result();
 	}
