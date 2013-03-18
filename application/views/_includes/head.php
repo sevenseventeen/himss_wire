@@ -43,6 +43,10 @@
 		<script type="text/javascript" src="<?php echo base_url().'/ckeditor/ckeditor.js'; ?>"></script>
 		<script type="text/javascript" src="<?php echo base_url().'/ckeditor/adapters/jquery.js'; ?>"></script>
 		
+		<!-- Sortable Tables -->
+
+		<script type="text/javascript" src="<?php echo base_url().'_javascript/jquery.tablesorter.min.js'; ?>"></script>
+		
 		
 		<script>
 			// The configuration options for the text editors
@@ -141,6 +145,9 @@
 				} else {
 					$("#publish_date_container").show();
 				}
+				
+				$("#article_table").tablesorter(); 
+				
 			});
 			
 			$(function($) {

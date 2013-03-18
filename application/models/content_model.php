@@ -53,6 +53,9 @@ class Content_Model extends CI_Model {
 	function get_all_articles($limit='1000000') {
 		$this->db->select('*');
 		$this->db->from('articles');
+		
+		$this->db->join('subscriber_accounts', 'subscriber_accounts.subscriber_account_id = articles.subscriber_id', 'left');
+		
 		$this->db->limit($limit);
 		$query = $this->db->get();
 		return $query->result();

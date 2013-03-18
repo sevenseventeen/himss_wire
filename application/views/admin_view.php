@@ -22,11 +22,35 @@
 				</ul>
 				<div id="articles_edit">
 					<h2>Edit Article</h2>
-					<?php
-						foreach ($articles as $article) { 
-							echo "<a href='".base_url()."admin/edit_article/$article->article_id'>".$article->article_title."</a><br />";
-						}
-					?>
+					<table id="article_table" class="tablesorter">
+						<thead> 
+							<tr> 
+							    <th>Published</th> 
+							    <th>Subscriber</th> 
+							    <th>Article</th> 
+							</tr> 
+						</thead>
+						<tbody>
+							<?php
+								foreach ($articles as $article) {
+									$publish_date = new DateTime($article->publish_date);
+									$publish_date_formatted	= $publish_date->format('m-d-Y');
+									$article_title_length = strlen($article->article_title);
+									if ($article_title_length > 68) {
+										$article_title = substr($article->article_title, 0, 65)."...";
+									} else {
+										$article_title = $article->article_title;
+									}
+									echo "<tr>";
+										echo "<td>$publish_date_formatted</td>";
+										echo "<td>$article->company_name</td>";
+										
+										echo "<td><a href='".base_url()."admin/edit_article/$article->article_id'>".$article_title."</a></td>";
+									echo "</tr>";
+								}
+							?>
+						</tbody>
+					</table>
 				</div>
 				<div id="articles_add">
 					<?php echo form_open('admin/add_article'); ?>

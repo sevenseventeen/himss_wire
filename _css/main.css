@@ -220,6 +220,46 @@ footer {
 	margin: 15px 0 15px 0;
 }
 
+#article_table {
+	width: 100%;
+}
+
+table#article_table td {
+	width: 10px;
+}
+
+#article_table th:first-child {
+	width: 1px;
+}
+
+#article_table th:nth-child(2) {
+	width: 88px;
+}
+
+#article_table th:last-child {
+	width: 370px;
+}
+
+#article_table th {
+	margin-top: 65px;
+	padding:15px;
+}
+
+#article_table th:hover {
+	text-decoration:underline;	
+}
+
+#article_table th td {
+	width: 0;	
+}
+
+#article_table tbody td {
+	margin-top: 65px;
+	text-align:left;
+	padding: 5px 5px 5px 15px;
+	height: 35px;
+}
+
 /* ************** Global Elements************** */
 
 .module_300 {
