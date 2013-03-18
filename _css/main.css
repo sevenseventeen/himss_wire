@@ -256,7 +256,7 @@ table#article_table td {
 #article_table tbody td {
 	margin-top: 65px;
 	text-align:left;
-	padding: 5px 5px 5px 15px;
+	padding: 5px 15px 5px 15px;
 	height: 35px;
 }
 
