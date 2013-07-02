@@ -12,8 +12,8 @@
 				?>
 		    	<title><?php echo htmlspecialchars($article->article_title); ?></title>
 		    	<pubdate><?php echo $pubDate; ?></pubdate>
-		    	<link>http://www.himsswire.com/article/<?php echo $article->article_slug; ?></link>
-		    	<guid>http://www.himsswire.com/article/<?php echo $article->article_slug; ?></guid>
+		    	<link>http://www.himsswire.com/article/<?php echo $article->category_slug.'/'.$article->article_slug; ?></link>
+		    	<guid>http://www.himsswire.com/article/<?php echo $article->category_slug.'/'.$article->article_slug; ?></guid>
 				<description><?php echo htmlspecialchars($article->article_summary); ?></description>
 			</item>	
 	  	<?php } ?>

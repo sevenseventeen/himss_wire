@@ -43,9 +43,24 @@ class Main_Controller extends CI_Controller {
 		$this->load->view('articles_view', $data);
 	}
 	
-	public function article($article_slug) {
+	// We updated the URL structure to include categories, but needed to make sure
+	// the old URLs worked. So, if the $article_slug parameter is missing, we assume it's an 
+	// URL with the odl format. Then, set $article_slug to $category_slug (to make up for the change in position in the URL.)
+	// Then, look up the article. At this point we do another check - if $article_slug == $category_slug (because category was missing and we 
+	// set it that way) use the article to look up the category and redirect. 
+	
+	public function article($category_slug = null, $article_slug = null) {
 		$this->load->model('content_model');
+		if ($article_slug == null) {
+			$article_slug = $category_slug;
+		}
 		$article = $this->content_model->get_article_by_slug($article_slug);
+		if ($article_slug == $category_slug) {
+			$category = $this->content_model->get_category_by_id($article[0]->article_category_id);
+			$category_slug = $category[0]->category_slug;
+			$redirect_url = 'article/'.$category_slug.'/'.$article_slug;
+			redirect($redirect_url); 	
+		} 
 		if ($article) {
 			$article_category_id = $article[0]->article_category_id;
 			$data['article'] = $article;

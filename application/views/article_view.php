@@ -35,7 +35,7 @@
 			foreach ($related_articles as $related_article) {
 				$date = new DateTime($related_article->publish_date);
 				$date_formatted = $date->format('m-d-Y');
-				echo "<a href='".base_url()."article/".$related_article->article_slug."'><h4>".$related_article->article_title."<span class='date'>".$date_formatted."</span></h4></a>";	
+				echo "<a href='".base_url()."article/".$related_article->category_slug."/".$related_article->article_slug."'><h4>".$related_article->article_title."<span class='date'>".$date_formatted."</span></h4></a>";	
 			}
 		?>
 	</div>

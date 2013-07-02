@@ -11,7 +11,7 @@
 		<h1 class="module_header_with_icon rounded_top_corners_10 header_gradient inner_shadow_2">Latest Headlines</h1>
 		<?php foreach ($articles as $article) { ?>
 			<div class="article_snippet">
-				<h2><a href="<?php echo base_url().'article/'.$article->article_slug; ?>"><?php echo $article->article_title; ?></a></h2>
+				<h2><a href="<?php echo base_url().'article/'.$article->category_slug.'/'.$article->article_slug; ?>"><?php echo $article->article_title; ?></a></h2>
 				<h3 class="date_and_category">
 					<?php 
 						$date = new DateTime($article->publish_date);

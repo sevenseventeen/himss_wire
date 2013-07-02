@@ -14,7 +14,7 @@
 				</a>
 				<?php foreach ($result as $key => $article) { ?>
 					<div class="article_snippet">
-						<h2><a href="<?php echo base_url().'article/'.$result[$key]->article_slug; ?>"><?php echo $result[$key]->article_title; ?></a></h2>
+						<h2><a href="<?php echo base_url().'article/'.$result[$key]->category_slug.'/'.$result[$key]->article_slug; ?>"><?php echo $result[$key]->article_title; ?></a></h2>
 						<h3 class="date_and_category">
 							<?php 
 								$date = new DateTime($result[$key]->publish_date);
