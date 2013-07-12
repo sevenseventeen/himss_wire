@@ -237,7 +237,7 @@ class Main_Controller extends CI_Controller {
 			);
 			$this->load->library('email');
 			$this->email->from($data['email'], $data['name']);
-			$this->email->to('cathy.fosco@medtechmedia.com, info@himsswire.com');
+			$this->email->to('jon.zita@medtechmedia.com');
 			$this->email->subject('Contact From HIMSSWire');
 			$this->email->message("Name: ". $data["name"] . "\n" . "Company: ". $data["company"] . "\n" . "Email: ". $data["email"] . "\n" . "Phone: ". $data["phone"] . "\n" . "Message: " . $data["message"]);
 			$this->email->send();
