@@ -257,9 +257,9 @@
 								<?php echo form_input('zip_code', set_value('zip_code', '')); ?>
 								<?php echo form_error('zip_code'); ?>
 								<br class="clear_float" />
-							<label>Send Welcome Email</label>
-								<input type="checkbox" id="welcome_email" name="welcome_email" value="true" checked="checked" <?php echo set_checkbox('welcome_email', 'true'); ?> />
-								<br class="clear_float" />
+							<!--<label>Send Welcome Email</label>
+								<input type="checkbox" id="welcome_email" name="welcome_email" value="true" checked="checked" <?php //echo set_checkbox('welcome_email', 'true'); ?> />
+								<br class="clear_float" />-->
 							<label>Email</label>
 								<?php echo form_input('email', set_value('email', '')); ?>
 								<?php echo form_error('email'); ?>

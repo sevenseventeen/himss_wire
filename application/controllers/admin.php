@@ -224,7 +224,7 @@ class Admin extends CI_Controller {
 		$this->form_validation->set_rules('city', 'City', 'required');
 		$this->form_validation->set_rules('state', 'State', 'required');
 		$this->form_validation->set_rules('zip_code', 'Zip Code', 'required|numeric');
-		$this->form_validation->set_rules('welcome_email', 'Welcome Email', 'trim');
+		//$this->form_validation->set_rules('welcome_email', 'Welcome Email', 'trim');
 		$this->form_validation->set_rules('email', 'Email', 'required|valid_email|is_unique[users.email]');
 		$this->form_validation->set_rules('password', 'password', 'required');
 		$websites = $this->input->post('websites');
@@ -239,25 +239,25 @@ class Admin extends CI_Controller {
 			);
 			$user_created = $this->user_model->add_user($user_data);
 			if($user_created) {
-				if ($this->input->post('welcome_email') == 'true') {
-					$name = $this->input->post('name');
-					$email = $this->input->post('email');
-					$password = $this->input->post('password');
-					$message = "Congratulations, we have activated your HIMSSwire account. You can login anytime with the following information\n\n Email: $email \n\n Password: $password";
-		            $to = $this->input->post('email');
-					$from_email = $this->config->item('email_from_support');
-					$from_name = $this->config->item('email_name_from_admin');
-					$this->load->library('email');
-			        $this->email->from($from_email, $from_name);
-			        $this->email->to($to);
-			        $this->email->subject('Your HIMSSwire Account');
-			        $this->email->message($message);
-					if ($this->email->send()) {
-						// Sent
-			        } else {
-			        	// Not Sent
-			        }
-				}
+				// if ($this->input->post('welcome_email') == 'true') {
+					// $name = $this->input->post('name');
+					// $email = $this->input->post('email');
+					// $password = $this->input->post('password');
+					// $message = "Congratulations, we have activated your HIMSSwire account. You can login anytime with the following information\n\n Email: $email \n\n Password: $password";
+		            // $to = $this->input->post('email');
+					// $from_email = $this->config->item('email_from_support');
+					// $from_name = $this->config->item('email_name_from_admin');
+					// $this->load->library('email');
+			        // $this->email->from($from_email, $from_name);
+			        // $this->email->to($to);
+			        // $this->email->subject('Your HIMSSwire Account');
+			        // $this->email->message($message);
+					// if ($this->email->send()) {
+						// // Sent
+			        // } else {
+			        	// // Not Sent
+			        // }
+				// }
 				$user_id = $this->db->insert_id();					
 				$account_data = array(
 					'user_id'			=> $user_id,
